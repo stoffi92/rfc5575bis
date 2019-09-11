@@ -1188,8 +1188,8 @@ this document.
 <t>
    Propagation of this NLRI is controlled by matching Route Target
    extended communities associated with the BGP path advertisement with
-   the VRF import policy, using the same mechanism as described in "BGP/
-   MPLS IP VPNs" <xref target="RFC4364"></xref>.
+   the VRF import policy, using the same mechanism as described in BGP/
+   MPLS IP VPNs <xref target="RFC4364"></xref>.
 </t>
 <t>
    Flow Specification rules received via this NLRI apply only to traffic
