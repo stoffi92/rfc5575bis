@@ -1366,7 +1366,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
     <t>
       In order to manage the limited number space and accommodate several
       usages, the following policies defined by <xref target="RFC8126" />
-      used:
+      are used:
     </t>
     <texttable anchor="iana_flow_component_types_policies" title="Flow Spec Component Types Policies">
           <ttcol align="left">Range</ttcol>
