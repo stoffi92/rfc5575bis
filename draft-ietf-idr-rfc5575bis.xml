@@ -220,7 +220,7 @@
    latter by systems that are able to detect malicious flows.  When
    automated systems are used, care should be taken to ensure their
    correctness as well as to limit the number and advertisement rate of
-   flow routes.
+   flow routes (see also <xref target="security_considerations" />).
    </t>
    <t>
    This specification defines required protocol extensions to address
@@ -1513,7 +1513,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
    </texttable>
 </section>
 </section>
-  <section title="Security Considerations">
+  <section title="Security Considerations" anchor="security_considerations">
    <t>Inter-provider routing is based on a web of trust.  Neighboring
    autonomous systems are trusted to advertise valid reachability
    information.  If this trust model is violated, a neighboring
@@ -1541,6 +1541,14 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
    1000.  Such behavior may be confusing and these capabilities should
    be used with care whether manually configured or coordinated through
    the protocol extensions described in this document.
+  </t>
+  <t>
+      Flow Specification BGP speakers (e.g. automated DDoS controllers) not properly programmed,
+      algorithms that are not performing as expected, or simply rogue systems
+      may announce unintended Flow Specification filters, send updates at a high rate
+      or generate a high number of Flow Specification filters.
+      This may stress the receiving systems, exceed their maximum capacity or
+      may lead to unwanted filter actions being applied to flows.
   </t>
   </section>
   <section title="Operational Security Considerations" anchor="operational_sc">
