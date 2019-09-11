@@ -14,6 +14,8 @@
 <!ENTITY RFC7606 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7606.xml">
 <!ENTITY RFC8126 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8126.xml">
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
+<!ENTITY RFC6811 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6811.xml">
+<!ENTITY RFC8205 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8205.xml">
 <!ENTITY I-D.ietf-idr-flow-spec-v6 SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-flow-spec-v6.xml">
 <!ENTITY I-D.vandevelde-idr-flowspec-path-redirect SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vandevelde-idr-flowspec-path-redirect.xml">
 ]>
@@ -1517,7 +1519,8 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
    information.  If this trust model is violated, a neighboring
    autonomous system may cause a denial-of-service attack by advertising
    reachability information for a given prefix for which it does not
-   provide service.
+   provide service. Possible mitigations are <xref target="RFC6811" /> and
+       <xref target="RFC8205" />.
    </t>
    <t> As long as traffic filtering rules are restricted to match the
    corresponding unicast routing paths for the relevant prefixes, the security
@@ -1595,6 +1598,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
 	  &RFC7606;
     &RFC8126;
     &RFC8174;
+
     <reference anchor="IEEE.754.1985">
         <front>
             <title>Standard for Binary Floating-Point Arithmetic</title>
@@ -1609,6 +1613,8 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
 	<references title="Informative References">
 	  &RFC4303;
 	  &I-D.ietf-idr-flow-spec-v6;
+      &RFC6811;
+      &RFC8205;
     </references>
     <section title="Comparison with RFC 5575">
       <t>
