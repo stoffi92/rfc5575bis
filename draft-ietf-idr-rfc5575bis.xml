@@ -808,7 +808,7 @@ traffic that a given downstream AS wishes to drop.
 <t>
    For all other component types, unless otherwise specified, the comparison is
    performed by comparing the component data as a binary string using the
-   memcmp() function as defined by the ISO C standard. For strings with equal
+   memcmp() function as defined by <xref target="ISO_IEC_9899" />. For strings with equal
    lengths the lowest string (memcmp) has higher precedence. For strings of
    different lengths, the common prefix is compared. If the common prefix is not
    equal the string with the lowest prefix has higher precedence. If the common
@@ -1611,6 +1611,16 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
     &RFC8126;
     &RFC8174;
 
+    <reference anchor="ISO_IEC_9899">
+        <front>
+            <title>Information technology -- Programming languages -- C</title>
+            <author>
+                <organization>ISO</organization>
+            </author>
+            <date month="June" year="2018" />
+        </front>
+        <seriesInfo name="ISO/IEC" value="9899:2018"/>
+    </reference>
     <reference anchor="IEEE.754.1985">
         <front>
             <title>Standard for Binary Floating-Point Arithmetic</title>
