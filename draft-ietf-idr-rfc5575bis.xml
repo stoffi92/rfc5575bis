@@ -672,21 +672,21 @@ as zero and ignored on decoding.
  <section title="Example 1">
 <t>
  An example of a Flow Specification encoding for: "all packets to
-   10.0.1/24 and TCP port 25".
+    192.0.2.0/24 and TCP port 25".
 </t>
  <t>
  <figure>
  <artwork>
-           +------------------+----------+----------+
-           | destination      | proto    | port     |
-           +------------------+----------+----------+
-           | 0x01 18 0a 00 01 | 03 81 06 | 04 81 19 |
-           +------------------+----------+----------+
+       +------------------+----------+----------+
+       | destination      | protocol | port     |
+       +------------------+----------+----------+
+       | 0x01 18 c0 00 02 | 03 81 06 | 04 81 19 |
+       +------------------+----------+----------+
  </artwork>
  </figure>
  </t>
 <t>
-   Decode for protocol:
+   Decode for protocol (type 3):
 <figure>
 <artwork>
        +-------+----------+------------------------------+
@@ -698,24 +698,37 @@ as zero and ignored on decoding.
        +-------+----------+------------------------------+
 </artwork>
 </figure>
+   Decode for port (type 4):
+<figure>
+<artwork>
+       +-------+----------+------------------------------+
+       | Value |          |                              |
+       +-------+----------+------------------------------+
+       |  0x04 | type     |                              |
+       |  0x81 | operator | end-of-list, value size=1, = |
+       |  0x19 | value    |                              |
+       +-------+----------+------------------------------+
+</artwork>
+</figure>
+    This constitutes an NLRI with an NLRI length of 11 octets.
 </t>
 </section>
  <section title="Example 2">
      <t>
    An example of a Flow Specification encoding for: "all packets to
-   10.1.1/24 from 192/8 and port {range [137, 139] or 8080}".
+   192.0.2.0/24 from 203.0.113.0/24 and port {range [137, 139] or 8080}".
 <figure>
 <artwork>
-       +------------------+----------+-------------------------+
-       | destination      | source   | port                    |
-       +------------------+----------+-------------------------+
-       | 0x01 18 0a 01 01 | 02 08 c0 | 04 03 89 45 8b 91 1f 90 |
-       +------------------+----------+-------------------------+
+       +------------------+----------------+-------------------------+
+       | destination      | source         | port                    |
+       +------------------+----------------+-------------------------+
+       | 0x01 18 c0 00 02 | 02 18 cb 00 71 | 04 03 89 45 8b 91 1f 90 |
+       +------------------+----------------+-------------------------+
 </artwork>
 </figure>
 </t>
 <t>
-Decode for port:
+Decode for port (type 4):
 <figure>
 <artwork>
        +--------+----------+------------------------------+
@@ -731,7 +744,7 @@ Decode for port:
        +--------+----------+------------------------------+
 </artwork>
 </figure>
-This constitutes an NLRI with an NLRI length of 16 octets.
+This constitutes an NLRI with an NLRI length of 18 octets.
 </t>
 </section>
 </section>
