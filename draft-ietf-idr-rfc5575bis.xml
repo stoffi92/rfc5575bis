@@ -439,8 +439,8 @@ The AND operator has higher priority than OR for
 the purposes of evaluating logical expressions.
 </t>
 <t>len - length of the value field for this operator given as (1 &lt;&lt; len). This
-  encodes 1 (00) - 8 (11) bytes. Type 3 flow component values SHOULD be encoded
-  as single byte (len = 00).
+  encodes 1 (len=00), 2 (len=01), 4 (len=10), 8 (len=11) bytes.
+  Type 3 flow component values SHOULD be encoded as single byte (len=00).
 </t>
 <t>0 - SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
 </t>
