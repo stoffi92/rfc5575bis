@@ -225,7 +225,7 @@
    most common applications of IPv4 unicast and VPNv4 unicast filtering.
    The same mechanism can be reused and new match criteria added to
    address similar filtering needs for other BGP address families such as
-   IPv6 families <xref target="I-D.ietf-idr-flow-spec-v6"></xref>,
+   IPv6 families <xref target="I-D.ietf-idr-flow-spec-v6"></xref>.
    </t>
     </section>
 	<section title="Definitions of Terms Used in This Memo">
