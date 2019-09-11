@@ -1201,13 +1201,11 @@ this document.
    Contrary to the behavior specified for the non-VPN NLRI, flow rules
    are accepted by default, when received from remote PE routers.
 </t>
-<section title="Validation Procedures for BGP/MPLS VPNs">
-<t>The validation procedures are the same as for IPv4.
+<t>
+    The validation procedure (<xref target="validation_procedure" />) and
+    traffic filtering actions (<xref target="traffic_filtering_actions" />) are the same as
+    for IPv4.
 </t>
-</section>
-<section title="Traffic Actions Rules">
-<t>The traffic action rules are the same as for IPv4.</t>
-</section>
 </section>
 <section anchor="limitations_previous" title="Limitations of Previous Traffic Filtering Efforts">
 <section anchor="limitations_previous_ddos" title="Limitations in Previous DDoS Traffic Filtering Efforts">
