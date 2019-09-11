@@ -455,7 +455,7 @@ the purposes of evaluating logical expressions.
 <t>
   The bits lt, gt, and eq can be combined to produce common
        relational operators such as "less or equal", "greater or equal",
-       and "not equal to".
+       and "not equal to" as shown in <xref target="table_comparison_operator" />.
 </t>
     <texttable anchor="table_comparison_operator" title="Comparison operation combinations">
         <ttcol align="center">lt</ttcol>
