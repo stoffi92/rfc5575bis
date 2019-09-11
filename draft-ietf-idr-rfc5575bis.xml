@@ -305,9 +305,10 @@
 	<t>
 	 This NLRI information is encoded using MP_REACH_NLRI and
 	MP_UNREACH_NLRI attributes as defined in  <xref target="RFC4760"></xref>.
-	Whenever the corresponding application does not require Next-Hop
+	Whenever the corresponding application does not require Next Hop
 	information, this shall be encoded as a 0-octet length Next Hop in
-	the MP_REACH_NLRI attribute and ignored on receipt.
+	the MP_REACH_NLRI attribute (if a non 0-octet Next Hop is present
+    it should be ignored on receipt).
 	</t>
 	<t>
 	 The NLRI field of the MP_REACH_NLRI and MP_UNREACH_NLRI is encoded as
@@ -1217,7 +1218,7 @@ this document.
    being attacked (commonly known as remote triggered blackhole RTBH).
    One variant of this technique marks such route
    advertisements with a community that gets translated into a discard
-   Next-Hop by the receiving router.  Other variants attract traffic to
+   Next Hop by the receiving router.  Other variants attract traffic to
    a particular node that serves as a deterministic drop point.
 </t>
 <t>
