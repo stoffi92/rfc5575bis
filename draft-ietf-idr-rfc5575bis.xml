@@ -337,7 +337,7 @@
 	<section title="Length Encoding">
     <t>
 	<list style="symbols">
-	<t>If the NLRI length value is smaller than 240 (0xf0 hex), the length
+	<t>If the NLRI length is smaller than 240 (0xf0 hex) octets, the length
    field can be encoded as a single octet.  </t>
     <t>Otherwise, it is encoded as
     an extended-length 2-octet value in which the most significant nibble
