@@ -663,6 +663,7 @@ as zero and ignored on decoding.
 </section>
 </section>
 <section title="Examples of Encodings">
+ <section title="Example 1">
 <t>
  An example of a Flow Specification encoding for: "all packets to
    10.0.1/24 and TCP port 25".
@@ -692,7 +693,9 @@ as zero and ignored on decoding.
 </artwork>
 </figure>
 </t>
-<t>
+</section>
+ <section title="Example 2">
+     <t>
    An example of a Flow Specification encoding for: "all packets to
    10.1.1/24 from 192/8 and port {range [137, 139] or 8080}".
 <figure>
@@ -724,6 +727,7 @@ Decode for port:
 </figure>
 This constitutes an NLRI with an NLRI length of 16 octets.
 </t>
+</section>
 </section>
 </section>
 <section anchor="traffic_filtering" title="Traffic Filtering">
