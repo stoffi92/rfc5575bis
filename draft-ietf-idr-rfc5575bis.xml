@@ -391,11 +391,10 @@
 <section anchor="type_1" title="Type 1 - Destination Prefix">
 <t>
 <list>
-<t>Encoding: &lt;type (1 octet), prefix length (1 octet), prefix&gt;
+<t>Encoding: &lt;type (1 octet), length (1 octet), prefix (variable)>
 </t>
-<t>Defines: the destination prefix to match.  Prefixes are encoded
-as in BGP UPDATE messages, a length in bits is followed by
-enough octets to contain the prefix information.
+<t>Defines the destination prefix to match. The length and prefix fields are
+encoded as in BGP UPDATE messages <xref target="RFC4271" />
 </t>
 </list>
 </t>
@@ -403,9 +402,10 @@ enough octets to contain the prefix information.
 <section anchor="type_2" title="Type 2 - Source Prefix">
 <t>
 <list>
-<t>Encoding: &lt;type (1 octet), prefix-length (1 octet), prefix&gt;
+<t>Encoding: &lt;type (1 octet), length (1 octet), prefix (variable)&gt;
 </t>
-<t>Defines the source prefix to match.
+<t>Defines the source prefix to match. The length and prefix fields are
+encoded as in BGP UPDATE messages <xref target="RFC4271" />
 </t>
 </list>
 </t>
