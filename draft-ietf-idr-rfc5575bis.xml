@@ -1134,7 +1134,7 @@ this document.
  <section anchor="rules_action_interference" title="Considerations on Traffic Action Interference">
 <t>
    Since traffic actions are represented as BGP extended community values,
-   traffic actions may interfere with each other (ie. there may be more than
+   traffic actions may interfere with each other (e.g. there may be more than
    one conflicting traffic-rate action associated with a single
    flow-filter). Traffic action interference has no impact on BGP propagation
    of flow filters (all communities are propagated according to policies).
