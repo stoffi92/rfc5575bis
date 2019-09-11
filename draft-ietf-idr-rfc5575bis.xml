@@ -348,7 +348,8 @@
 	 In figure 1 above, values less-than 240 are encoded using two hex
 	digits (0xnn).  Values above 239 are encoded using 3 hex digits
 	(0xfnnn).  The highest value that can be represented with this
-	encoding is 4095.  The value 241 is encoded as 0xf0f1.
+	encoding is 4095. For example the length value of 239 is encoded as 0xef (single octet)
+    while 240 is encoded as 0xf0f0 (2-octet).
 	</t>
 	</section>
 	<section anchor="nlri_value_encoding" title="NLRI Value Encoding">
