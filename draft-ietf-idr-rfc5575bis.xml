@@ -115,7 +115,7 @@
 </t>
   <t>
    It specifies IPv4 traffic Flow Specifications via a BGP NLRI which
-   carries traffic Flow Specification filter, and an Extended community value
+   carries a traffic Flow Specification filter, and an Extended community value
    which encodes actions a routing system can take if the packet matches the
    traffic flow filters. The flow filters and the actions are processed in a
    fixed order. Other drafts specify IPv6, MPLS addresses, L2VPN addresses, and
@@ -183,26 +183,6 @@
    prefix is forwarded to a given BGP peer, then the local system can
    install more specific flow rules that may result in different
    forwarding behavior, as requested by this system.
-	</t>
-	<t>The key technology components required to address the class of
-   problems targeted by this document are:
-   <list style="numbers">
-   <t>  Efficient point-to-multipoint distribution of control plane
-       information.
-   </t>
-   <t>Inter-domain capabilities and routing policy support.
-   </t>
-   <t>Tight integration with unicast routing, for verification
-       purposes.
-   </t>
-   </list>
-	</t>
-	<t>
-	Items 1 and 2 have already been addressed using BGP for other types
-	of control plane information. Close integration with BGP also makes
-	it feasible to specify a mechanism to automatically verify flow
-	information against unicast routing. These factors are behind the
-	choice of BGP as the carrier of Flow Specification information.
 	</t>
 	<t>As with previous extensions to BGP, this specification makes it
    possible to add additional information to Internet routers.  These
