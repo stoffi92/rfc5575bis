@@ -323,7 +323,7 @@
 	<figure title="Flow-spec NLRI for IPv4" anchor="fs_nlri">
 	<artwork>
                     +------------------------------+
-                    |    length (0xnn or 0xfn nn)  |
+                    |    length (0xnn or 0xfnnn)   |
                     +------------------------------+
                     |    NLRI value  (variable)    |
                     +------------------------------+
