@@ -1574,7 +1574,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
    produce a working implementation in the original RFC5575.
    </t>
    <t>
-   A packet rate flowspec action was also discribed in a flowspec extention draft
+   A packet rate Flow Specification action was also described in a Flow Specification extension draft
    and the authors like to thank Wesley Eddy, Justin Dailey and Gilbert Clark for
    their work.
    </t>
