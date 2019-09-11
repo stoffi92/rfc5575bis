@@ -1627,7 +1627,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
             <xref target="intro" /> introduces the Flow Specification NLRI. In
             RFC5575 this NLRI was defined as an opaque-key in BGPs database. This
             specification has removed all references to a opaque-key property.
-           BGP is able understand the NLRI encoding. This
+           BGP is able to understand the NLRI encoding. This
             change also resulted in a new section regarding error-handling and
             extensibility (<xref target="errorhandling" />).
           </t>
