@@ -1161,7 +1161,7 @@ this document.
    service providers may use those VPNs for scenarios like having the Internet
    routing table in a VRF, resulting in the same traffic filtering requirements
    as defined for the global routing table environment within this document.
-   This document proposes an additional BGP NLRI type (AFI=1, SAFI=134) value,
+   This document defines an additional BGP NLRI type (AFI=1, SAFI=134) value,
    which can be used to propagate traffic filtering information in a BGP/MPLS
    VPN environment.
  </t>
