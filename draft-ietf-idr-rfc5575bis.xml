@@ -746,7 +746,7 @@ This constitutes an NLRI with an NLRI length of 16 octets.
  provides a solution to prevent DOS and aid BGP/MPLS VPN filtering rules.
 	</t>
 	<t>
-	This Flow Specification NLRI defined above to convey information about traffic
+	The Flow Specification NLRI defined above to convey information about traffic
 filtering rules for traffic that should be discarded or handled in manner
 specified by a set of pre-defined actions (which are defined in BGP Extended
 Communities). This mechanism is primarily designed to allow an upstream
