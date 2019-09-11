@@ -292,7 +292,7 @@
 	</t>
 	<t>
    Standard BGP policy mechanisms, such as UPDATE filtering by NLRI
-   prefix as well as community matching and manipulation, MUST apply to the Flow Specification
+   prefix as well as community matching and manipulation, must apply to the Flow Specification
    defined NLRI-type, especially in an inter-domain environment.
    Network operators can also control propagation of such
    routing updates by enabling or disabling the exchange of a particular
