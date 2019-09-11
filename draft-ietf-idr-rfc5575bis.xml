@@ -479,7 +479,9 @@ the purposes of evaluating logical expressions.
 <t>Encoding:&lt;type (1 octet), [op, value]+&gt;
 </t>
 <t>Defines a list of {operator, value} pairs that matches source
-   OR destination TCP/UDP ports.  This list is encoded using the
+   OR destination TCP/UDP ports (see <xref target="RFC0793" /> Section 3.1).
+   This component matches if either the destination port OR the source port
+   of a flow matches the value. This list is encoded using the
    numeric operator format defined in <xref target="type_3" />.
    Values SHOULD be encoded as 1- or 2-byte quantities.
 </t>
@@ -501,10 +503,10 @@ options or Encapsulating Security Payload (ESP) NULL
 <list>
 <t>Encoding:&lt;type (1 octet), [op, value]+&gt;
 </t>
-<t>  Defines a list of {operator, value} pairs used to match the
-destination port of a TCP or UDP packet. This list is encoded using the
-numeric operator format defined in <xref target="type_3" />. Values SHOULD be encoded as
-1- or 2-byte quantities.
+<t> Defines a list of {operator, value} pairs used to match the
+    destination port of a TCP or UDP packet (see also <xref target="RFC0793" /> Section 3.1).
+    This list is encoded using the numeric operator format defined in <xref target="type_3" />.
+    Values SHOULD be encoded as 1- or 2-byte quantities.
 </t>
 </list>
 </t>
@@ -515,9 +517,9 @@ numeric operator format defined in <xref target="type_3" />. Values SHOULD be en
 <t>Encoding:&lt;type (1 octet), [op, value]+&gt;
 </t>
 <t>  Defines a list of {operator, value} pairs used to match the
-source port of a TCP or UDP packet. This list is encoded using the
-numeric operator format defined in <xref target="type_3" />. Values SHOULD be encoded as
-1- or 2-byte quantities.
+    source port of a TCP or UDP packet (see also <xref target="RFC0793" /> Section 3.1).
+    This list is encoded using the numeric operator format defined in <xref target="type_3" />.
+    Values SHOULD be encoded as 1- or 2-byte quantities.
 </t>
 </list>
 </t>
