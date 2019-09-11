@@ -893,7 +893,7 @@ def flow_rule_cmp(a, b):
    route is resolvable.
 </t>
 <t>
-   The concept can be extended, in the case of Flow Specification NLRI,
+   The concept can be extended, in the case of the Flow Specification NLRI,
    to allow other validation procedures.
 </t>
 <t>
