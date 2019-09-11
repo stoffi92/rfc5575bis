@@ -277,7 +277,7 @@
      non-interference between distinct applications.
    </t>
    <t>
-     BGP itself treats the NLRI as an key to an entry in its
+     BGP itself treats the NLRI as a key to an entry in its
      databases.  Entries that are placed in the Loc-RIB are then
      associated with a given set of semantics, which is application
      dependent.  This is consistent with existing BGP applications.  For
