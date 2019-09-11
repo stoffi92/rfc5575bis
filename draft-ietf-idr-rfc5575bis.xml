@@ -733,11 +733,14 @@ This constitutes an NLRI with an NLRI length of 16 octets.
 <section anchor="traffic_filtering" title="Traffic Filtering">
     <t>
    Traffic filtering policies have been traditionally considered to be relatively
- static.  Limitations of the static mechanisms caused this mechanism to be
- designed for the three new applications of traffic filtering (prevention of
- traffic-based, denial-of-service (DOS) attacks, traffic filtering in the
- context of BGP/MPLS VPN service, and centralized traffic control for SDN/NFV
- networks) requires coordination among service providers and/or coordination
+ static.  Limitations of these static mechanisms caused this new dynamic mechanism to be
+ designed for the three new applications of traffic filtering:
+    <list style="symbols">
+        <t>Prevention of traffic-based, denial-of-service (DOS) attacks.</t>
+        <t>Traffic filtering in the context of BGP/MPLS VPN service.</t>
+        <t>Centralized traffic control for SDN/NFV networks.</t>
+    </list>
+ These application require coordination among service providers and/or coordination
  among the AS within a service provider.  <xref target="limitations_previous" /> has details on the
  limitation of previous mechanisms and why BGP Flow Specification
  provides a solution for to prevent DOS and aid BGP/MPLS VPN filtering rules.
