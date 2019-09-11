@@ -318,11 +318,11 @@
 	<t>
 	<figure title="Flow-spec NLRI for IPv4" anchor="fs_nlri">
 	<artwork>
-    +------------------------------+
-    |    length (0xnn or 0xfn nn)  |
-    +------------------------------+
-    |    NLRI value  (variable)    |
-    +------------------------------+
+                    +------------------------------+
+                    |    length (0xnn or 0xfn nn)  |
+                    +------------------------------+
+                    |    NLRI value  (variable)    |
+                    +------------------------------+
 	</artwork>
 	</figure>
 	</t>
@@ -417,12 +417,12 @@ match the IP protocol value byte in IP packets.
 <t>The operator byte is encoded as:
 <figure>
 <artwork>
-  0   1   2   3   4   5   6   7
-+---+---+---+---+---+---+---+---+
-| e | a |  len  | 0 |lt |gt |eq |
-+---+---+---+---+---+---+---+---+
+                      0   1   2   3   4   5   6   7
+                    +---+---+---+---+---+---+---+---+
+                    | e | a |  len  | 0 |lt |gt |eq |
+                    +---+---+---+---+---+---+---+---+
 
-     Numeric operator
+                            Numeric operator
 </artwork>
 </figure>
 </t>
@@ -571,12 +571,12 @@ This component evaluates to FALSE for packets that are not TCP packets.
 the numeric operator format in the lower nibble.
 <figure>
 <artwork>
- 0   1   2   3   4   5   6   7
-+---+---+---+---+---+---+---+---+
-| e | a |  len  | 0 | 0 |not| m |
-+---+---+---+---+---+---+---+---+
+                  0   1   2   3   4   5   6   7
+                +---+---+---+---+---+---+---+---+
+                | e | a |  len  | 0 | 0 |not| m |
+                +---+---+---+---+---+---+---+---+
 
-   Bitmask operator
+                        Bitmask operator
 </artwork>
 </figure>
 </t>
@@ -637,10 +637,10 @@ as zero and ignored on decoding.
 <t>
 <figure>
 <artwork>
-   0   1   2   3   4   5   6   7
- +---+---+---+---+---+---+---+---+
- | 0 | 0 | 0 | 0 |LF |FF |IsF|DF |
- +---+---+---+---+---+---+---+---+
+                   0   1   2   3   4   5   6   7
+                 +---+---+---+---+---+---+---+---+
+                 | 0 | 0 | 0 | 0 |LF |FF |IsF|DF |
+                 +---+---+---+---+---+---+---+---+
 </artwork>
 </figure>
 </t>
@@ -670,11 +670,11 @@ as zero and ignored on decoding.
  <t>
  <figure>
  <artwork>
-   +------------------+----------+----------+
-   | destination      | proto    | port     |
-   +------------------+----------+----------+
-   | 0x01 18 0a 00 01 | 03 81 06 | 04 81 19 |
-   +------------------+----------+----------+
+           +------------------+----------+----------+
+           | destination      | proto    | port     |
+           +------------------+----------+----------+
+           | 0x01 18 0a 00 01 | 03 81 06 | 04 81 19 |
+           +------------------+----------+----------+
  </artwork>
  </figure>
  </t>
@@ -682,13 +682,13 @@ as zero and ignored on decoding.
    Decode for protocol:
 <figure>
 <artwork>
-   +-------+----------+------------------------------+
-   | Value |          |                              |
-   +-------+----------+------------------------------+
-   |  0x03 | type     |                              |
-   |  0x81 | operator | end-of-list, value size=1, = |
-   |  0x06 | value    |                              |
-   +-------+----------+------------------------------+
+       +-------+----------+------------------------------+
+       | Value |          |                              |
+       +-------+----------+------------------------------+
+       |  0x03 | type     |                              |
+       |  0x81 | operator | end-of-list, value size=1, = |
+       |  0x06 | value    |                              |
+       +-------+----------+------------------------------+
 </artwork>
 </figure>
 </t>
@@ -697,11 +697,11 @@ as zero and ignored on decoding.
    10.1.1/24 from 192/8 and port {range [137, 139] or 8080}".
 <figure>
 <artwork>
-   +------------------+----------+-------------------------+
-   | destination      | source   | port                    |
-   +------------------+----------+-------------------------+
-   | 0x01 18 0a 01 01 | 02 08 c0 | 04 03 89 45 8b 91 1f 90 |
-   +------------------+----------+-------------------------+
+       +------------------+----------+-------------------------+
+       | destination      | source   | port                    |
+       +------------------+----------+-------------------------+
+       | 0x01 18 0a 01 01 | 02 08 c0 | 04 03 89 45 8b 91 1f 90 |
+       +------------------+----------+-------------------------+
 </artwork>
 </figure>
 </t>
@@ -709,18 +709,17 @@ as zero and ignored on decoding.
 Decode for port:
 <figure>
 <artwork>
-   +--------+----------+------------------------------+
-   |  Value |          |                              |
-   +--------+----------+------------------------------+
-   |   0x04 | type     |                              |
-   |   0x03 | operator | size=1, &gt;=                   |
-   |   0x89 | value    | 137                          |
-   |   0x45 | operator | "AND", value size=1, &lt;=      |
-   |   0x8b | value    | 139                          |
-   |   0x91 | operator | end-of-list, value-size=2, = |
-   | 0x1f90 | value    | 8080                         |
-   +--------+----------+------------------------------+
-
+       +--------+----------+------------------------------+
+       |  Value |          |                              |
+       +--------+----------+------------------------------+
+       |   0x04 | type     |                              |
+       |   0x03 | operator | size=1, &gt;=                   |
+       |   0x89 | value    | 137                          |
+       |   0x45 | operator | "AND", value size=1, &lt;=      |
+       |   0x8b | value    | 139                          |
+       |   0x91 | operator | end-of-list, value-size=2, = |
+       | 0x1f90 | value    | 8080                         |
+       +--------+----------+------------------------------+
 </artwork>
 </figure>
 This constitutes an NLRI with an NLRI length of 16 octets.
@@ -1056,10 +1055,10 @@ this document.</t>
 <t>
 <figure>
 <artwork>
-     40  41  42  43  44  45  46  47
-    +---+---+---+---+---+---+---+---+
-    |        reserved       | S | T |
-    +---+---+---+---+---+---+---+---+
+                     40  41  42  43  44  45  46  47
+                    +---+---+---+---+---+---+---+---+
+                    |        reserved       | S | T |
+                    +---+---+---+---+---+---+---+---+
 </artwork>
 </figure>
 </t>
@@ -1165,13 +1164,13 @@ this document.
 <t>
 <figure title="Flow-spec NLRI for MPLS">
   <artwork>
-    +------------------------------+
-    | length (0xnn or 0xfn nn)     |
-    +------------------------------+
-    | Route Distinguisher (8 bytes)|
-    +------------------------------+
-    |    NLRI value  (variable)    |
-    +------------------------------+
+                    +------------------------------+
+                    | length (0xnn or 0xfn nn)     |
+                    +------------------------------+
+                    | Route Distinguisher (8 bytes)|
+                    +------------------------------+
+                    |    NLRI value  (variable)    |
+                    +------------------------------+
   </artwork>
 </figure>
 </t>
