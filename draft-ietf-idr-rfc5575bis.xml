@@ -295,7 +295,7 @@
    (AFI, SAFI) pair on a given BGP peering session.
 	</t>
 	</section>
-	<section title="Dissemination of IPv4 FLow Specification Information">
+	<section title="Dissemination of IPv4 FLow Specification Information" anchor="dissemination_ipv4_flowspec">
 	<t>
 	We define a "Flow Specification" NLRI type (<xref target="fs_nlri" />)
   that may include several components such as destination prefix,
@@ -770,9 +770,10 @@ traffic that a given downstream AS wishes to drop.
    </t>
    </list>
    </t>
-   <t>Distribution of the IPv4 Flow Specification is described in <xref target="validation_procedure" />, and
-   distibution of BGP/MPLS traffic Flow Specification is described in <xref target="traffic_filtering_vpn" />.
-   The traffic filtering actions are described in <xref target="traffic_filtering_actions" />.
+   <t>
+       Encoding of the NLRI is described in <xref target="dissemination_ipv4_flowspec" /> for IPv4 Flow Specification and   in
+       <xref target="traffic_filtering_vpn" /> for VPNv4 Flow Specification. The filtering actions are described
+       in <xref target="traffic_filtering_actions" />.
    </t>
 <section title="Ordering of Traffic Filtering Rules">
 <t>
