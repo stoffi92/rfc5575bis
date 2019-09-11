@@ -237,7 +237,9 @@
 	</t>
 	<t hangText="RIB - ">Routing Information Base.
 	</t>
-	<t hangText="Loc-RIB - ">Local RIB.
+	<t hangText="Loc-RIB - ">
+        The Loc-RIB contains the routes that have been selected by the
+        local BGP speaker's Decision Process.
 	</t>
 	<t hangText="AS - ">Autonomous System.
 	</t>
