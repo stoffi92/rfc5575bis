@@ -488,14 +488,15 @@ the purposes of evaluating logical expressions.
    Values SHOULD be encoded as 1- or 2-byte quantities.
 </t>
 <t>
-Port, source port, and destination port components evaluate to
-FALSE if the IP protocol field of the packet has a value other
-than TCP or UDP, if the packet is fragmented and this is not
-the first fragment, or if the system in unable to locate the
-transport header.  Different implementations may or may not be
-able to decode the transport header in the presence of IP
-options or Encapsulating Security Payload (ESP) NULL
-<xref target="RFC4303"></xref> encryption.
+    In case of the presence of the port (destination-port, source-port)
+    component only TCP or UDP packets can match the entire Flow Specification Rule.
+    The port component, if present, never matches when the packet's IP
+    protocol value is not 6 (TCP) or 17 (UDP), if the packet is fragmented
+    and this is not the first fragement, or if the system is unable to
+    locate the transport header. Different implementations may or may not be
+    able to decode the transport header in the presence of IP
+    options or Encapsulating Security Payload (ESP) NULL
+    <xref target="RFC4303"></xref> encryption.
 </t>
 </list>
 </t>
@@ -510,6 +511,7 @@ options or Encapsulating Security Payload (ESP) NULL
     This list is encoded using the numeric operator format defined in <xref target="type_3" />.
     Values SHOULD be encoded as 1- or 2-byte quantities.
 </t>
+<t>The last paragraph of <xref target="type_4" /> also applies to this component.</t>
 </list>
 </t>
 </section>
@@ -523,6 +525,7 @@ options or Encapsulating Security Payload (ESP) NULL
     This list is encoded using the numeric operator format defined in <xref target="type_3" />.
     Values SHOULD be encoded as 1- or 2-byte quantities.
 </t>
+<t>The last paragraph of <xref target="type_4" /> also applies to this component.</t>
 </list>
 </t>
 </section>
