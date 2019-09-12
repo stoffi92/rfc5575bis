@@ -1351,7 +1351,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
   <section title="AFI/SAFI Definitions">
     <t>
       IANA maintains a registry entitled "SAFI Values". For the purpose of this
-      work, IANA updated the registry and allocated two additional SAFIs:
+      work, IANA is asked to update the following SAFIs according to the table below:
     </t>
     <texttable anchor="iana_safi" title="Registry: SAFI Values">
           <ttcol align="left">Value</ttcol>
@@ -1365,9 +1365,9 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
     <t>
       A Flow Specification consists of a sequence of flow components, which
       are identified by a an 8-bit component type. IANA has created and maintains
-      a registry entitled "Flow Spec Component Types". The reference for
-      this registry has been updated to [this document]. This document
-      defines the following Component Type Codes:
+      a registry entitled "Flow Spec Component Types". IANA is asked to
+      update the reference for this registry to [this document]. Furthermore the
+      references to the values should be updated according to the table below.
     </t>
 
     <texttable anchor="iana_flow_component_types" title="Registry: Flow Spec Component Types">
@@ -1421,21 +1421,13 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
    <t>
      For the type-part, IANA maintains a registry entitled "BGP Transitive Extended Community
      Types". For the purpose of this work (<xref
-     target="traffic_filtering_actions" />), IANA updated the registry to
-     contain the values listed below:
+     target="traffic_filtering_actions" />), IANA is asked to update the
+     references to the following values according to the table below:
    </t>
    <texttable anchor="iana_ext_comm_types" title="Registry: Generic Transitive Experimental Use Extended Community Types">
          <ttcol align="left">Type Value</ttcol>
          <ttcol align="left">Name</ttcol>
          <ttcol align="left">Reference</ttcol>
-         <c>0x80</c>
-         <c>
-           Generic Transitive Experimental Use Extended Community (Sub-Types are
-           defined in the "Generic Transitive Experimental Use Extended
-           Community Sub-Types" registry)
-         </c>
-         <c><xref target="RFC7153" /></c>
-
          <c>0x81</c>
          <c>
            Generic Transitive Experimental Use Extended Community Part 2 (Sub-Types are
@@ -1456,8 +1448,10 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
 
    <t>Note-1: This document obsoletes RFC7674.</t>
    <t>
-     For the sub-type part of the extended community actions IANA maintains and
-     updated the following registries:
+     For the sub-type part of the extended community actions IANA maintains
+     the follwoing registries. IANA is asked to update all references
+     according to the tables below and assign a new value for the "Flow spec
+     traffic-rate-packets" Sub-Type.
    </t>
    <texttable anchor="iana_ext_comm_subtypes" title="Registry: Generic Transitive Experimental Use Extended Community Sub-Types">
          <ttcol align="left">Sub-Type Value</ttcol>
@@ -1523,9 +1517,9 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
      target="traffic_action_subtype" />) defined in this document has 46 unused bits,
      which can be used to convey additional meaning. IANA
      created and maintains a new registry entitled: "Traffic Action
-     Fields".  The reference for this registry has been updated to
-     [this document]. These values should be assigned via IETF Review rules only.
-     The following traffic-action fields have been allocated:
+     Fields".  IANA is asked to update the reference for this registry to
+     [this document]. Furthermore IANA is asked to update the references according to the table below.
+     These values should be assigned via IETF Review rules only.
    </t>
    <texttable anchor="iana_traffic_action_subtype" title="Registry: Traffic Action Fields">
          <ttcol align="left">Bit</ttcol>
