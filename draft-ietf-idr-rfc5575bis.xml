@@ -1394,6 +1394,18 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
           <c>134</c>   <c>VPNv4 dissemination of Flow Specification rules</c>       <c>[this document]</c>
     </texttable>
   </section>
+    <section title="Renaming of Experimental Use Registries">
+        <t>IANA is asked to rename the registry entitled "Generic
+            Transitive Experimental Use Extended Community Part 2 Sub-Types" to
+            "Generic Transitive Extended Community Part 2 Sub-Types" and
+            update the reference for this registry to [this document].
+        </t>
+        <t>IANA is asked to rename the registry entitled "Generic
+            Transitive Experimental Use Extended Community Part 3 Sub-Types" to
+            "Generic Transitive Extended Community Part 3 Sub-Types" and
+            update the reference for this registry to [this document].
+        </t>
+    </section>
   <section title="Flow Component Definitions">
     <t>
       A Flow Specification consists of a sequence of flow components, which
@@ -1463,16 +1475,16 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
          <ttcol align="left">Reference</ttcol>
          <c>0x81</c>
          <c>
-           Generic Transitive Experimental Use Extended Community Part 2 (Sub-Types are
-           defined in the "Generic Transitive Experimental Use Extended Community Part 2
+           Generic Transitive Extended Community Part 2 (Sub-Types are
+           defined in the "Generic Transitive Extended Community Part 2
            Sub-Types" Registry)
          </c>
          <c>[this document] [See Note-1] </c>
 
          <c>0x82</c>
          <c>
-           Generic Transitive Experimental Use Extended Community Part 3
-           (Sub-Types are defined in the "Generic Transitive Experimental Use
+           Generic Transitive Extended Community Part 3
+           (Sub-Types are defined in the "Generic Transitive
            Extended Community Part 3 Sub-Types" Registry)
          </c>
          <c>[this document] [See Note-1] </c>
@@ -1482,7 +1494,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
    <t>Note-1: This document obsoletes RFC7674.</t>
    <t>
      For the sub-type part of the extended community actions IANA maintains
-     the follwoing registries. IANA is asked to update all references
+     the following registries. IANA is asked to update all references
      according to the tables below and assign a new value for the "Flow spec
      traffic-rate-packets" Sub-Type.
    </t>
@@ -1523,7 +1535,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
    </texttable>
    <t>Note-2: This document obsoletes both RFC7674 and RFC5575. </t>
 
-   <texttable anchor="iana_ext_comm_subtypes2" title="Registry: Generic Transitive Experimental Use Extended Community Part 2 Sub-Types">
+   <texttable anchor="iana_ext_comm_subtypes2" title="Registry: Generic Transitive Extended Community Part 2 Sub-Types (has been renamed above)">
          <ttcol align="left">Sub-Type Value</ttcol>
          <ttcol align="left">Name</ttcol>
          <ttcol align="left">Reference</ttcol>
@@ -1533,7 +1545,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
          </c>
          <c>[this document] [See Note-3] </c>
    </texttable>
-   <texttable anchor="iana_ext_comm_subtypes3" title="Registry: Generic Transitive Experimental Use Extended Community Part 3 Sub-Types">
+   <texttable anchor="iana_ext_comm_subtypes3" title="Registry: Generic Transitive Extended Community Part 3 Sub-Types (has been renamed above)">
          <ttcol align="left">Sub-Type Value</ttcol>
          <ttcol align="left">Name</ttcol>
          <ttcol align="left">Reference</ttcol>
