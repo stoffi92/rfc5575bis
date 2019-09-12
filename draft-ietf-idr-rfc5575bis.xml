@@ -1393,9 +1393,9 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
       are used:
     </t>
     <texttable anchor="iana_flow_component_types_policies" title="Flow Spec Component Types Policies">
-          <ttcol align="left">Range</ttcol>
+          <ttcol align="left">Type Values</ttcol>
           <ttcol align="left">Policy</ttcol>
-          <c>0</c>           <c>Invalid value</c>
+          <c>0</c>           <c>Specification required</c>
           <c>[1 .. 12]</c>   <c>Defined by this specification</c>
           <c>[13 .. 127]</c>   <c>Specification required</c>
           <c>[128 .. 255]</c>   <c>First Come First Served</c>
