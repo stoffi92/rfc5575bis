@@ -926,11 +926,13 @@ def flow_rule_cmp(a, b):
 <t>
   b) The originator of the Flow Specification matches the originator of
   the best-match unicast route for the destination prefix embedded
-  in the Flow Specification.
+  in the Flow Specification (this is the unicast route with the longest
+    possible prefix length covering the destination prefix embedded in
+    the Flow Specification).
 </t>
 <t>
   c) There are no more specific unicast routes, when compared with the
-  flow destination prefix, that has been received from a different
+  flow destination prefix, that have been received from a different
   neighboring AS than the best-match unicast route, which has been
   determined in rule b).
 </t>
