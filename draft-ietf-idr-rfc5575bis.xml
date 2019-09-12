@@ -1338,9 +1338,11 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
     </list>
 
     In order to facilitate future extensions of the Flow Specification NLRI, such
-    extensions SHOULD specify a way to encode a "always-true" match condition within
-    the newly introduced components. This match condition can be used to propagate (and apply)
+    extensions SHOULD specify a way to encode an "always-true" match condition within
+    the newly introduced components (this is a match condition, encoded with the newly introduced components,
+    if present on its own, matches all flows). This match condition can be used to propagate (and apply)
     certain filters only if a specific extension is known to the implemenation.
+
   </t>
 </section>
 
