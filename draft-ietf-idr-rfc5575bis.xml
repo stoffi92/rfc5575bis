@@ -1544,7 +1544,13 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
    <t> As long as traffic filtering rules are restricted to match the
    corresponding unicast routing paths for the relevant prefixes, the security
    characteristics of this proposal are equivalent to the existing security
-   properties of BGP unicast routing. However, this document also specifies
+   properties of BGP unicast routing. Any relaxation of the validation
+   procedure described in <xref target="validation_procedure" /> may
+   allow unwanted Flow Specification rules to be propagated and thus unwanted filter
+   actions may be applied to flows.
+    </t>
+    <t>
+   This document specifies
    traffic filtering actions that may need custom additional verification on the
    receiver side. See <xref target="operational_sc" />.
    </t>
