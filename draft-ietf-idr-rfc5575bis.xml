@@ -1365,8 +1365,9 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
     <t>
       A Flow Specification consists of a sequence of flow components, which
       are identified by a an 8-bit component type. IANA has created and maintains
-      a registry entitled "Flow Spec Component Types". This document defines
-      the following Component Type Codes:
+      a registry entitled "Flow Spec Component Types". The reference for
+      this registry has been updated to [this document]. This document
+      defines the following Component Type Codes:
     </t>
 
     <texttable anchor="iana_flow_component_types" title="Registry: Flow Spec Component Types">
@@ -1522,7 +1523,8 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
      target="traffic_action_subtype" />) defined in this document has 46 unused bits,
      which can be used to convey additional meaning. IANA
      created and maintains a new registry entitled: "Traffic Action
-     Fields".  These values should be assigned via IETF Review rules only.
+     Fields".  The reference for this registry has been updated to
+     [this document]. These values should be assigned via IETF Review rules only.
      The following traffic-action fields have been allocated:
    </t>
    <texttable anchor="iana_traffic_action_subtype" title="Registry: Traffic Action Fields">
