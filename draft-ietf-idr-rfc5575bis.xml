@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC0791 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0791.xml">
 <!ENTITY RFC0793 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0793.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2474 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2474.xml">
@@ -653,13 +654,13 @@ as zero and ignored on decoding.
 </t>
 <t>Bitmask values:
 <list style="symbol">
-<t>Bit 7 - Don't fragment (DF)
+<t>Bit 7 - Don't fragment (DF) - match if <xref target="RFC0791" /> IP Header Flags Bit-1 (DF) is 1
 </t>
-<t>Bit 6 - Is a fragment (IsF)
+<t>Bit 6 - Is a fragment (IsF) - match if <xref target="RFC0791" /> IP Header Fragment Offset is not 0
 </t>
-<t>Bit 5 - First fragment (FF)
+<t>Bit 5 - First fragment (FF) - match if <xref target="RFC0791" /> IP Header Fragment Offset is 0 AND Flags Bit-2 (MF) is 1
 </t>
-<t>Bit 4 - Last fragment (LF)
+<t>Bit 4 - Last fragment (LF) - match if <xref target="RFC0791" /> IP Header Fragment Offset is not 0 AND Flags Bit-2 (MF) is 0
 </t>
 <t>Bit 0-3 - SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
 </t>
@@ -736,16 +737,46 @@ Decode for port (type 4):
        |  Value |          |                              |
        +--------+----------+------------------------------+
        |   0x04 | type     |                              |
-       |   0x03 | operator | size=1, &gt;=                   |
+       |   0x03 | operator | value size=1, &gt;=             |
        |   0x89 | value    | 137                          |
        |   0x45 | operator | "AND", value size=1, &lt;=      |
        |   0x8b | value    | 139                          |
-       |   0x91 | operator | end-of-list, value-size=2, = |
+       |   0x91 | operator | end-of-list, value size=2, = |
        | 0x1f90 | value    | 8080                         |
        +--------+----------+------------------------------+
 </artwork>
 </figure>
 This constitutes an NLRI with an NLRI length of 18 octets.
+</t>
+</section>
+ <section title="Example 3">
+     <t>
+   An example of a Flow Specification encoding for: "all packets to
+   192.0.2.1/32 and fragment { DF or FF } (matching packet with DF bit set or First Fragments)
+<figure>
+<artwork>
+       +---------------------+----------+
+       | destination         | fragment |
+       +---------------------+----------+
+       | 0x01 20 c0 00 02 01 | 0c 80 05 |
+       +---------------------+----------+
+</artwork>
+</figure>
+</t>
+<t>
+Decode for fragment (type 12):
+<figure>
+<artwork>
+       +--------+----------+------------------------------+
+       |  Value |          |                              |
+       +--------+----------+------------------------------+
+       |   0x0c | type     |                              |
+       |   0x80 | operator | end-of-list, value size=1    |
+       |   0x05 | value    | DF=1, FF=1                   |
+       +--------+----------+------------------------------+
+</artwork>
+</figure>
+This constitutes an NLRI with an NLRI length of 9 octets.
 </t>
 </section>
 </section>
@@ -1619,6 +1650,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
   <back>
 
     <references title="Normative References">
+      &RFC0791;
 	  &RFC0793;
       &RFC2119;
 	  &RFC2474;
