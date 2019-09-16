@@ -1600,8 +1600,9 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
    traffic filtering actions that may need custom additional verification on the
    receiver side. See <xref target="operational_sc" />.
    </t>
-   <t>  Where it is not the case, this would open the door to further denial-
-   of-service attacks.
+   <t>  Where the above mechanisms are not in place, this would open the door
+   to further denial-of-service attacks such as unwanted traffic filtering,
+   remarking or redirection.
    </t>
    <t> Enabling firewall-like capabilities in routers without centralized
    management could make certain failures harder to diagnose.  For
