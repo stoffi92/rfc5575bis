@@ -231,6 +231,79 @@
    address similar filtering needs for other BGP address families such as
    IPv6 families <xref target="I-D.ietf-idr-flow-spec-v6"></xref>.
    </t>
+<section anchor="limitations_previous_ddos" title="Limitations in Previous DDoS Traffic Filtering Efforts">
+<t>The popularity of traffic-based, denial-of-service (DoS) attacks,
+   which often requires the network operator to be able to use traffic
+   filters for detection and mitigation, brings with it requirements
+   that are not fully satisfied by existing tools.
+</t>
+<t>
+     Increasingly, DoS mitigation requires coordination among several
+   service providers in order to be able to identify traffic source(s)
+   and because the volumes of traffic may be such that they will
+   otherwise significantly affect the performance of the network.
+</t>
+<t>
+   Several techniques are currently used to control traffic filtering of
+   DoS attacks.  Among those, one of the most common is to inject
+   unicast route advertisements corresponding to a destination prefix
+   being attacked (commonly known as remote triggered blackhole RTBH).
+   One variant of this technique marks such route
+   advertisements with a community that gets translated into a discard
+   Next Hop by the receiving router.  Other variants attract traffic to
+   a particular node that serves as a deterministic drop point.
+</t>
+<t>
+   Using unicast routing advertisements to distribute traffic filtering
+   information has the advantage of using the existing infrastructure
+   and inter-AS communication channels.  This can allow, for instance, a
+   service provider to accept filtering requests from customers for
+   address space they own.
+</t>
+<t>
+   There are several drawbacks, however.  An issue that is immediately
+   apparent is the granularity of filtering control: only destination
+   prefixes may be specified.  Another area of concern is the fact that
+   filtering information is intermingled with routing information.
+</t>
+<t>
+   The mechanism defined in this document is designed to address these
+   limitations.  We use the Flow Specification NLRI defined above to
+   convey information about traffic filtering rules for traffic that
+   is subject to modified forwarding behavior (actions). The actions
+   are defined as extended communities and include (but are not limited
+   to) rate-limiting (including discard), traffic redirection, packet
+   rewriting.
+</t>
+</section>
+    <section anchor="limitations_previous_mpls_ddos" title="Limitations in Previous BGP/MPLS Traffic Filtering Efforts">
+    <t>
+       Provider-based Layer 3 VPN networks, such as the ones using a BGP/
+       MPLS IP VPN <xref target="RFC4364"></xref> control plane, may have different traffic filtering
+       requirements than Internet service providers.
+    </t>
+    <t>
+       In these environments, the VPN customer network often has traffic
+       filtering capabilities towards their external network connections
+       (e.g., firewall facing public network connection).  Less common is
+       the presence of traffic filtering capabilities between different VPN
+       attachment sites.  In an any-to-any connectivity model, which is the
+       default, this means that site-to-site traffic is unfiltered.
+    </t>
+    <t>
+       In circumstances where a security threat does get propagated inside
+       the VPN customer network, there may not be readily available
+       mechanisms to provide mitigation via traffic filter.
+    </t>
+    <t>
+    But also Internet service providers may use those VPNs for scenarios like
+    having the Internet routing table in a VRF. Therefore, limitations described
+    in <xref target="limitations_previous_ddos"></xref> also apply to this section.
+    </t>
+    <t>The BGP Flow Specification addresses these limitations.
+    </t>
+    </section>
+
     </section>
 	<section title="Definitions of Terms Used in This Memo">
 	<t>
@@ -789,7 +862,8 @@ This constitutes an NLRI with an NLRI length of 9 octets.
         <t>Centralized traffic control for SDN/NFV networks.</t>
     </list>
  These application require coordination among service providers and/or coordination
- among the AS within a service provider.  <xref target="limitations_previous" /> has details on the
+ among the AS within a service provider.  <xref target="limitations_previous_ddos" /> and
+        <xref target="limitations_previous_mpls_ddos" /> explain details on the
  limitation of previous mechanisms and why BGP Flow Specification
  provides a solution to prevent DOS and aid BGP/MPLS VPN filtering rules.
 	</t>
@@ -1257,80 +1331,6 @@ this document.
     traffic filtering actions (<xref target="traffic_filtering_actions" />) are the same as
     for IPv4.
 </t>
-</section>
-<section anchor="limitations_previous" title="Limitations of Previous Traffic Filtering Efforts">
-<section anchor="limitations_previous_ddos" title="Limitations in Previous DDoS Traffic Filtering Efforts">
-<t>The popularity of traffic-based, denial-of-service (DoS) attacks,
-   which often requires the network operator to be able to use traffic
-   filters for detection and mitigation, brings with it requirements
-   that are not fully satisfied by existing tools.
-</t>
-<t>
-     Increasingly, DoS mitigation requires coordination among several
-   service providers in order to be able to identify traffic source(s)
-   and because the volumes of traffic may be such that they will
-   otherwise significantly affect the performance of the network.
-</t>
-<t>
-   Several techniques are currently used to control traffic filtering of
-   DoS attacks.  Among those, one of the most common is to inject
-   unicast route advertisements corresponding to a destination prefix
-   being attacked (commonly known as remote triggered blackhole RTBH).
-   One variant of this technique marks such route
-   advertisements with a community that gets translated into a discard
-   Next Hop by the receiving router.  Other variants attract traffic to
-   a particular node that serves as a deterministic drop point.
-</t>
-<t>
-   Using unicast routing advertisements to distribute traffic filtering
-   information has the advantage of using the existing infrastructure
-   and inter-AS communication channels.  This can allow, for instance, a
-   service provider to accept filtering requests from customers for
-   address space they own.
-</t>
-<t>
-   There are several drawbacks, however.  An issue that is immediately
-   apparent is the granularity of filtering control: only destination
-   prefixes may be specified.  Another area of concern is the fact that
-   filtering information is intermingled with routing information.
-</t>
-<t>
-   The mechanism defined in this document is designed to address these
-   limitations.  We use the Flow Specification NLRI defined above to
-   convey information about traffic filtering rules for traffic that
-   is subject to modified forwarding behavior (actions). The actions
-   are defined as extended communities and include (but are not limited
-   to) rate-limiting (including discard), traffic redirection, packet
-   rewriting.
-</t>
-</section>
-<section anchor="limitations_previous_mpls_ddos" title="Limitations in Previous BGP/MPLS Traffic Filtering Efforts">
-<t>
-   Provider-based Layer 3 VPN networks, such as the ones using a BGP/
-   MPLS IP VPN <xref target="RFC4364"></xref> control plane, may have different traffic filtering
-   requirements than Internet service providers.
-</t>
-<t>
-   In these environments, the VPN customer network often has traffic
-   filtering capabilities towards their external network connections
-   (e.g., firewall facing public network connection).  Less common is
-   the presence of traffic filtering capabilities between different VPN
-   attachment sites.  In an any-to-any connectivity model, which is the
-   default, this means that site-to-site traffic is unfiltered.
-</t>
-<t>
-   In circumstances where a security threat does get propagated inside
-   the VPN customer network, there may not be readily available
-   mechanisms to provide mitigation via traffic filter.
-</t>
-<t>
-But also Internet service providers may use those VPNs for scenarios like
-having the Internet routing table in a VRF. Therefore, limitations described
-in <xref target="limitations_previous_ddos"></xref> also apply to this section.
-</t>
-<t>The BGP Flow Specification addresses these limitations.
-</t>
-</section>
 </section>
 <section title="Traffic Monitoring">
 <t>
