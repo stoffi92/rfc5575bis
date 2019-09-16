@@ -1183,7 +1183,7 @@ this document.</t>
  <section anchor="traffic_action_subtype" title="Traffic-action (traffic-action) sub-type 0x07">
  <t>The traffic-action extended community consists of 6
       bytes of which only the 2 least significant bits of the 6th byte
-      (from left to right) are currently defined.
+      (from left to right) are defined by this specification.
 </t>
 <t>
 <figure>
@@ -1191,9 +1191,9 @@ this document.</t>
      0                   1                   2                   3
      0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   reserved    |   reserved    |   reserved    |   reserved    |
+    | Traffic Action Field                                          |
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   reserved    | reserved  |S|T|
+    | Tr. Action Field (cont.)  |S|T|
     +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </artwork>
 </figure>
@@ -1206,10 +1206,11 @@ this document.</t>
    of the traffic filter stops when this rule is applied.
 </t>
 <t>S: Sample (bit 46): Enables traffic sampling and logging for this
-     Flow Specification.
+     Flow Specification (only effective when set).
 </t>
-<t>reserved: should always be set to 0 by the originator and not be evaluated
-  by the receiving BGP speaker.
+<t>Traffic Action Field: Other Traffic Action Field (see
+    <xref target="IANA" />) bits unused by this
+    specification.
 </t>
 </list>
 </t>
