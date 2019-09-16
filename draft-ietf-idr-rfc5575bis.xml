@@ -1125,6 +1125,14 @@ defined as retesting that clause a and clause b above are true.
        <c>0x8208</c> <c>rt-redirect AS-4byte</c>  <c>4-octet AS, 2-octet value</c>
        <c>0x8009</c> <c>traffic-marking</c>         <c>DSCP value</c>
    </texttable>
+<t>
+    Multiple traffic actions defined in this document may be present for a single NLRI.
+    If not all of them can be processed the filter SHALL NOT
+    be applied at all. For example: If for a given Flow Specification there
+    are the action communities traffic-rate-bytes (0x8006) and
+    traffic-marking (0x8009) attached, and the platform does not support
+    one of them, none of the actions shall be applied.
+</t>
  <t>
  Some traffic action communities may interfere with each other.
  <xref target="rules_action_interference" /> of this specification
@@ -1134,14 +1142,6 @@ defined as retesting that clause a and clause b above are true.
  MUST specify if the traffic action interacts with an
  existing traffic actions, and provide error handling
  per <xref target="RFC7606"></xref>.
-</t>
-<t>
-Multiple traffic actions may be present for a single NLRI.  The traffic
-actions are processed in ascending order of the sub-type found in the BGP
-Extended Communities. If not all of them can be processed the filter SHALL NOT
-be applied at all (for example: if for a given flow there are the action communities
-rate-limit-bytes and traffic-marking attached, and the plattform does not support
-one of them also the other shall not be applied for that flow).
 </t>
 <t>
 All traffic actions are specified as transitive BGP Extended
