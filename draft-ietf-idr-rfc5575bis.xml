@@ -380,15 +380,9 @@
    higher numeric type value.
    </t>
    <t>
-   All combinations of component types within a single NLRI are allowed, even
-   if the combination makes no sense from a semantical perspective.
-   If a given component type within a prefix in unknown, the prefix in
-   question cannot be used for traffic filtering purposes by the
-   receiver. Since a Flow Specification has the semantics of a logical
-   AND of all components, if a component is FALSE, by definition it
-   cannot be applied. However, for the purposes of BGP route
-   propagation, this prefix should still be transmitted since BGP route
-   distribution is independent on NLRI semantics.
+       All combinations of component types within a single NLRI are allowed. However,
+       some combinations cannot match any packets (ie. "ICMP Type AND Port" will never
+       match any packets), and thus SHOULD not be propagated by BGP.
    </t>
 <section anchor="type_1" title="Type 1 - Destination Prefix">
 <t>
