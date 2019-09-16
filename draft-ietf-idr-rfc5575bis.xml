@@ -1249,10 +1249,33 @@ this document.
 <section title="Traffic Marking (traffic-marking) sub-type 0x09">
 <t> The traffic marking extended community instructs a
  system to modify the DSCP bits of a transiting IP packet to the
- corresponding value.  This extended community is encoded as a
- sequence of 5 zero bytes followed by the DSCP value encoded in the
- 6 least significant bits of 6th byte.
+ corresponding value encoded in the 6 least significant bits of the extended
+    community value.
  </t>
+    <t>The extended is encoded as follows:
+<figure>
+<artwork>
+     0                   1                   2                   3
+     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |   reserved    |   reserved    |   reserved    |   reserved    |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+    |   reserved    | r.|    DSCP   |
+    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+</artwork>
+</figure>
+</t>
+<t>
+<list style="symbols">
+<t>DSCP: new DSCP value for the transiting IP packet.
+</t>
+<t>reserved, r.: SHOULD be set to 0 on encoding, and MUST be
+         ignored during decoding.
+</t>
+</list>
+</t>
+
+
  <t>Interferes with: No other BGP Flow Specification traffic action in
  this document.</t>
 </section>
