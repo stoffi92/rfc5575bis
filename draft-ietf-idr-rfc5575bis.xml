@@ -1346,31 +1346,33 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
    </list>
   </t>
 </section>
-<section anchor="errorhandling" title="Error-Handling and Future NLRI Extensions">
+<section anchor="errorhandling" title="Error-Handling">
   <t>
-    In case BGP encounters an error in a Flow Specification UPDATE message
-    it SHOULD treat this message as Treat-as-withdraw according to
-    <xref target="RFC7606"></xref> Section 2.
+      Error handling according to <xref target="RFC7606"></xref> SHOULD
+      apply to this specification.
+  </t>
+    <t>
+        This document introduces Traffic Filtering Action Extended Communities.
+        Malformed Traffic Filtering Action Extended Communities in the sense of <xref target="RFC7606"></xref>
+        Section 7.14. are Extended Community values that cannot be decoded according
+        to <xref target="traffic_filtering_actions" /> of this specification.
+    </t>
+</section>
+<section anchor="future_extensions" title="Future NLRI Extensions">
+    <t>
+      Future Flow Specification extensions may introduce new Flow
+      Specification components. In order to facilitate such extensions of
+      the Flow Specification NLRI, in addition to the cases described in
+      <xref target="RFC7606"></xref>, if BGP encounters an unknown Flow
+      Specification component in an UPDATE message, it SHOULD also treat
+      this message as Treat-as-withdraw as specified in
+      <xref target="RFC7606"></xref> Section 2.
   </t>
   <t>
-    Possible reasons for an error are (for more reasons see also <xref target="RFC7606"></xref>):
-    <list style="symbols">
-    <t>
-      Incorrect implementation of this specification - the encoding/decoding of the NLRI
-      or traffic action extended-communities do not comply with this specification.
-    </t>
-    <t>
-      Unknown Flow Specification extensions - The sending party has implemented
-      a Flow Specification NLRI extension unknown to the receiving party.
-    </t>
-    </list>
-
-    In order to facilitate future extensions of the Flow Specification NLRI, such
-    extensions SHOULD specify a way to encode an "always-true" match condition within
-    the newly introduced components (this is a match condition, encoded with the newly introduced components,
-    if present on its own, matches all flows). This match condition can be used to propagate (and apply)
+    Such extensions SHOULD also specify a way to encode an "always-match" match condition within
+    the newly introduced components (this is a match condition, encoded with the newly introduced components:
+    If present on its own, matches all flows). This match condition can be used to propagate (and apply)
     certain filters only if a specific extension is known to the implemenation.
-
   </t>
 </section>
 
@@ -1715,7 +1717,7 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
             specification has removed all references to a opaque-key property.
            BGP is able to understand the NLRI encoding. This
             change also resulted in a new section regarding error-handling and
-            extensibility (<xref target="errorhandling" />).
+            extensibility (<xref target="errorhandling" /> and <xref target="future_extensions" />).
           </t>
           <t>
             <xref target="type_3" /> defines a numeric operator and comparison
@@ -1754,8 +1756,11 @@ in <xref target="limitations_previous_ddos"></xref> also apply to this section.
             cross-references this section. RFC5575 did not mention this.
           </t>
           <t>
-            <xref target="errorhandling" /> contains a modified error handling
-             to gracefully allow future extensions of flow specification.
+            <xref target="errorhandling" /> contains new error handling.
+          </t>
+          <t>
+            <xref target="future_extensions" /> describes graceful handling
+              of unknown Flow Specification components to allow future extensions.
           </t>
         </list>
       </t>
