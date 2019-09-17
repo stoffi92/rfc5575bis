@@ -769,6 +769,20 @@ as zero and ignored on decoding.
  </figure>
  </t>
 <t>
+   Decode for destination (type 1):
+<figure>
+<artwork>
+       +-------+----------+------------------------------+
+       | Value |          |                              |
+       +-------+----------+------------------------------+
+       |  0x01 | type     |                              |
+       |  0x18 | length   | 24 bit                       |
+       |  0xc0 | prefix   | 192                          |
+       |  0x00 | prefix   | 0                            |
+       |  0x02 | prefix   | 2                            |
+       +-------+----------+------------------------------+
+</artwork>
+</figure>
    Decode for protocol (type 3):
 <figure>
 <artwork>
@@ -811,6 +825,34 @@ as zero and ignored on decoding.
 </figure>
 </t>
 <t>
+   Decode for destination (type 1):
+<figure>
+<artwork>
+       +-------+----------+------------------------------+
+       | Value |          |                              |
+       +-------+----------+------------------------------+
+       |  0x01 | type     |                              |
+       |  0x18 | length   | 24 bit                       |
+       |  0xc0 | prefix   | 192                          |
+       |  0x00 | prefix   | 0                            |
+       |  0x02 | prefix   | 2                            |
+       +-------+----------+------------------------------+
+</artwork>
+</figure>
+   Decode for source (type 2):
+<figure>
+<artwork>
+       +-------+----------+------------------------------+
+       | Value |          |                              |
+       +-------+----------+------------------------------+
+       |  0x02 | type     |                              |
+       |  0x18 | length   | 24 bit                       |
+       |  0xcb | prefix   | 203                          |
+       |  0x00 | prefix   | 0                            |
+       |  0x71 | prefix   | 113                          |
+       +-------+----------+------------------------------+
+</artwork>
+</figure>
 Decode for port (type 4):
 <figure>
 <artwork>
@@ -845,7 +887,22 @@ This constitutes an NLRI with an NLRI length of 18 octets.
 </figure>
 </t>
 <t>
-Decode for fragment (type 12):
+       Decode for destination (type 1):
+<figure>
+<artwork>
+       +-------+----------+------------------------------+
+       | Value |          |                              |
+       +-------+----------+------------------------------+
+       |  0x01 | type     |                              |
+       |  0x20 | length   | 32 bit                       |
+       |  0xc0 | prefix   | 192                          |
+       |  0x00 | prefix   | 0                            |
+       |  0x02 | prefix   | 2                            |
+       |  0x01 | prefix   | 1                            |
+       +-------+----------+------------------------------+
+</artwork>
+</figure>
+    Decode for fragment (type 12):
 <figure>
 <artwork>
        +--------+----------+------------------------------+
