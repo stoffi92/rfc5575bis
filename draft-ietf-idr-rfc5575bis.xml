@@ -985,8 +985,10 @@ traffic that a given downstream AS wishes to drop.
    algorithm continues with the next component.
 </t>
 <t>
-  For IP prefix values (IP destination or source prefix): If the prefixes
-  overlap, the one with the longer prefix length has higher precedence. If they
+  For IP prefix values (IP destination or source prefix): If the two prefixes
+  to compare overlap (the intersection of the set of all IP addresses in prefix-a
+  and prefix-b is a non-empty set),
+  the prefix with the longer prefix length has higher precedence. If they
   do not overlap the one with the lowest IP value has higher precedence.
 </t>
 <t>
