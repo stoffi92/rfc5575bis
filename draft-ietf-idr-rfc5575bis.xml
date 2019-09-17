@@ -791,7 +791,7 @@ as zero and ignored on decoding.
        +-------+----------+------------------------------+
        |  0x03 | type     |                              |
        |  0x81 | operator | end-of-list, value size=1, = |
-       |  0x06 | value    |                              |
+       |  0x06 | value    | IP Protocol 6 = TCP          |
        +-------+----------+------------------------------+
 </artwork>
 </figure>
