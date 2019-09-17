@@ -986,7 +986,7 @@ traffic that a given downstream AS wishes to drop.
 </t>
 <t>
   For IP prefix values (IP destination or source prefix): If the prefixes
-  overlap, the one with the longer prefix-length has higher precedence. If they
+  overlap, the one with the longer prefix length has higher precedence. If they
   do not overlap the one with the lowest IP value has higher precedence.
 </t>
 <t>
