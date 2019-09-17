@@ -181,7 +181,7 @@
 	data information.
 	</t>
 	<t>
-	A Flow Specification received from an external autonomous system will
+	A Flow Specification received from a different administrative domain will
 	need to be validated against unicast routing before being accepted.
 	If the aggregate traffic flow defined by the unicast destination
    prefix is forwarded to a given BGP peer, then the local system can
