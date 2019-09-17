@@ -606,8 +606,16 @@ type field of an ICMP packet. This list is encoded using the
 numeric operator format defined in <xref target="type_3" />.
 Values SHOULD be encoded using a single byte.
 </t>
-<t>The ICMP type specifiers evaluate to FALSE whenever
-the protocol value is not ICMP.
+<t>
+    In case of the presence of the ICMP type (code)
+    component only ICMP packets can match the entire Flow Specification Rule.
+    The ICMP type (code) component, if present, never matches when the packet's IP
+    protocol value is not 1 (ICMP), if the packet is fragmented
+    and this is not the first fragement, or if the system is unable to
+    locate the transport header. Different implementations may or may not be
+    able to decode the transport header in the presence of IP
+    options or Encapsulating Security Payload (ESP) NULL
+    <xref target="RFC4303"></xref> encryption.
 </t>
 </list>
 </t>
@@ -623,10 +631,7 @@ code field of an ICMP packet. This list is encoded using the
 numeric operator format defined in <xref target="type_3" />.
 Values SHOULD be encoded using a single byte.
 </t>
-<t>The ICMP code specifiers evaluate to FALSE whenever
-the protocol value is not ICMP.
-</t>
-</list>
+<t>The last paragraph of <xref target="type_7" /> also applies to this component.</t></list>
 </t>
 </section>
 <section anchor="type_9" title="Type 9 - TCP flags">
@@ -641,9 +646,6 @@ bits 8 though 15 of the 4th 32-bit word.
 When a 2-byte encoding is used, it matches bytes
 12 and 13 of the TCP header with the data offset field having a
 "don't care" value.
-</t>
-<t>
-This component evaluates to FALSE for packets that are not TCP packets.
 </t>
 <t>This type uses the bitmask operator format, which differs from
 the numeric operator format in the lower nibble.
@@ -674,6 +676,17 @@ to TRUE if any of the bits in the value mask are set in the data
 <t hangText="0 -   all 0 bits"> SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
 </t>
 </list>
+</t>
+<t>
+    In case of the presence of the TCP flags
+    component only TCP packets can match the entire Flow Specification Rule.
+    The TCP flags component, if present, never matches when the packet's IP
+    protocol value is not 6 (TCP), if the packet is fragmented
+    and this is not the first fragement, or if the system is unable to
+    locate the transport header. Different implementations may or may not be
+    able to decode the transport header in the presence of IP
+    options or Encapsulating Security Payload (ESP) NULL
+    <xref target="RFC4303"></xref> encryption.
 </t>
 </section>
 <section anchor="type_10" title="Type 10 - Packet length">
