@@ -977,7 +977,7 @@ traffic that a given downstream AS wishes to drop.
 <t>
    The relative order of two Flow Specification rules is determined by
    comparing their respective components.  The algorithm starts by
-   comparing the left-most components of the rules.  If the types
+   comparing the left-most components (lowest component type value) of the rules.  If the types
    differ, the rule with lowest numeric type value has higher precedence
    (and thus will match before) than the rule that doesn't contain that
    component type.  If the component types are the same, then a type-
