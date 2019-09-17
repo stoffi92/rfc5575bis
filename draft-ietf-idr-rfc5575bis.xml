@@ -11,9 +11,11 @@
 <!ENTITY RFC4456 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4456.xml">
 <!ENTITY RFC4760 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4760.xml">
 <!ENTITY RFC5668 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5668.xml">
+<!ENTITY RFC5575 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5575.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
 <!ENTITY RFC7223 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7223.xml">
 <!ENTITY RFC7606 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7606.xml">
+<!ENTITY RFC7674 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7674.xml">
 <!ENTITY RFC8126 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8126.xml">
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!ENTITY RFC6811 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6811.xml">
@@ -126,7 +128,7 @@
    NV03 encapsulation of IP addresses.
    </t>
    <t>
-   This document obsoletes RFC5575 and RFC7674 to correct unclear specifications in the
+   This document obsoletes <xref target="RFC5575" /> and <xref target="RFC7674" /> to correct unclear specifications in the
    flow filters.
    </t>
    <t>
@@ -146,6 +148,10 @@
   </front>
   <middle>
     <section anchor="intro" title="Introduction">
+   <t>
+   This document obsoletes <xref target="RFC5575" /> and <xref target="RFC7674" /> to correct unclear specifications in the
+   flow filters.
+   </t>
 	  <t>
 	Modern IP routers contain both the capability to forward traffic
     according to IP prefixes as well as to classify, shape, rate limit,
@@ -1673,17 +1679,17 @@ this document.
   </section>
 	<section title="Original authors">
 	<t>Barry Greene,  Pedro Marques, Jared Mauch, Danny McPherson,
-	and Nischal Sheth were authors on RFC5575, and therefore
+	and Nischal Sheth were authors on <xref target="RFC5575" />, and therefore
 	are contributing authors on this document.
 	</t>
 	</section>
 	<section title="Acknowledgements">
    <t>The authors would like to thank Yakov Rekhter, Dennis Ferguson, Chris
    Morrow, Charlie Kaufman, and David Smith for their comments for the comments on
-   the original RFC5575.  Chaitanya Kodeboyina
+   the original <xref target="RFC5575" />.  Chaitanya Kodeboyina
    helped design the flow validation procedure; and Steven Lin and Jim Washburn
    ironed out all the details necessary to
-   produce a working implementation in the original RFC5575.
+   produce a working implementation in the original <xref target="RFC5575" />.
    </t>
    <t>
    A packet rate Flow Specification action was also described in a Flow Specification extension draft
@@ -1739,17 +1745,20 @@ this document.
 	  &I-D.ietf-idr-flow-spec-v6;
       &RFC6811;
       &RFC8205;
+      &RFC5575;
+      &RFC7674;
     </references>
     <section title="Comparison with RFC 5575">
       <t>
-        This document includes numerous editorial changes to RFC5575.
+        This document includes numerous editorial changes to <xref target="RFC5575" />.
+        It also completely incorporates the redirect action clarification document <xref target="RFC7674" />.
         It is recommended to read the entire document. The
         authors, however want to point out the following technical changes to
-        RFC5575:
+        <xref target="RFC5575" />:
         <list>
           <t>
             <xref target="intro" /> introduces the Flow Specification NLRI. In
-            RFC5575 this NLRI was defined as an opaque-key in BGPs database. This
+            <xref target="RFC5575" /> this NLRI was defined as an opaque-key in BGPs database. This
             specification has removed all references to a opaque-key property.
            BGP is able to understand the NLRI encoding. This
             change also resulted in a new section regarding error-handling and
@@ -1757,7 +1766,7 @@ this document.
           </t>
           <t>
             <xref target="type_3" /> defines a numeric operator and comparison
-            bit combinations. In RFC5575 the meaning of those
+            bit combinations. In <xref target="RFC5575" /> the meaning of those
             bit combination was not explicitly defined and left open to the
             reader.
           </t>
@@ -1765,31 +1774,33 @@ this document.
             <xref target="type_3" /> - <xref target="type_8" />, <xref
             target="type_10" />, <xref target="type_11" /> make use of the above
             numeric operator. The allowed length of the comparison value was not
-            consistently defined in RFC5575.
+            consistently defined in <xref target="RFC5575" />.
           </t>
           <t>
             <xref target="traffic_filtering_actions" /> defines all traffic
             action extended communities as transitive extended communities.
-            RFC5575 defined the traffic-rate action to be
+            <xref target="RFC5575" /> defined the traffic-rate action to be
             non-transitive and did not define the transitivity of the other
             action communities at all.
           </t>
           <t>
             <xref target="traffic_rate_in_packets" /> introduces a new traffic
             filtering action (traffic-rate-packets). This action did not exist
-            in RFC5575.
+            in <xref target="RFC5575" />.
           </t>
           <t>
             <xref target="rt_redirect_action_subtype" /> contains the same
-            redirect actions already defined in RFC5575
+            redirect actions already defined in <xref target="RFC5575" />
             however, these actions have been renamed  to "rt-redirect" to make
             it clearer that the redirection is based on route-target.
+            This section also completely incorporates the <xref target="RFC7674" />
+            clarifications of the Flowspec Redirect Extended Community.
           </t>
           <t>
             <xref target="rules_action_interference" /> contains general
             considerations on interfering traffic actions.
             <xref target="traffic_action_subtype" /> also
-            cross-references this section. RFC5575 did not mention this.
+            cross-references this section. <xref target="RFC5575" /> did not mention this.
           </t>
           <t>
             <xref target="errorhandling" /> contains new error handling.
@@ -1799,6 +1810,8 @@ this document.
               of unknown Flow Specification components to allow future extensions.
           </t>
         </list>
+
+
       </t>
     </section>
 
