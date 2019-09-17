@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE rfc SYSTEM "rfc2629.dtd" [
+<!ENTITY RFC0768 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0768.xml">
 <!ENTITY RFC0791 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0791.xml">
+<!ENTITY RFC0792 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0792.xml">
 <!ENTITY RFC0793 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0793.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2474 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2474.xml">
@@ -540,7 +542,8 @@ the purposes of evaluating logical expressions.
 <t>Encoding:&lt;type (1 octet), [op, value]+&gt;
 </t>
 <t>Defines a list of {operator, value} pairs that matches source
-   OR destination TCP/UDP ports (see <xref target="RFC0793" /> Section 3.1).
+   OR destination TCP/UDP ports (see <xref target="RFC0793" /> Section 3.1 and
+    <xref target="RFC0768" /> Section "Format").
    This component matches if either the destination port OR the source port
    of a flow matches the value. This list is encoded using the
    numeric operator format defined in <xref target="type_3" />.
@@ -566,7 +569,8 @@ the purposes of evaluating logical expressions.
 <t>Encoding:&lt;type (1 octet), [op, value]+&gt;
 </t>
 <t> Defines a list of {operator, value} pairs used to match the
-    destination port of a TCP or UDP packet (see also <xref target="RFC0793" /> Section 3.1).
+    destination port of a TCP or UDP packet (see also <xref target="RFC0793" /> Section 3.1 and
+    <xref target="RFC0768" /> Section "Format").
     This list is encoded using the numeric operator format defined in <xref target="type_3" />.
     Values SHOULD be encoded as 1- or 2-byte quantities.
 </t>
@@ -580,7 +584,8 @@ the purposes of evaluating logical expressions.
 <t>Encoding:&lt;type (1 octet), [op, value]+&gt;
 </t>
 <t>  Defines a list of {operator, value} pairs used to match the
-    source port of a TCP or UDP packet (see also <xref target="RFC0793" /> Section 3.1).
+    source port of a TCP or UDP packet (see also <xref target="RFC0793" /> Section 3.1 and
+    <xref target="RFC0768" /> Section "Format").
     This list is encoded using the numeric operator format defined in <xref target="type_3" />.
     Values SHOULD be encoded as 1- or 2-byte quantities.
 </t>
@@ -594,7 +599,8 @@ the purposes of evaluating logical expressions.
 <t>Encoding:&lt;type (1 octet), [op, value]+&gt;
 </t>
 <t>Defines a list of {operator, value} pairs used to match the
-type field of an ICMP packet. This list is encoded using the
+type field of an ICMP packet (see also <xref target="RFC0792" /> Section "Message Formats").
+    This list is encoded using the
 numeric operator format defined in <xref target="type_3" />.
 Values SHOULD be encoded using a single byte.
 </t>
@@ -619,7 +625,8 @@ Values SHOULD be encoded using a single byte.
 </t>
 <t>
 Defines a list of {operator, value} pairs used to match the
-code field of an ICMP packet. This list is encoded using the
+code field of an ICMP packet (see also <xref target="RFC0792" /> Section "Message Formats").
+    This list is encoded using the
 numeric operator format defined in <xref target="type_3" />.
 Values SHOULD be encoded using a single byte.
 </t>
@@ -633,7 +640,7 @@ Values SHOULD be encoded using a single byte.
 </t>
 <t>Bitmask values can be encoded as a 1- or 2-byte bitmask.  When
 a single byte is specified, it matches byte 13 of the TCP
-header <xref target="RFC0793"></xref>, which contains
+header (see also <xref target="RFC0793"></xref> Section 3.1), which contains
 bits 8 though 15 of the 4th 32-bit word.
 When a 2-byte encoding is used, it matches bytes
 12 and 13 of the TCP header with the data offset field having a
@@ -701,7 +708,7 @@ to TRUE if any of the bits in the value mask are set in the data
 <t>Encoding:&lt;type (1 octet), [op, value]+&gt;
 </t>
 <t> Defines a list of {operator, value} pairs used to match the
-6-bit DSCP field <xref target="RFC2474"></xref>.
+6-bit DSCP field (see also <xref target="RFC2474"></xref>).
 This list is encoded using the numeric operator format defined in
 <xref target="type_3" />. Values SHOULD be encoded using a single byte.
 The six least significant bits contain the DSCP value. All other bits SHOULD be encoded
@@ -1698,7 +1705,9 @@ this document.
   <back>
 
     <references title="Normative References">
+      &RFC0768;
       &RFC0791;
+      &RFC0792;
 	  &RFC0793;
       &RFC2119;
 	  &RFC2474;
