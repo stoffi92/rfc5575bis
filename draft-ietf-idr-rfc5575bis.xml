@@ -194,21 +194,7 @@
    install more specific flow rules that may result in different
    forwarding behavior, as requested by this system.
 	</t>
-	<t>As with previous extensions to BGP, this specification makes it
-   possible to add additional information to Internet routers.  These
-   are limited in terms of the maximum number of data elements they can
-   hold as well as the number of events they are able to process in a
-   given unit of time. The authors believe that, as with previous
-   extensions, service providers will be careful to keep information
-   levels below the maximum capacity of their devices.
-	</t>
-	<t>
-	Experience with previous BGP extensions has also shown that the
-   maximum capacity of BGP speakers has been gradually increased
-   according to expected loads. For example Internet unicast routing as
-   well as other BGP applications increased their maximum capacity as they
-   gain popularity.
-   </t>
+
    <t>
    From an operational perspective, the utilization of BGP as the
    carrier for this information allows a network service provider to
@@ -1672,10 +1658,18 @@ this document.
     </t>
     <t>
       Since verfication of the traffic filtering NLRI is tied to the announcement of
-      the best unicast route, a unfiltered address space hijack (e.g. advertisement
+      the best unicast route, an unfiltered address space hijack (e.g. advertisement
       of a more specific route) may cause this verification to fail and consequently
-      prevent Flow Specification filters from being accepted by a peer.
+      prevent Flow Specification filters from being accepted by a peer. Possible mitigations are <xref target="RFC6811" /> and
+       <xref target="RFC8205" />.
     </t>
+      <t>This extension adds additional information to Internet routers.
+          These are limited in terms of the maximum number of data elements
+          they can hold as well as the number of events they are able to
+          process in a given unit of time. Service providers need to consider
+          the maximum capacity of their devices and may need to limit the
+          number of Flow Specification Filters accepted and processed.
+   </t>
   </section>
 	<section title="Original authors">
 	<t>Barry Greene,  Pedro Marques, Jared Mauch, Danny McPherson,
