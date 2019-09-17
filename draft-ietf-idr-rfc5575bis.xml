@@ -1137,11 +1137,9 @@ defined as retesting that clause a and clause b above are true.
  Some traffic action communities may interfere with each other.
  <xref target="rules_action_interference" /> of this specification
  provides general considerations on such traffic action interference.
- Any additional definition of a traffic actions specified
- by additional standards documents or vendor documents
- MUST specify if the traffic action interacts with an
- existing traffic actions, and provide error handling
- per <xref target="RFC7606"></xref>.
+ Any additional definition of a traffic actions MUST specify
+ the action to take if those traffic actions interfere (also with existing
+     traffic actions).
 </t>
 <t>
 All traffic actions are specified as transitive BGP Extended
