@@ -1764,7 +1764,6 @@ this document.
 	  &RFC4364;
       &RFC4456;
 	  &RFC4760;
-	  &RFC5668;
 	  &RFC7153;
 	  &RFC7606;
     &RFC8126;
@@ -1796,6 +1795,7 @@ this document.
       &RFC3882;
       &RFC5575;
       &RFC5635;
+      &RFC5668;
       &RFC6811;
       &RFC8205;
       &RFC7674;
