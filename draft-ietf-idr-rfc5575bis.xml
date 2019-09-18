@@ -1458,6 +1458,13 @@ this document.
       <xref target="RFC7606"></xref> Section 2.
   </t>
   <t>
+      The specification of a new Flow Specification Component Type SHOULD
+      clearly identify what the criteria used to match packets forwarded by the
+      router is. This criteria should be meaningful across router hops and
+      not depend on values that change hop-by-hop such as TTL or Layer 2
+      encapsulation.
+  </t>
+  <t>
     Such extensions SHOULD also specify a way to encode an "always-match" match condition within
     the newly introduced components (this is a match condition, encoded with the newly introduced components:
     If present on its own, matches all flows). This match condition can be used to propagate (and apply)
@@ -1533,13 +1540,6 @@ this document.
           <c>[13 .. 127]</c>   <c>Specification required</c>
           <c>[128 .. 255]</c>   <c>First Come First Served</c>
     </texttable>
-    <t>
-      The specification of a particular "Flow Spec Component Type" must clearly
-      identify what the criteria used to match packets forwarded by the
-      router is.  This criteria should be meaningful across router hops and
-      not depend on values that change hop-by-hop such as TTL or Layer 2
-      encapsulation.
-    </t>
   </section>
  <section title="Extended Community Flow Specification Actions">
  <t>The Extended Community Flow Specification Action types defined in this document
