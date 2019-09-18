@@ -1363,7 +1363,7 @@ this document.
    Operators are encouraged to make use of the BGP policy framework
    supported by their implementation in order to achieve a predictable behaviour
    (ie. match - replace - delete communities on administrative boundaries). See also
-    <xref target="operational_sc" /> on operational security.
+    <xref target="security_considerations" />.
 </t>
 </section>
 </section>
@@ -1666,30 +1666,30 @@ this document.
 </section>
 </section>
   <section title="Security Considerations" anchor="security_considerations">
-   <t>Inter-provider routing is based on a web of trust.  Neighboring
-   autonomous systems are trusted to advertise valid reachability
-   information.  If this trust model is violated, a neighboring
-   autonomous system may cause a denial-of-service attack by advertising
-   reachability information for a given prefix for which it does not
-   provide service. Possible mitigations are <xref target="RFC6811" /> and
-       <xref target="RFC8205" />.
-   </t>
    <t> As long as traffic filtering rules are restricted to match the
-   corresponding unicast routing paths for the relevant prefixes, the security
-   characteristics of this proposal are equivalent to the existing security
+   corresponding unicast routing paths for the relevant prefixes (<xref target="validation_procedure" />),
+   the security characteristics of this proposal are equivalent to the existing security
    properties of BGP unicast routing. Any relaxation of the validation
    procedure described in <xref target="validation_procedure" /> may
    allow unwanted Flow Specification rules to be propagated and thus unwanted filter
    actions may be applied to flows.
     </t>
-    <t>
-   This document specifies
-   traffic filtering actions that may need custom additional verification on the
-   receiver side. See <xref target="operational_sc" />.
-   </t>
    <t>  Where the above mechanisms are not in place, this would open the door
    to further denial-of-service attacks such as unwanted traffic filtering,
    remarking or redirection.
+   </t>
+   <t>
+       Inter-provider routing is based on a web of trust. Neighboring
+   autonomous systems are trusted to advertise valid reachability
+   information. If this trust model is violated, a neighboring
+   autonomous system may cause a denial-of-service attack by advertising
+   reachability information for a given prefix for which it does not
+   provide service (unfiltered address space hijack). Since validation
+   of the traffic filtering NLRI is tied to the announcement of
+   the best unicast route, this may also cause this validation to fail
+   and consequently prevent Flow Specification filters from being accepted
+   by a peer. Possible mitigations are <xref target="RFC6811" /> and
+   <xref target="RFC8205" />.
    </t>
    <t> Enabling firewall-like capabilities in routers without centralized
    management could make certain failures harder to diagnose.  For
@@ -1709,8 +1709,6 @@ this document.
       This may stress the receiving systems, exceed their maximum capacity or
       may lead to unwanted filter actions being applied to flows.
   </t>
-  </section>
-  <section title="Operational Security Considerations" anchor="operational_sc">
     <t> While the general verification of the traffic filter NLRI
     is specified in this document (<xref target="validation_procedure" />) the traffic filtering
     actions received by a third party may need custom verification or filtering. In particular
@@ -1718,13 +1716,6 @@ this document.
     gain access to other routing-tables/VPNs or undesired queues. This can be avoided by proper filtering of action communities
     at network borders and by mapping user-defined communities (see <xref target="traffic_filtering_actions" />)
     to expose certain forwarding properties to third parties.
-    </t>
-    <t>
-      Since verfication of the traffic filtering NLRI is tied to the announcement of
-      the best unicast route, an unfiltered address space hijack (e.g. advertisement
-      of a more specific route) may cause this verification to fail and consequently
-      prevent Flow Specification filters from being accepted by a peer. Possible mitigations are <xref target="RFC6811" /> and
-       <xref target="RFC8205" />.
     </t>
       <t>This extension adds additional information to Internet routers.
           These are limited in terms of the maximum number of data elements
