@@ -394,13 +394,13 @@
 	value.  The NLRI length is expressed in octets.
 	</t>
 	<t>
-	<figure title="Flow-spec NLRI for IPv4" anchor="fs_nlri">
+	<figure title="Flow Specification NLRI for IPv4" anchor="fs_nlri">
 	<artwork>
-                    +------------------------------+
-                    |    length (0xnn or 0xfnnn)   |
-                    +------------------------------+
-                    |    NLRI value  (variable)    |
-                    +------------------------------+
+                  +-------------------------------+
+                  |    length (0xnn or 0xfnnn)    |
+                  +-------------------------------+
+                  |    NLRI value   (variable)    |
+                  +-------------------------------+
 	</artwork>
 	</figure>
 	</t>
@@ -463,10 +463,10 @@
 <t>This operator is encoded as shown in <xref target="figure_numeric_operator" />.
 <figure title="Numeric Operator (numeric_op)" anchor="figure_numeric_operator">
 <artwork>
-                      0   1   2   3   4   5   6   7
-                    +---+---+---+---+---+---+---+---+
-                    | e | a |  len  | 0 |lt |gt |eq |
-                    +---+---+---+---+---+---+---+---+
+                    0   1   2   3   4   5   6   7
+                  +---+---+---+---+---+---+---+---+
+                  | e | a |  len  | 0 |lt |gt |eq |
+                  +---+---+---+---+---+---+---+---+
 </artwork>
 </figure>
 <list style="hanging">
@@ -516,10 +516,10 @@ the purposes of evaluating logical expressions.
 <t>This operator is encoded as shown in <xref target="figure_bitmask_operator" />.
 <figure title="Bitmask Operator (bitmask_op)" anchor="figure_bitmask_operator">
 <artwork>
-                  0   1   2   3   4   5   6   7
-                +---+---+---+---+---+---+---+---+
-                | e | a |  len  | 0 | 0 |not| m |
-                +---+---+---+---+---+---+---+---+
+                    0   1   2   3   4   5   6   7
+                  +---+---+---+---+---+---+---+---+
+                  | e | a |  len  | 0 | 0 |not| m |
+                  +---+---+---+---+---+---+---+---+
 </artwork>
 </figure>
 </t>
@@ -735,14 +735,12 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
     Type 12 component bitmasks MUST be encoded as single byte bitmask (bitmask_op len=00).
     </t>
 <t>
-<figure>
+<figure title="Fragment Bitmask Operand" anchor="figure_fragment_bitmask_operand">
 <artwork>
                    0   1   2   3   4   5   6   7
                  +---+---+---+---+---+---+---+---+
                  | 0 | 0 | 0 | 0 |LF |FF |IsF|DF |
                  +---+---+---+---+---+---+---+---+
-
-                              Bitmask
 </artwork>
 </figure>
 </t>
@@ -1263,18 +1261,19 @@ this document.</t>
  <section anchor="traffic_action_subtype" title="Traffic-action (traffic-action) sub-type 0x07">
  <t>The traffic-action extended community consists of 6
       bytes of which only the 2 least significant bits of the 6th byte
-      (from left to right) are defined by this specification.
+      (from left to right) are defined by this specification as shown in
+     <xref target="figure_traffic_action_encoding" />.
 </t>
 <t>
-<figure>
+<figure title="Traffic-action Extended Community Encoding" anchor="figure_traffic_action_encoding">
 <artwork>
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    | Traffic Action Field                                          |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    | Tr. Action Field (cont.)  |S|T|
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   0                   1                   2                   3
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  | Traffic Action Field                                          |
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  | Tr. Action Field (cont.)  |S|T|
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </artwork>
 </figure>
 </t>
@@ -1323,18 +1322,18 @@ this document.
 <t> The traffic marking extended community instructs a
  system to modify the DSCP bits of a transiting IP packet to the
  corresponding value encoded in the 6 least significant bits of the extended
-    community value.
+    community value as shown in <xref target="figure_traffic_marking_encoding" />.
  </t>
     <t>The extended is encoded as follows:
-<figure>
+<figure title="Traffic Marking Extended Community Encoding" anchor="figure_traffic_marking_encoding">
 <artwork>
-     0                   1                   2                   3
-     0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   reserved    |   reserved    |   reserved    |   reserved    |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    |   reserved    | r.|    DSCP   |
-    +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   0                   1                   2                   3
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  |   reserved    |   reserved    |   reserved    |   reserved    |
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+  |   reserved    | r.|    DSCP   |
+  +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
 </artwork>
 </figure>
 </t>
@@ -1392,17 +1391,18 @@ this document.
    Distinguisher field (8 bytes) followed by the Flow Specification NLRI value <xref target="nlri_value_encoding" />.
    The NLRI length field shall include both the 8 bytes of the Route
    Distinguisher as well as the subsequent Flow Specification NLRI value.
+   The resulting encoding is shown in <xref target="figure_fs_nlri_mpls" />.
 </t>
 <t>
-<figure title="Flow-spec NLRI for MPLS">
+<figure title="Flow Specification NLRI for MPLS" anchor="figure_fs_nlri_mpls">
   <artwork>
-                    +------------------------------+
-                    | length (0xnn or 0xfn nn)     |
-                    +------------------------------+
-                    | Route Distinguisher (8 bytes)|
-                    +------------------------------+
-                    |    NLRI value  (variable)    |
-                    +------------------------------+
+                  +------------------------------+
+                  | length (0xnn or 0xfn nn)     |
+                  +------------------------------+
+                  | Route Distinguisher (8 bytes)|
+                  +------------------------------+
+                  |    NLRI value  (variable)    |
+                  +------------------------------+
   </artwork>
 </figure>
 </t>
