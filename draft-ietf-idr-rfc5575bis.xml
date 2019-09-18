@@ -423,7 +423,7 @@
 	</list>
 	</t>
 	<t>
-	 In figure 1 above, values less-than 240 are encoded using two hex
+	 In <xref target="fs_nlri" /> above, values less-than 240 are encoded using two hex
 	digits (0xnn).  Values above 239 are encoded using 3 hex digits
 	(0xfnnn).  The highest value that can be represented with this
 	encoding is 4095. For example the length value of 239 is encoded as 0xef (single octet)
@@ -432,91 +432,62 @@
 	</section>
 	<section anchor="nlri_value_encoding" title="NLRI Value Encoding">
 	<t>
-    The Flow Specification NLRI-type consists of several optional
-   subcomponents.  A specific packet is considered to match the flow
+    The Flow Specification NLRI-type consists of a list of optional
+   components and is encoded as follows:
+   </t>
+   <t>Encoding: &lt;[component]+&gt;</t>
+   <t>
+   A specific packet is considered to match the flow
    specification when it matches the intersection (AND) of all the
-   components present in the specification.
+   components present in the Flow Specification.
   </t>
    <t>
-     The encoding of each of the NLRI components begins with a type field
-     (1 octet) followed by a variable length parameter. <xref target="type_1" />
-     to <xref target="type_12" />
-     define component types and parameter encodings for the IPv4 IP layer and
-     transport layer headers. IPv6 NLRI component types are described
-     in <xref target="I-D.ietf-idr-flow-spec-v6"></xref>.
-   </t>
-   <t>
-   Flow Specification components must follow strict type ordering by increasing
+   Components must follow strict type ordering by increasing
    numerical order. A given component type may (exactly once) or may not be
-   present in the specification. If present, it MUST precede any component of
+   present in the Flow Specification. If present, it MUST precede any component of
    higher numeric type value.
    </t>
    <t>
-       All combinations of component types within a single NLRI are allowed. However,
+       All combinations of components within a single Flow Specification are allowed. However,
        some combinations cannot match any packets (ie. "ICMP Type AND Port" will never
        match any packets), and thus SHOULD not be propagated by BGP.
    </t>
-<section anchor="type_1" title="Type 1 - Destination Prefix">
-<t>
-<list>
-<t>Encoding: &lt;type (1 octet), length (1 octet), prefix (variable)>
-</t>
-<t>Defines the destination prefix to match. The length and prefix fields are
-encoded as in BGP UPDATE messages <xref target="RFC4271" />
-</t>
-</list>
-</t>
-</section>
-<section anchor="type_2" title="Type 2 - Source Prefix">
-<t>
-<list>
-<t>Encoding: &lt;type (1 octet), length (1 octet), prefix (variable)&gt;
-</t>
-<t>Defines the source prefix to match. The length and prefix fields are
-encoded as in BGP UPDATE messages <xref target="RFC4271" />
-</t>
-</list>
-</t>
-</section>
-<section anchor="type_3" title="Type 3 - IP Protocol">
-<t>
-<list>
-<t>Encoding:&lt;type (1 octet), [op, value]+&gt;
-</t>
-<t>Contains a set of {operator, value} pairs that are used to
-match the IP protocol value byte in IP packets.
-</t>
-<t>The operator byte is encoded as:
-<figure>
+   <section anchor="operators" title="Operators">
+       <t>
+       Most of the components described below make use of
+       comparison operators. Which of the two operators is used is defined
+       by the components in <xref target="flowspec_components" />. The operators are
+       encoded as a single octet.
+       </t>
+       <section anchor="numeric_operator" title="Numeric Operator (numeric_op)">
+<t>This operator is encoded as shown in <xref target="figure_numeric_operator" />.
+<figure title="Numeric Operator (numeric_op)" anchor="figure_numeric_operator">
 <artwork>
                       0   1   2   3   4   5   6   7
                     +---+---+---+---+---+---+---+---+
                     | e | a |  len  | 0 |lt |gt |eq |
                     +---+---+---+---+---+---+---+---+
-
-                            Numeric operator
 </artwork>
 </figure>
+<list style="hanging">
+<t hangText="e -">end-of-list bit: Set in the last {op, value} pair in the list.
 </t>
-<t>e - end-of-list bit.  Set in the last {op, value} pair in the list.
-</t>
-<t>a - AND bit.  If unset, the previous term is logically ORed with the current
+<t hangText="a -">AND bit:  If unset, the previous term is logically ORed with the current
 one.  If set, the operation is a logical AND. In the first operator byte of a sequence
 it SHOULD be encoded as unset and and MUST be treated as always unset on decoding.
 The AND operator has higher priority than OR for
 the purposes of evaluating logical expressions.
 </t>
-<t>len - length of the value field for this operator given as (1 &lt;&lt; len). This
+<t hangText="len -">length: The length of the value field for this operator given as (1 &lt;&lt; len). This
   encodes 1 (len=00), 2 (len=01), 4 (len=10), 8 (len=11) bytes.
-  Type 3 flow component values SHOULD be encoded as single byte (len=00).
 </t>
-<t>0 - SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
+<t hangText="0 -">SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
 </t>
-<t>lt - less than comparison between data and value.
+<t hangText="lt -">less than comparison between data and value.
 </t>
-<t>gt - greater than comparison between data and value.
+<t hangText="gt -">greater than comparison between data and value.
 </t>
-<t>eq - equality between data and value.
+<t hangText="eq -">equality between data and value.
 </t>
 </list>
 </t>
@@ -540,19 +511,85 @@ the purposes of evaluating logical expressions.
         <c>1</c><c>1</c><c>1</c><c> true (independent of the value)</c>
     </texttable>
 
+       </section>
+       <section anchor="bitmask_operator" title="Bitmask Operator (bitmask_op)">
+<t>This operator is encoded as shown in <xref target="figure_bitmask_operator" />.
+<figure title="Bitmask Operator (bitmask_op)" anchor="figure_bitmask_operator">
+<artwork>
+                  0   1   2   3   4   5   6   7
+                +---+---+---+---+---+---+---+---+
+                | e | a |  len  | 0 | 0 |not| m |
+                +---+---+---+---+---+---+---+---+
+</artwork>
+</figure>
+</t>
+<t>
+<list style="hanging">
+<t hangText="e, a, len - Most significant nibble:">(end-of-list bit, AND
+ bit, and length field), as defined in the Numeric Operator format in <xref target="numeric_operator" />.
+</t>
+<t hangText="not - NOT bit:"> If set, logical negation of operation.
+</t>
+<t hangText="m - Match bit:"> If set, this is a bitwise match operation
+defined as "(data AND value) == value"; if unset, (data AND value) evaluates
+to TRUE if any of the bits in the value mask are set in the data
+</t>
+<t hangText="0 - all 0 bits:"> SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
+</t>
+</list>
+</t>
+
+
+       </section>
+
+   </section>
+<section anchor="flowspec_components" title="Components">
+   <t>
+     The encoding of each of the components begins with a type field
+     (1 octet) followed by a variable length parameter. The following sections
+     define component types and parameter encodings for the IPv4 IP layer and
+     transport layer headers. IPv6 NLRI component types are described
+     in <xref target="I-D.ietf-idr-flow-spec-v6"></xref>.
+   </t>
+<section anchor="type_1" title="Type 1 - Destination Prefix">
+<t>Encoding: &lt;type (1 octet), length (1 octet), prefix (variable)>
+</t>
+<t>Defines the destination prefix to match. The length and prefix fields are
+encoded as in BGP UPDATE messages <xref target="RFC4271" />
+</t>
+</section>
+<section anchor="type_2" title="Type 2 - Source Prefix">
+<t>Encoding: &lt;type (1 octet), length (1 octet), prefix (variable)&gt;
+</t>
+<t>Defines the source prefix to match. The length and prefix fields are
+encoded as in BGP UPDATE messages <xref target="RFC4271" />
+</t>
+</section>
+<section anchor="type_3" title="Type 3 - IP Protocol">
+<t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
+</t>
+<t>Contains a set of {numeric_op, value} pairs that are used to
+match the IP protocol value byte in IP packets.
+</t>
+<t>
+    This component uses the
+    Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
+    Type 3 component values SHOULD be encoded as single byte (numeric_op len=00).
+</t>
 </section>
 <section anchor="type_4" title="Type 4 - Port">
-<t>
-<list>
-<t>Encoding:&lt;type (1 octet), [op, value]+&gt;
+<t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
-<t>Defines a list of {operator, value} pairs that matches source
+<t>Defines a list of {numeric_op, value} pairs that matches source
    OR destination TCP/UDP ports (see <xref target="RFC0793" /> Section 3.1 and
     <xref target="RFC0768" /> Section "Format").
    This component matches if either the destination port OR the source port
-   of a flow matches the value. This list is encoded using the
-   numeric operator format defined in <xref target="type_3" />.
-   Values SHOULD be encoded as 1- or 2-byte quantities.
+   of a flow matches the value.
+</t>
+<t>
+    This component uses the
+    Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
+    Type 4 component values SHOULD be encoded as 1- or 2-byte quantities (numeric_op len=00 or len=01).
 </t>
 <t>
     In case of the presence of the port (destination-port, source-port)
@@ -565,49 +602,43 @@ the purposes of evaluating logical expressions.
     options or Encapsulating Security Payload (ESP) NULL
     <xref target="RFC4303"></xref> encryption.
 </t>
-</list>
-</t>
 </section>
 <section anchor="type_5" title="Type 5 - Destination Port">
-<t>
-<list>
-<t>Encoding:&lt;type (1 octet), [op, value]+&gt;
+<t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
-<t> Defines a list of {operator, value} pairs used to match the
+<t> Defines a list of {numeric_op, value} pairs used to match the
     destination port of a TCP or UDP packet (see also <xref target="RFC0793" /> Section 3.1 and
     <xref target="RFC0768" /> Section "Format").
-    This list is encoded using the numeric operator format defined in <xref target="type_3" />.
-    Values SHOULD be encoded as 1- or 2-byte quantities.
+</t>
+<t>
+    This component uses the Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
+    Type 5 component values SHOULD be encoded as 1- or 2-byte quantities (numeric_op len=00 or len=01).
 </t>
 <t>The last paragraph of <xref target="type_4" /> also applies to this component.</t>
-</list>
-</t>
 </section>
 <section anchor="type_6" title="Type 6 - Source Port">
-<t>
-<list>
-<t>Encoding:&lt;type (1 octet), [op, value]+&gt;
+<t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
-<t>  Defines a list of {operator, value} pairs used to match the
+<t>  Defines a list of {numeric_op, value} pairs used to match the
     source port of a TCP or UDP packet (see also <xref target="RFC0793" /> Section 3.1 and
     <xref target="RFC0768" /> Section "Format").
-    This list is encoded using the numeric operator format defined in <xref target="type_3" />.
-    Values SHOULD be encoded as 1- or 2-byte quantities.
+</t>
+<t>
+    This component uses the Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
+    Type 6 component values SHOULD be encoded as 1- or 2-byte quantities (numeric_op len=00 or len=01).
 </t>
 <t>The last paragraph of <xref target="type_4" /> also applies to this component.</t>
-</list>
-</t>
 </section>
 <section anchor="type_7" title="Type 7 - ICMP type">
-<t>
-<list>
-<t>Encoding:&lt;type (1 octet), [op, value]+&gt;
+<t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
-<t>Defines a list of {operator, value} pairs used to match the
+<t>Defines a list of {numeric_op, value} pairs used to match the
 type field of an ICMP packet (see also <xref target="RFC0792" /> Section "Message Formats").
-    This list is encoded using the
-numeric operator format defined in <xref target="type_3" />.
-Values SHOULD be encoded using a single byte.
+</t>
+<t>
+    This component uses the
+    Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
+    Type 7 component values SHOULD be encoded as single byte (numeric_op len=00).
 </t>
 <t>
     In case of the presence of the ICMP type (code)
@@ -620,65 +651,38 @@ Values SHOULD be encoded using a single byte.
     options or Encapsulating Security Payload (ESP) NULL
     <xref target="RFC4303"></xref> encryption.
 </t>
-</list>
-</t>
 </section>
 <section anchor="type_8" title="Type 8 - ICMP code">
-<t>
-<list>
-<t>Encoding:&lt;type (1 octet), [op, value]+&gt;
+<t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t>
-Defines a list of {operator, value} pairs used to match the
+Defines a list of {numeric_op, value} pairs used to match the
 code field of an ICMP packet (see also <xref target="RFC0792" /> Section "Message Formats").
-    This list is encoded using the
-numeric operator format defined in <xref target="type_3" />.
-Values SHOULD be encoded using a single byte.
 </t>
-<t>The last paragraph of <xref target="type_7" /> also applies to this component.</t></list>
+<t>
+    This component uses the
+    Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
+    Type 8 component values SHOULD be encoded as single byte (numeric_op len=00).
 </t>
+<t>The last paragraph of <xref target="type_7" /> also applies to this component.</t>
 </section>
 <section anchor="type_9" title="Type 9 - TCP flags">
-<t>
-<list>
-<t>Encoding:&lt;type (1 octet), [op, bitmask]+&gt;
+<t>Encoding: &lt;type (1 octet), [bitmask_op, bitmask]+&gt;
 </t>
-<t>Bitmask values can be encoded as a 1- or 2-byte bitmask.  When
-a single byte is specified, it matches byte 14 of the TCP
+<t>
+Defines a list of {bitmask_op, bitmask} pairs used to match TCP Control Bits
+(see also <xref target="RFC0793"></xref> Section 3.1).
+</t>
+    <t>
+    This component uses the
+    Bitmask Operator (bitmask_op) described in <xref target="bitmask_operator" />.
+    Type 9 component bitmasks MUST be encoded as 1- or 2-byte bitmask (bitmask_op len=00 or len=01).
+    </t>
+    <t>When a single byte (bitmask_op len=00) is specified, it matches byte 14 of the TCP
 header (see also <xref target="RFC0793"></xref> Section 3.1), which contains
-the TCP Control Bits. When a 2-byte encoding is used, it matches bytes
+the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it matches bytes
 13 and 14 of the TCP header with the data offset (leftmost 4 bits) always
     treated as 0.
-</t>
-<t>This type uses the bitmask operator format, which differs from
-the numeric operator format in the lower nibble.
-<figure>
-<artwork>
-                  0   1   2   3   4   5   6   7
-                +---+---+---+---+---+---+---+---+
-                | e | a |  len  | 0 | 0 |not| m |
-                +---+---+---+---+---+---+---+---+
-
-                        Bitmask operator
-</artwork>
-</figure>
-</t>
-</list>
-</t>
-<t>
-<list style="hanging">
-<t hangText="e, a, len - Most significant nibble:"> (end-of-list bit, AND
- bit, and length field), as defined for in the numeric operator format in <xref target="type_3" />.
-</t>
-<t hangText="not - NOT bit."> If set, logical negation of operation.
-</t>
-<t hangText="m -   Match bit."> If set, this is a bitwise match operation
-defined as "(data AND value) == value"; if unset, (data AND value) evaluates
-to TRUE if any of the bits in the value mask are set in the data
-</t>
-<t hangText="0 -   all 0 bits"> SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
-</t>
-</list>
 </t>
 <t>
     In case of the presence of the TCP flags
@@ -693,41 +697,43 @@ to TRUE if any of the bits in the value mask are set in the data
 </t>
 </section>
 <section anchor="type_10" title="Type 10 - Packet length">
-<t>
-<list>
-<t>Encoding:&lt;type (1 octet), [op, value]+&gt;
+<t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t>
-  Defines a list of {operator, value} pairs used to match on the total
-  IP packet length (excluding Layer 2 but including IP header). This list
-  is encoded using the numeric operator format defined in
-  <xref target="type_3" />. Values SHOULD be encoded using 1- or 2-byte
-  quantities.</t>
-</list>
+  Defines a list of {numeric_op, value} pairs used to match on the total
+  IP packet length (excluding Layer 2 but including IP header).
+</t>
+<t>
+    This component uses the Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
+    Type 10 component values SHOULD be encoded as 1- or 2-byte quantities (numeric_op len=00 or len=01).
 </t>
 </section>
 <section anchor="type_11" title="Type 11 -  DSCP (Diffserv Code Point)">
-<t>
-<list>
-<t>Encoding:&lt;type (1 octet), [op, value]+&gt;
+<t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
-<t> Defines a list of {operator, value} pairs used to match the
+<t> Defines a list of {numeric_op, value} pairs used to match the
 6-bit DSCP field (see also <xref target="RFC2474"></xref>).
-This list is encoded using the numeric operator format defined in
-<xref target="type_3" />. Values SHOULD be encoded using a single byte.
-The six least significant bits contain the DSCP value. All other bits SHOULD be encoded
-as zero and ignored on decoding.
 </t>
-</list>
+<t>
+    This component uses the
+    Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
+    Type 11 component values MUST be encoded as single byte (numeric_op len=00).
+</t>
+<t>
+    The six least significant bits contain the DSCP value. All other bits SHOULD be
+    treated as 0.
 </t>
 </section>
 <section anchor="type_12" title="Type 12 - Fragment">
-<t>
-<list>
-<t>Encoding:&lt;type (1 octet), [op, bitmask]+&gt;
+<t>Encoding: &lt;type (1 octet), [bitmask_op, bitmask]+&gt;
 </t>
-<t> Uses bitmask operator format defined in <xref target="type_9" />.
+<t> Defines a list of {bitmask_op, bitmask} pairs used to match specific IP fragments.
 </t>
+    <t>
+    This component uses the
+    Bitmask Operator (bitmask_op) described in <xref target="bitmask_operator" />.
+    Type 12 component bitmasks MUST be encoded as single byte bitmask (bitmask_op len=00).
+    </t>
 <t>
 <figure>
 <artwork>
@@ -735,25 +741,26 @@ as zero and ignored on decoding.
                  +---+---+---+---+---+---+---+---+
                  | 0 | 0 | 0 | 0 |LF |FF |IsF|DF |
                  +---+---+---+---+---+---+---+---+
+
+                              Bitmask
 </artwork>
 </figure>
 </t>
 <t>Bitmask values:
-<list style="symbol">
-<t>Bit 7 - Don't fragment (DF) - match if <xref target="RFC0791" /> IP Header Flags Bit-1 (DF) is 1
+<list style="hanging">
+<t hangText="DF -">Don't fragment - match if <xref target="RFC0791" /> IP Header Flags Bit-1 (DF) is 1
 </t>
-<t>Bit 6 - Is a fragment (IsF) - match if <xref target="RFC0791" /> IP Header Fragment Offset is not 0
+<t hangText="IsF -">Is a fragment - match if <xref target="RFC0791" /> IP Header Fragment Offset is not 0
 </t>
-<t>Bit 5 - First fragment (FF) - match if <xref target="RFC0791" /> IP Header Fragment Offset is 0 AND Flags Bit-2 (MF) is 1
+<t hangText="FF -">First fragment - match if <xref target="RFC0791" /> IP Header Fragment Offset is 0 AND Flags Bit-2 (MF) is 1
 </t>
-<t>Bit 4 - Last fragment (LF) - match if <xref target="RFC0791" /> IP Header Fragment Offset is not 0 AND Flags Bit-2 (MF) is 0
+<t hangText="LF -">Last fragment - match if <xref target="RFC0791" /> IP Header Fragment Offset is not 0 AND Flags Bit-2 (MF) is 0
 </t>
-<t>Bit 0-3 - SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
-</t>
-</list>
+<t hangText="0 -">SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
 </t>
 </list>
 </t>
+</section>
 </section>
 </section>
 <section title="Examples of Encodings">
