@@ -1714,8 +1714,9 @@ this document.
     actions received by a third party may need custom verification or filtering. In particular
     all non traffic-rate actions may allow a third party to modify packet forwarding properties and potentially
     gain access to other routing-tables/VPNs or undesired queues. This can be avoided by proper filtering of action communities
-    at network borders and by mapping user-defined communities (see <xref target="traffic_filtering_actions" />)
-    to expose certain forwarding properties to third parties.
+    at network borders and only exposing a predefined subset of traffic filtering actions (see <xref target="traffic_filtering_actions" />)
+    to third parties. One way to achieve this is by mapping user-defined communities, that can be set by the third party, to
+    filtering actions and not accepting traffic filtering action extended communities from third parties.
     </t>
       <t>This extension adds additional information to Internet routers.
           These are limited in terms of the maximum number of data elements
