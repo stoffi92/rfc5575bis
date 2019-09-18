@@ -1303,15 +1303,6 @@ this document.
   encodings formats for the route-target (type 0x80, 0x81, 0x82).
   Is uses the same encoding as the Route Target extended community [RFC4360].
 </t>
-<t>
-   It should be noted that the low-order nibble of the Redirect's Type
-   field corresponds to the Route Target Extended Community format field
-   (Type).  (See Sections 3.1, 3.2, and 4 of <xref target="RFC4360"></xref>
-   plus Section 2 of <xref target="RFC5668"></xref>.)
-   The low-order octet (Sub-Type) of the Redirect Extended
-   Community remains 0x08 for all three encodings of the
-   BGP Extended Communities (AS 2-byte, AS 4-byte, and IPv4 address).
-</t>
 <t>Interferes with: No other BGP Flow Specification traffic action in
 this document.
 </t>
