@@ -1174,16 +1174,17 @@ defined as retesting that clause a and clause b above are true.
  </t>
  <t>
     The default action for a traffic filtering Flow Specification is to
-   accept IP traffic that matches that particular rule.
+    accept (forward the packet according to the normal forwarding behaviour of the
+    system) IP traffic that matches that particular rule.
  </t>
  <t>This document defines the following extended communities values
  shown in <xref target="traffic_extended_communities" /> in the form
- 0x8xnn where nn indicates the sub-type. Encodings for these extended
- communities are described below.
+ 0xttss where tt indicates the type and ss indicates the sub-type of the extended community.
+ Encodings for these extended communities are described below.
  </t>
    <texttable anchor="traffic_extended_communities" title="Traffic Action
      Extended Communities">
-       <ttcol align="left">community</ttcol>
+       <ttcol align="left">community 0xttss</ttcol>
        <ttcol align="left">action</ttcol>
        <ttcol align="left">encoding</ttcol>
        <c>0x8006</c> <c>traffic-rate-bytes</c>      <c>2-byte ASN, 4-byte float</c>
