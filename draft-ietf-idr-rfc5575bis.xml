@@ -1312,7 +1312,8 @@ this document.
    Community remains 0x08 for all three encodings of the
    BGP Extended Communities (AS 2-byte, AS 4-byte, and IPv4 address).
 </t>
-<t>Interferes with: All other redirect functions.
+<t>Interferes with: No other BGP Flow Specification traffic action in
+this document.
 </t>
 </section>
 <section anchor="traffic_marking_subtype" title="Traffic Marking (traffic-marking) sub-type 0x09">
