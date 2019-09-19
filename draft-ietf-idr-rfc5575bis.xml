@@ -126,9 +126,10 @@
 </t>
   <t>
    It specifies IPv4 traffic Flow Specifications via a BGP NLRI which
-   carries a traffic Flow Specification filter, and an Extended community value
+   carries a traffic Flow Specification filter, and an Traffic Filtering Action
+   Extended community value
    which encodes actions a routing system can take if the packet matches the
-   traffic flow filters. The flow filters and the actions are processed in a
+   Flow Specification. The Flow Specification and the Traffic Filtering Actions are processed in a
    fixed order. Other drafts specify IPv6, MPLS addresses, L2VPN addresses, and
    NV03 encapsulation of IP addresses.
    </t>
@@ -145,8 +146,7 @@
    and 3) applications with centralized control of traffic in a SDN or NFV context.
    Some deployments of these three applications can be handled by
    the strict ordering of the BGP NLRI traffic flow filters, and the
-   strict actions encoded in the extended community Flow Specification
-   actions.
+   strict actions encoded in the extended community Traffic Filtering Actions.
    </t>
 
     </abstract>
@@ -175,8 +175,8 @@
     protocol, and transport protocol port numbers.
 	</t>
 	<t>
-   This document defines a general procedure to encode flow
-   specification rules for aggregated traffic flows so that they can be
+   This document defines a general procedure to encode Flow
+   Specification for aggregated traffic flows so that they can be
    distributed as a BGP <xref target="RFC4271"></xref> NLRI.  Additionally, we define the
    required mechanisms to utilize this definition to the problem of
    immediate concern to the authors: intra- and inter-provider
@@ -187,7 +187,7 @@
 	 By expanding routing information with Flow Specifications, the
 	routing system can take advantage of the ACL (Access Control List) or
 	firewall capabilities in the router's forwarding path.  Flow
-	specifications can be seen as more specific routing entries to a
+	Specifications can be seen as more specific routing entries to a
 	unicast prefix and are expected to depend upon the existing unicast
 	data information.
 	</t>
@@ -196,7 +196,7 @@
 	need to be validated against unicast routing before being accepted.
 	If the aggregate traffic flow defined by the unicast destination
    prefix is forwarded to a given BGP peer, then the local system can
-   install more specific flow rules that may result in different
+   install more specific Flow Specifications that may result in different
    forwarding behavior, as requested by this system.
 	</t>
 
@@ -214,12 +214,12 @@
    substantial advantage of being an incremental addition to already
    deployed mechanisms.
    </t>
-   <t>In current deployments, the information distributed by the flow-spec
+   <t>In current deployments, the information distributed by this
    extension is originated both manually as well as automatically.  The
-   latter by systems that are able to detect malicious flows.  When
+   latter by systems that are able to detect malicious traffic flows.  When
    automated systems are used, care should be taken to ensure their
    correctness as well as to limit the number and advertisement rate of
-   flow routes (see also <xref target="security_considerations" />).
+   Flow Specifications (see also <xref target="security_considerations" />).
    </t>
    <t>
    This specification defines required protocol extensions to address
@@ -267,7 +267,7 @@
 </t>
 <t>
    The mechanism defined in this document is designed to address these
-   limitations.  We use the Flow Specification NLRI defined above to
+   limitations. We use the Flow Specification NLRI defined in <xref target="dissemination_ipv4_flowspec" /> to
    convey information about traffic filtering rules for traffic that
    is subject to modified forwarding behavior (actions). The actions
    are defined as extended communities and include (but are not limited
@@ -299,7 +299,7 @@
     having the Internet routing table in a VRF. Therefore, limitations described
     in <xref target="limitations_previous_ddos"></xref> also apply to this section.
     </t>
-    <t>The BGP Flow Specification addresses these limitations.
+    <t>This BGP extension addresses these limitations.
     </t>
     </section>
 
@@ -335,13 +335,13 @@
 	<t>
 	 A Flow Specification is an n-tuple consisting of several matching
 	criteria that can be applied to IP traffic.  A given IP packet is
-	said to match the defined flow if it matches all the specified
+	said to match the defined Flow Specification if it matches all the specified
 	criteria. This n-tuple is encoded into a BGP NLRI defined below.
 	</t>
   <t>
 
   </t>
-	<t>A given flow may be associated with a set of attributes, depending on
+	<t>A given Flow Specification may be associated with a set of attributes, depending on
    the particular application; such attributes may or may not include
    reachability information (i.e., NEXT_HOP).  Well-known or AS-specific
    community attributes can be used to encode a set of predetermined
@@ -375,7 +375,7 @@
 	</section>
 	<section title="Dissemination of IPv4 FLow Specification Information" anchor="dissemination_ipv4_flowspec">
 	<t>
-	We define a "Flow Specification" NLRI type (<xref target="fs_nlri" />)
+	This document defines a Flow Specification NLRI type (<xref target="fs_nlri" />)
   that may include several components such as destination prefix,
   source prefix, protocol, ports, and others (see
   <xref target="nlri_value_encoding" /> below).
@@ -405,7 +405,7 @@
 	</figure>
 	</t>
    <t>
-   Implementations wishing to exchange Flow Specification rules MUST use
+   Implementations wishing to exchange Flow Specification MUST use
    BGP's Capability Advertisement facility to exchange the Multiprotocol
    Extension Capability Code (Code 1) as defined in <xref target="RFC4760"></xref>.
    The (AFI, SAFI) pair carried in the Multiprotocol Extension
@@ -432,13 +432,13 @@
 	</section>
 	<section anchor="nlri_value_encoding" title="NLRI Value Encoding">
 	<t>
-    The Flow Specification NLRI-type consists of a list of optional
+    The Flow Specification NLRI value consists of a list of optional
    components and is encoded as follows:
    </t>
    <t>Encoding: &lt;[component]+&gt;</t>
    <t>
-   A specific packet is considered to match the flow
-   specification when it matches the intersection (AND) of all the
+   A specific packet is considered to match the Flow
+   Specification when it matches the intersection (AND) of all the
    components present in the Flow Specification.
   </t>
    <t>
@@ -584,7 +584,7 @@ match the IP protocol value byte in IP packets.
    OR destination TCP/UDP ports (see <xref target="RFC0793" /> Section 3.1 and
     <xref target="RFC0768" /> Section "Format").
    This component matches if either the destination port OR the source port
-   of a flow matches the value.
+   of a IP packet matches the value.
 </t>
 <t>
     This component uses the
@@ -593,10 +593,10 @@ match the IP protocol value byte in IP packets.
 </t>
 <t>
     In case of the presence of the port (destination-port, source-port)
-    component only TCP or UDP packets can match the entire Flow Specification Rule.
+    component only TCP or UDP packets can match the entire Flow Specification.
     The port component, if present, never matches when the packet's IP
     protocol value is not 6 (TCP) or 17 (UDP), if the packet is fragmented
-    and this is not the first fragement, or if the system is unable to
+    and this is not the first fragment, or if the system is unable to
     locate the transport header. Different implementations may or may not be
     able to decode the transport header in the presence of IP
     options or Encapsulating Security Payload (ESP) NULL
@@ -642,10 +642,10 @@ type field of an ICMP packet (see also <xref target="RFC0792" /> Section "Messag
 </t>
 <t>
     In case of the presence of the ICMP type (code)
-    component only ICMP packets can match the entire Flow Specification Rule.
+    component only ICMP packets can match the entire Flow Specification.
     The ICMP type (code) component, if present, never matches when the packet's IP
     protocol value is not 1 (ICMP), if the packet is fragmented
-    and this is not the first fragement, or if the system is unable to
+    and this is not the first fragment, or if the system is unable to
     locate the transport header. Different implementations may or may not be
     able to decode the transport header in the presence of IP
     options or Encapsulating Security Payload (ESP) NULL
@@ -686,10 +686,10 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
 </t>
 <t>
     In case of the presence of the TCP flags
-    component only TCP packets can match the entire Flow Specification Rule.
+    component only TCP packets can match the entire Flow Specification.
     The TCP flags component, if present, never matches when the packet's IP
     protocol value is not 6 (TCP), if the packet is fragmented
-    and this is not the first fragement, or if the system is unable to
+    and this is not the first fragment, or if the system is unable to
     locate the transport header. Different implementations may or may not be
     able to decode the transport header in the presence of IP
     options or Encapsulating Security Payload (ESP) NULL
@@ -732,7 +732,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
     <t>
     This component uses the
     Bitmask Operator (bitmask_op) described in <xref target="bitmask_operator" />.
-    Type 12 component bitmasks MUST be encoded as single byte bitmask (bitmask_op len=00).
+    The Type 12 component bitmask MUST be encoded as single byte bitmask (bitmask_op len=00).
     </t>
 <t>
 <figure title="Fragment Bitmask Operand" anchor="figure_fragment_bitmask_operand">
@@ -900,12 +900,12 @@ This constitutes an NLRI with an NLRI length of 9 octets.
  These application require coordination among service providers and/or coordination
  among the AS within a service provider.  <xref target="limitations_previous_ddos" /> and
         <xref target="limitations_previous_mpls_ddos" /> explain details on the
- limitation of previous mechanisms and why BGP Flow Specification
+ limitation of previous mechanisms and why Flow Specification
  provides a solution to prevent DOS and aid BGP/MPLS VPN filtering rules.
 	</t>
 	<t>
 	The Flow Specification NLRI defined above to convey information about traffic
-filtering rules for traffic that should be discarded or handled in manner
+filtering rules for traffic that should be discarded or handled in a manner
 specified by a set of pre-defined actions (which are defined in BGP Extended
 Communities). This mechanism is primarily designed to allow an upstream
 autonomous system to perform inbound filtering in their ingress routers of
@@ -933,22 +933,23 @@ traffic that a given downstream AS wishes to drop.
        <xref target="traffic_filtering_vpn" /> for VPNv4 Flow Specification. The filtering actions are described
        in <xref target="traffic_filtering_actions" />.
    </t>
-<section title="Ordering of Traffic Filtering Rules">
+<section title="Ordering of Flow Specifications">
 <t>
-   With traffic filtering rules, more than one rule may match a
+   More than one Flow Specification may match a
    particular traffic flow.  Thus, it is necessary to define the order
-   at which rules get matched and applied to a particular traffic flow.
-   This ordering function must be such that it must not depend on the
-   arrival order of the Flow Specification's rules and must be consistent
-   in the network.
+   in which Flow Specifications get matched and actions being applied to a
+   particular traffic flow.
+   This ordering function is such that it does not depend on the arrival order
+   of the Flow Specification via BGP and thus is consistent in the network.
 </t>
 <t>
-   The relative order of two Flow Specification rules is determined by
-   comparing their respective components.  The algorithm starts by
-   comparing the left-most components (lowest component type value) of the rules.  If the types
-   differ, the rule with lowest numeric type value has higher precedence
-   (and thus will match before) than the rule that doesn't contain that
-   component type.  If the component types are the same, then a type-
+   The relative order of two Flow Specifications is determined by
+   comparing their respective components. The algorithm starts by
+   comparing the left-most components (lowest component type value) of the
+   Flow Specifications.  If the types
+   differ, the Flow Specification with lowest numeric type value has higher precedence
+   (and thus will match before) than the Flow Specification that doesn't contain that
+   component type. If the component types are the same, then a type-
    specific comparison is performed (see below) if the types are equal the
    algorithm continues with the next component.
 </t>
@@ -1105,11 +1106,11 @@ defined as retesting that clause a and clause b above are true.
 </t>
 <t>
    The underlying concept is that the neighboring AS that advertises the
-   best unicast route for a destination is allowed to advertise flow-
-   spec information that conveys a more or equally specific destination
+   best unicast route for a destination is allowed to advertise Flow
+   Specification information that conveys a more or equally specific destination
    prefix.  Thus, as long as there are no more specific unicast routes,
    received from a different neighboring AS, which would be affected by
-   that filtering rule.
+   that Flow Specification.
 </t>
 <t>
    The neighboring AS is the immediate destination of the traffic
@@ -1122,7 +1123,7 @@ defined as retesting that clause a and clause b above are true.
 </section>
 <section anchor="traffic_filtering_actions" title="Traffic Filtering Actions">
 <t>
-   This specification defines a minimum set of filtering actions that it
+   This document defines a minimum set of Traffic Filtering Actions that it
    standardizes as BGP extended community values <xref target="RFC4360"></xref>.
    This is not meant to be an inclusive list of all the possible actions, but only a
    subset that can be interpreted consistently across the network.
@@ -1131,7 +1132,7 @@ defined as retesting that clause a and clause b above are true.
  </t>
  <t>
     Implementations SHOULD provide mechanisms that map an arbitrary BGP
-   community value (normal or extended) to filtering actions that
+   community value (normal or extended) to Traffic Filtering Actions that
    require different mappings in different systems in the network.  For
    instance, providing packets with a worse-than-best-effort, per-hop
    behavior is a functionality that is likely to be implemented
@@ -1141,16 +1142,16 @@ defined as retesting that clause a and clause b above are true.
    platform-/network-specific behavior via user configuration.
  </t>
  <t>
-    The default action for a traffic filtering Flow Specification is to
-    accept (forward the packet according to the normal forwarding behaviour of the
-    system) IP traffic that matches that particular rule.
+    The default action for a matching Flow Specification is to
+    accept the packet (treat the packet according to the normal forwarding
+    behaviour of the system).
  </t>
  <t>This document defines the following extended communities values
  shown in <xref target="traffic_extended_communities" /> in the form
  0xttss where tt indicates the type and ss indicates the sub-type of the extended community.
  Encodings for these extended communities are described below.
  </t>
-   <texttable anchor="traffic_extended_communities" title="Traffic Action
+   <texttable anchor="traffic_extended_communities" title="Traffic Filtering Action
      Extended Communities">
        <ttcol align="left">community 0xttss</ttcol>
        <ttcol align="left">action</ttcol>
@@ -1164,23 +1165,23 @@ defined as retesting that clause a and clause b above are true.
        <c>0x8009</c> <c>traffic-marking (<xref target="traffic_marking_subtype" />)</c>         <c>DSCP value</c>
    </texttable>
 <t>
-    Multiple traffic actions defined in this document may be present for a single NLRI.
-    If not all of them can be processed the filter SHALL NOT
-    be applied at all. For example: If for a given Flow Specification there
-    are the action communities traffic-rate-bytes (0x8006) and
+    Multiple Traffic Filtering Actions defined in this document may be present for a single Flow Specification.
+    If not all of them can be processed the Traffic Filtering Actions SHALL NOT
+    be applied at all to that packet. For example: If for a given Flow Specification there
+    are the Traffic Filtering Actions traffic-rate-bytes (0x8006) and
     traffic-marking (0x8009) attached, and the platform does not support
     one of them, none of the actions shall be applied.
 </t>
  <t>
- Some traffic action communities may interfere with each other.
- <xref target="rules_action_interference" /> of this specification
- provides general considerations on such traffic action interference.
- Any additional definition of a traffic actions MUST specify
- the action to take if those traffic actions interfere (also with existing
-     traffic actions).
+ Some Traffic Filtering Actions may interfere with each other.
+ <xref target="rules_action_interference" /> of this document
+ provides general considerations on such Traffic Filtering Action interference.
+ Any additional definition of a Traffic Filtering Actions MUST specify
+ the action to take if those Traffic Filtering Actions interfere (also with existing
+     Traffic Filtering Actions).
 </t>
 <t>
-All traffic actions are specified as transitive BGP Extended
+All Traffic Filtering Actions are specified as transitive BGP Extended
 Communities.
 </t>
  <section anchor="traffic_rate_in_bytes" title="Traffic Rate in Bytes (traffic-rate-bytes) sub-type 0x06">
@@ -1201,7 +1202,7 @@ traffic-rate of 0 should result on all traffic for the particular flow to be
 discarded. On encoding the traffic-rate MUST NOT be negative. On
 decoding negative values MUST be treated as zero (discard all traffic).
  </t>
- <t>Interferes with: No other BGP Flow Specification traffic action in
+ <t>Interferes with: No other BGP Flow Specification Traffic Filtering Action in
  this document.</t>
 </section>
 <section anchor="traffic_rate_in_packets" title="Traffic Rate in Packets (traffic-rate-packets) sub-type TBD">
@@ -1213,13 +1214,13 @@ decoding negative values MUST be treated as zero (discard all traffic).
   traffic-rate-packets MUST NOT be negative.  On decoding negative values MUST
   be treated as zero (discard all traffic).
 </t>
-<t>Interferes with: No other BGP Flow Specification traffic action in
+<t>Interferes with: No other BGP Flow Specification Traffic Filtering Action in
 this document.</t>
 </section>
  <section anchor="traffic_action_subtype" title="Traffic-action (traffic-action) sub-type 0x07">
  <t>The traffic-action extended community consists of 6
       bytes of which only the 2 least significant bits of the 6th byte
-      (from left to right) are defined by this specification as shown in
+      (from left to right) are defined by this document as shown in
      <xref target="figure_traffic_action_encoding" />.
 </t>
 <t>
@@ -1238,27 +1239,28 @@ this document.</t>
 <t>where S and T are defined as:
 <list style="symbols">
 <t>T: Terminal Action (bit 47): When this bit is set, the traffic
-   filtering engine will apply any subsequent filtering rules (as
-   defined by the ordering procedure).  If not set, the evaluation
-   of the traffic filter stops when this rule is applied.
+   filtering engine will evaluate any subsequent Flow Specifications (as
+   defined by the ordering procedure). If not set, the evaluation
+   of the traffic filters stops when this Flow Specification is evaluated.
 </t>
 <t>S: Sample (bit 46): Enables traffic sampling and logging for this
      Flow Specification (only effective when set).
 </t>
 <t>Traffic Action Field: Other Traffic Action Field (see
-    <xref target="IANA" />) bits unused by this
+    <xref target="IANA" />) bits unused in this
     specification.
 </t>
 </list>
 </t>
 <t>
   The use of the Terminal Action (bit 47) may result in more than one
-  filter-rule matching a particular flow. All the flow actions from these rules
-  shall be collected and applied. In case of interfering traffic actions
-  it is an implementation decision which actions are selected. See also <xref
+  Flow Specification matching a particular traffic flow. All the
+  Traffic Filtering Actions from these Flow Specifications
+  shall be collected and applied. In case of interfering Traffic Filtering Actions
+  it is an implementation decision which Traffic Filtering Actions are selected. See also <xref
   target="rules_action_interference" />.
 </t>
-<t>Interferes with: No other BGP Flow Specification traffic action in
+<t>Interferes with: No other BGP Flow Specification Traffic Filtering Action in
 this document.
 </t>
 </section>
@@ -1272,7 +1274,7 @@ this document.
   encodings formats for the route-target (type 0x80, 0x81, 0x82).
   Is uses the same encoding as the Route Target extended community [RFC4360].
 </t>
-<t>Interferes with: No other BGP Flow Specification traffic action in
+<t>Interferes with: No other BGP Flow Specification Traffic Filtering Action in
 this document.
 </t>
 </section>
@@ -1306,21 +1308,21 @@ this document.
 </t>
 
 
- <t>Interferes with: No other BGP Flow Specification traffic action in
+ <t>Interferes with: No other BGP Flow Specification Traffic Filtering Action in
  this document.</t>
 </section>
- <section anchor="rules_action_interference" title="Considerations on Traffic Action Interference">
+ <section anchor="rules_action_interference" title="Considerations on Traffic Filtering Action Interference">
 <t>
-   Since traffic actions are represented as BGP extended community values,
-   traffic actions may interfere with each other (e.g. there may be more than
-   one conflicting traffic-rate-bytes action associated with a single
-   Flow Specification). Traffic action interference has no impact on BGP propagation
-   of flow filters (all communities are propagated according to policies).
+   Since Traffic Filtering Actions are represented as BGP extended community values,
+   Traffic Filtering Actions may interfere with each other (e.g. there may be more than
+   one conflicting traffic-rate-bytes Traffic Filtering Action associated with a single
+   Flow Specification). Traffic Filtering Action interference has no impact on BGP propagation
+   of Flow Specifications (all communities are propagated according to policies).
 </t>
 <t>
-   If a flow filter associated with interfering flow actions is selected for
-   packet forwarding, it is a implementation decision which of the interfering
-   traffic actions are selected. Implementors of this specification SHOULD
+   If a Flow Specification associated with interfering Traffic Filtering Actions is selected for
+   packet forwarding, it is an implementation decision which of the interfering
+   Traffic Filtering Actions are selected. Implementors of this specification SHOULD
    document the behaviour of their implementation in such cases.
 </t>
 <t>
@@ -1341,7 +1343,7 @@ this document.
    routing table in a VRF, resulting in the same traffic filtering requirements
    as defined for the global routing table environment within this document.
    This document defines an additional BGP NLRI type (AFI=1, SAFI=134) value,
-   which can be used to propagate traffic filtering information in a BGP/MPLS
+   which can be used to propagate Flow Specification in a BGP/MPLS
    VPN environment.
  </t>
 <t>
@@ -1371,31 +1373,31 @@ this document.
    MPLS IP VPNs <xref target="RFC4364"></xref>.
 </t>
 <t>
-   Flow Specification rules received via this NLRI apply only to traffic
+   Flow Specifications received via this NLRI apply only to traffic
    that belongs to the VRF(s) in which it is imported. By default,
    traffic received from a remote PE is switched via an MPLS forwarding
    decision and is not subject to filtering.
 </t>
 <t>
-   Contrary to the behavior specified for the non-VPN NLRI, flow rules
+   Contrary to the behavior specified for the non-VPN NLRI, Flow Specifications
    are accepted by default, when received from remote PE routers.
 </t>
 <t>
     The validation procedure (<xref target="validation_procedure" />) and
-    traffic filtering actions (<xref target="traffic_filtering_actions" />) are the same as
+    Traffic Filtering Actions (<xref target="traffic_filtering_actions" />) are the same as
     for IPv4.
 </t>
 </section>
 <section title="Traffic Monitoring">
 <t>
    Traffic filtering applications require monitoring and traffic
-   statistics facilities.  While this is an implementation-specific
+   statistics facilities.  While this is an implementation specific
    choice, implementations SHOULD provide:
    <list style="symbols">
    <t> A mechanism to log the packet header of filtered traffic.
    </t>
-   <t>A mechanism to count the number of matches for a given flow
-      specification rule.
+   <t>A mechanism to count the number of matches for a given Flow
+      Specification.
    </t>
    </list>
   </t>
@@ -1409,7 +1411,7 @@ this document.
         This document introduces Traffic Filtering Action Extended Communities.
         Malformed Traffic Filtering Action Extended Communities in the sense of <xref target="RFC7606"></xref>
         Section 7.14. are Extended Community values that cannot be decoded according
-        to <xref target="traffic_filtering_actions" /> of this specification.
+        to <xref target="traffic_filtering_actions" /> of this document.
     </t>
 </section>
 <section anchor="future_extensions" title="Future NLRI Extensions">
@@ -1433,7 +1435,7 @@ this document.
     Such extensions SHOULD also specify a way to encode an "always-match" match condition within
     the newly introduced components (this is a match condition, encoded with the newly introduced components:
     If present on its own, matches all flows). This match condition can be used to propagate (and apply)
-    certain filters only if a specific extension is known to the implemenation.
+    certain Flow Specifications only if a specific extension is known to the implementation.
   </t>
 </section>
 
@@ -1549,7 +1551,7 @@ this document.
 
    </texttable>
    <t>
-     For the sub-type part of the extended community actions IANA maintains
+     For the sub-type part of the extended community Traffic Filtering Actions IANA maintains
      the following registries. IANA is asked to update all names and references
      according to the tables below and assign a new value for the "Flow spec
      traffic-rate-packets" Sub-Type (Note: This document obsoletes both
@@ -1631,13 +1633,13 @@ this document.
 </section>
 </section>
   <section title="Security Considerations" anchor="security_considerations">
-   <t> As long as traffic filtering rules are restricted to match the
+   <t> As long as Flow Specifications are restricted to match the
    corresponding unicast routing paths for the relevant prefixes (<xref target="validation_procedure" />),
    the security characteristics of this proposal are equivalent to the existing security
    properties of BGP unicast routing. Any relaxation of the validation
    procedure described in <xref target="validation_procedure" /> may
-   allow unwanted Flow Specification rules to be propagated and thus unwanted filter
-   actions may be applied to flows.
+   allow unwanted Flow Specifications to be propagated and thus unwanted Traffic
+   Filtering Actions may be applied to flows.
     </t>
    <t>  Where the above mechanisms are not in place, this would open the door
    to further denial-of-service attacks such as unwanted traffic filtering,
@@ -1650,9 +1652,9 @@ this document.
    autonomous system may cause a denial-of-service attack by advertising
    reachability information for a given prefix for which it does not
    provide service (unfiltered address space hijack). Since validation
-   of the traffic filtering NLRI is tied to the announcement of
+   of the Flow Specification is tied to the announcement of
    the best unicast route, this may also cause this validation to fail
-   and consequently prevent Flow Specification filters from being accepted
+   and consequently prevent Flow Specifications from being accepted
    by a peer. Possible mitigations are <xref target="RFC6811" /> and
    <xref target="RFC8205" />.
    </t>
@@ -1669,26 +1671,27 @@ this document.
   <t>
       Flow Specification BGP speakers (e.g. automated DDoS controllers) not properly programmed,
       algorithms that are not performing as expected, or simply rogue systems
-      may announce unintended Flow Specification filters, send updates at a high rate
-      or generate a high number of Flow Specification filters.
+      may announce unintended Flow Specifications, send updates at a high rate
+      or generate a high number of Flow Specifications.
       This may stress the receiving systems, exceed their maximum capacity or
-      may lead to unwanted filter actions being applied to flows.
+      may lead to unwanted Traffic Filtering Actions being applied to flows.
   </t>
-    <t> While the general verification of the traffic filter NLRI
-    is specified in this document (<xref target="validation_procedure" />) the traffic filtering
-    actions received by a third party may need custom verification or filtering. In particular
+    <t> While the general verification of the Flow Specification NLRI
+    is specified in this document (<xref target="validation_procedure" />) the Traffic Filtering
+    Actions received by a third party may need custom verification or filtering. In particular
     all non traffic-rate actions may allow a third party to modify packet forwarding properties and potentially
-    gain access to other routing-tables/VPNs or undesired queues. This can be avoided by proper filtering of action communities
-    at network borders and only exposing a predefined subset of traffic filtering actions (see <xref target="traffic_filtering_actions" />)
+    gain access to other routing-tables/VPNs or undesired queues. This can be avoided by proper filtering/screening of the
+    Traffic Filtering Action communities
+    at network borders and only exposing a predefined subset of Traffic Filtering Actions (see <xref target="traffic_filtering_actions" />)
     to third parties. One way to achieve this is by mapping user-defined communities, that can be set by the third party, to
-    filtering actions and not accepting traffic filtering action extended communities from third parties.
+    Traffic Filtering Actions and not accepting Traffic Filtering Action extended communities from third parties.
     </t>
       <t>This extension adds additional information to Internet routers.
           These are limited in terms of the maximum number of data elements
           they can hold as well as the number of events they are able to
           process in a given unit of time. Service providers need to consider
           the maximum capacity of their devices and may need to limit the
-          number of Flow Specification Filters accepted and processed.
+          number of Flow Specifications accepted and processed.
    </t>
   </section>
 	<section title="Contributors">
@@ -1706,7 +1709,7 @@ this document.
    produce a working implementation in the original <xref target="RFC5575" />.
    </t>
    <t>
-   A packet rate Flow Specification action was also described in a Flow Specification extension draft
+   A packet rate Traffic Filtering Action was also described in a Flow Specification extension draft
    and the authors like to thank Wesley Eddy, Justin Dailey and Gilbert Clark for
    their work.
    </t>
@@ -1796,15 +1799,15 @@ this document.
             consistently defined in <xref target="RFC5575" />.
           </t>
           <t>
-            <xref target="traffic_filtering_actions" /> defines all traffic
-            action extended communities as transitive extended communities.
+            <xref target="traffic_filtering_actions" /> defines all Traffic
+            Filtering Action Extended communities as transitive extended communities.
             <xref target="RFC5575" /> defined the traffic-rate action to be
             non-transitive and did not define the transitivity of the other
-            action communities at all.
+            Traffic Filtering Action communities at all.
           </t>
           <t>
-            <xref target="traffic_rate_in_packets" /> introduces a new traffic
-            filtering action (traffic-rate-packets). This action did not exist
+            <xref target="traffic_rate_in_packets" /> introduces a new Traffic
+            Filtering Action (traffic-rate-packets). This action did not exist
             in <xref target="RFC5575" />.
           </t>
           <t>
