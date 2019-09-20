@@ -14,7 +14,6 @@
 <!ENTITY RFC4456 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4456.xml">
 <!ENTITY RFC4760 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4760.xml">
 <!ENTITY RFC5635 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5635.xml">
-<!ENTITY RFC5668 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5668.xml">
 <!ENTITY RFC5575 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5575.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
 <!ENTITY RFC7223 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7223.xml">
@@ -117,74 +116,75 @@
     <keyword>Internet-Draft</keyword>
     <keyword>Dissemination of Flow Specification Rules</keyword>
 	<abstract>
+   <t>
+   This document obsoletes both <xref target="RFC5575" /> and <xref target="RFC7674" />.
+   </t>
 	<t>
    This document defines a Border Gateway Protocol Network Layer
-   Reachability Information (BGP NLRI) encoding format that can be used
+   Reachability Information (BGP NLRI) encoding format, that can be used
    to distribute traffic Flow Specifications. This allows the routing
    system to propagate information regarding more specific components of
    the traffic aggregate defined by an IP destination prefix.
-</t>
-  <t>
-   It specifies IPv4 traffic Flow Specifications via a BGP NLRI which
-   carries a traffic Flow Specification filter, and an Traffic Filtering Action
-   Extended community value
-   which encodes actions a routing system can take if the packet matches the
-   Flow Specification. The Flow Specification and the Traffic Filtering Actions are processed in a
-   fixed order. Other drafts specify IPv6, MPLS addresses, L2VPN addresses, and
-   NV03 encapsulation of IP addresses.
    </t>
    <t>
-   This document obsoletes <xref target="RFC5575" /> and <xref target="RFC7674" /> to correct unclear specifications in the
-   flow filters.
+   It also specifies BGP Extended Community encoding formats, that can be
+   used to propagate Traffic Filtering Actions along with the Flow
+   Specification NLRI. Those Traffic Filtering Actions encode actions a
+   routing system can take if the packet matches the Flow Specification.
    </t>
    <t>
-   Applications which use the bgp Flow Specification are:
-   1) application which automate inter-domain coordination of traffic
+   Additionally, it defines two applications of that encoding format:
+   one that can be used to automate inter-domain coordination of traffic
    filtering, such as what is required in order to mitigate
-   (distributed) denial-of-service attacks; 2) applications which
-   control traffic filtering in the context of a BGP/MPLS VPN service,
-   and 3) applications with centralized control of traffic in a SDN or NFV context.
-   Some deployments of these three applications can be handled by
-   the strict ordering of the BGP NLRI traffic flow filters, and the
-   strict actions encoded in the extended community Traffic Filtering Actions.
+   (distributed) denial-of-service attacks, and a second application to
+   provide traffic filtering in the context of a BGP/MPLS VPN service.
+   Other applications (ie. centralized control of traffic
+   in a SDN or NFV context) are also possible. Other drafts specify IPv6,
+   MPLS addresses, L2VPN addresses, and NV03 encapsulation of IP addresses
+   as Flow Specification extensions.
    </t>
-
+   <t>
+   The information is carried via the BGP, thereby reusing protocol
+   algorithms, operational experience, and administrative processes such
+   as inter-provider peering agreements.
+   </t>
     </abstract>
   </front>
   <middle>
     <section anchor="intro" title="Introduction">
    <t>
-   This document obsoletes <xref target="RFC5575" /> and <xref target="RFC7674" /> to correct unclear specifications in the
-   flow filters.
+   This document obsoletes both "<xref target="RFC5575" format="title" />" <xref target="RFC5575" />
+       and "<xref target="RFC7674" format="title" />"<xref target="RFC7674" />.
    </t>
-	  <t>
+   <t>
 	Modern IP routers contain both the capability to forward traffic
     according to IP prefixes as well as to classify, shape, rate limit,
     filter, or redirect packets based on administratively defined
     policies.
 	  </t>
 	  <t>
-    These traffic policy mechanisms allow the router to define match
+    These traffic policy mechanisms allow the operator to define match
     rules that operate on multiple fields of the packet header.  Actions
     such as the ones described above can be associated with each rule.
 	</t>
 	<t>
     The n-tuple consisting of the matching criteria defines an aggregate
-    traffic Flow Specification.  The matching criteria can include
+    traffic Flow Specification. The matching criteria can include
     elements such as source and destination address prefixes, IP
     protocol, and transport protocol port numbers.
 	</t>
 	<t>
-   This document defines a general procedure to encode Flow
+   <xref target="dissemination_ipv4_flowspec" /> of this document defines a general procedure to encode Flow
    Specification for aggregated traffic flows so that they can be
-   distributed as a BGP <xref target="RFC4271"></xref> NLRI.  Additionally, we define the
-   required mechanisms to utilize this definition to the problem of
-   immediate concern to the authors: intra- and inter-provider
+   distributed as a BGP <xref target="RFC4271" /> NLRI.
+   Additionally, <xref target="traffic_filtering_actions" /> of this document defines the
+   required Traffic Filtering Actions BGP Extended Communities
+   and mechanisms to use BGP for intra- and inter-provider
    distribution of traffic filtering rules to filter (distributed)
    denial-of-service (DoS) attacks.
 	</t>
 	<t>
-	 By expanding routing information with Flow Specifications, the
+	By expanding routing information with Flow Specifications, the
 	routing system can take advantage of the ACL (Access Control List) or
 	firewall capabilities in the router's forwarding path.  Flow
 	Specifications can be seen as more specific routing entries to a
@@ -193,13 +193,13 @@
 	</t>
 	<t>
 	A Flow Specification received from a different administrative domain will
-	need to be validated against unicast routing before being accepted.
+	need to be validated against unicast routing before being accepted
+    (<xref target="validation_procedure" />).
 	If the aggregate traffic flow defined by the unicast destination
-   prefix is forwarded to a given BGP peer, then the local system can
-   install more specific Flow Specifications that may result in different
-   forwarding behavior, as requested by this system.
+    prefix is forwarded to a given BGP peer, then the local system can
+    install more specific Flow Specifications that may result in different
+    forwarding behavior, as requested by this system.
 	</t>
-
    <t>
    From an operational perspective, the utilization of BGP as the
    carrier for this information allows a network service provider to
@@ -215,11 +215,12 @@
    deployed mechanisms.
    </t>
    <t>In current deployments, the information distributed by this
-   extension is originated both manually as well as automatically.  The
+   extension is originated both manually as well as automatically. The
    latter by systems that are able to detect malicious traffic flows.  When
    automated systems are used, care should be taken to ensure their
-   correctness as well as to limit the number and advertisement rate of
-   Flow Specifications (see also <xref target="security_considerations" />).
+   correctness as well as the limitations of the systems that receive and
+   process the advertised Flow Specifications
+   (see also <xref target="security_considerations" />).
    </t>
    <t>
    This specification defines required protocol extensions to address
@@ -228,13 +229,18 @@
    address similar filtering needs for other BGP address families such as
    IPv6 families <xref target="I-D.ietf-idr-flow-spec-v6"></xref>.
    </t>
-<section anchor="limitations_previous_ddos" title="Limitations in Previous DDoS Traffic Filtering Efforts">
+   <t>
+       This specification addresses limitations in previous
+       traffic filtering efforts for DDoS traffic filtering and traffic filtering
+       in provider-based Layer-3 VPN networks as discussed below:
+   </t>
+   <section anchor="limitations_previous_ddos" title="Limitations in Previous DDoS Traffic Filtering Efforts">
 <t>The popularity of traffic-based, denial-of-service (DoS) attacks,
    which often requires the network operator to be able to use traffic
    filters for detection and mitigation, brings with it requirements
    that are not fully satisfied by existing tools.
 </t>
-<t>
+       <t>
      Increasingly, DoS mitigation requires coordination among several
    service providers in order to be able to identify traffic source(s)
    and because the volumes of traffic may be such that they will
@@ -249,7 +255,7 @@
    being attacked (commonly known as remote triggered blackhole RTBH).
    One variant of this technique marks such route
    advertisements with a community that gets translated into a discard
-   Next Hop by the receiving router . Other variants attract traffic
+   Next Hop by the receiving router. Other variants attract traffic
    to a particular node that serves as a deterministic drop point.
 </t>
 <t>
@@ -267,9 +273,9 @@
 </t>
 <t>
    The mechanism defined in this document is designed to address these
-   limitations. We use the Flow Specification NLRI defined in <xref target="dissemination_ipv4_flowspec" /> to
+   limitations. I makes use the Flow Specification NLRI defined in <xref target="dissemination_ipv4_flowspec" /> to
    convey information about traffic filtering rules for traffic that
-   is subject to modified forwarding behavior (actions). The actions
+   is subject to modified forwarding behavior (Traffic Filtering Actions). The actions
    are defined as extended communities and include (but are not limited
    to) rate-limiting (including discard), traffic redirection, packet
    rewriting.
@@ -302,7 +308,6 @@
     <t>This BGP extension addresses these limitations.
     </t>
     </section>
-
     </section>
 	<section title="Definitions of Terms Used in This Memo">
 	<t>
@@ -551,21 +556,21 @@ to TRUE if any of the bits in the value mask are set in the data
      transport layer headers. IPv6 NLRI component types are described
      in <xref target="I-D.ietf-idr-flow-spec-v6"></xref>.
    </t>
-<section anchor="type_1" title="Type 1 - Destination Prefix">
+<section anchor="type_1" title="Type 1 - Destination Prefix" toc="include">
 <t>Encoding: &lt;type (1 octet), length (1 octet), prefix (variable)>
 </t>
 <t>Defines the destination prefix to match. The length and prefix fields are
 encoded as in BGP UPDATE messages <xref target="RFC4271" />
 </t>
 </section>
-<section anchor="type_2" title="Type 2 - Source Prefix">
+<section anchor="type_2" title="Type 2 - Source Prefix" toc="include">
 <t>Encoding: &lt;type (1 octet), length (1 octet), prefix (variable)&gt;
 </t>
 <t>Defines the source prefix to match. The length and prefix fields are
 encoded as in BGP UPDATE messages <xref target="RFC4271" />
 </t>
 </section>
-<section anchor="type_3" title="Type 3 - IP Protocol">
+<section anchor="type_3" title="Type 3 - IP Protocol" toc="include">
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t>Contains a set of {numeric_op, value} pairs that are used to
@@ -577,7 +582,7 @@ match the IP protocol value byte in IP packets.
     Type 3 component values SHOULD be encoded as single byte (numeric_op len=00).
 </t>
 </section>
-<section anchor="type_4" title="Type 4 - Port">
+<section anchor="type_4" title="Type 4 - Port" toc="include">
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t>Defines a list of {numeric_op, value} pairs that matches source
@@ -603,7 +608,7 @@ match the IP protocol value byte in IP packets.
     <xref target="RFC4303"></xref> encryption.
 </t>
 </section>
-<section anchor="type_5" title="Type 5 - Destination Port">
+<section anchor="type_5" title="Type 5 - Destination Port" toc="include">
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t> Defines a list of {numeric_op, value} pairs used to match the
@@ -616,7 +621,7 @@ match the IP protocol value byte in IP packets.
 </t>
 <t>The last paragraph of <xref target="type_4" /> also applies to this component.</t>
 </section>
-<section anchor="type_6" title="Type 6 - Source Port">
+<section anchor="type_6" title="Type 6 - Source Port" toc="include">
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t>  Defines a list of {numeric_op, value} pairs used to match the
@@ -629,7 +634,7 @@ match the IP protocol value byte in IP packets.
 </t>
 <t>The last paragraph of <xref target="type_4" /> also applies to this component.</t>
 </section>
-<section anchor="type_7" title="Type 7 - ICMP type">
+<section anchor="type_7" title="Type 7 - ICMP type" toc="include">
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t>Defines a list of {numeric_op, value} pairs used to match the
@@ -652,7 +657,7 @@ type field of an ICMP packet (see also <xref target="RFC0792" /> Section "Messag
     <xref target="RFC4303"></xref> encryption.
 </t>
 </section>
-<section anchor="type_8" title="Type 8 - ICMP code">
+<section anchor="type_8" title="Type 8 - ICMP code" toc="include">
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t>
@@ -666,7 +671,7 @@ code field of an ICMP packet (see also <xref target="RFC0792" /> Section "Messag
 </t>
 <t>The last paragraph of <xref target="type_7" /> also applies to this component.</t>
 </section>
-<section anchor="type_9" title="Type 9 - TCP flags">
+<section anchor="type_9" title="Type 9 - TCP flags" toc="include">
 <t>Encoding: &lt;type (1 octet), [bitmask_op, bitmask]+&gt;
 </t>
 <t>
@@ -696,7 +701,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
     <xref target="RFC4303"></xref> encryption.
 </t>
 </section>
-<section anchor="type_10" title="Type 10 - Packet length">
+<section anchor="type_10" title="Type 10 - Packet length" toc="include">
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t>
@@ -708,7 +713,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
     Type 10 component values SHOULD be encoded as 1- or 2-byte quantities (numeric_op len=00 or len=01).
 </t>
 </section>
-<section anchor="type_11" title="Type 11 -  DSCP (Diffserv Code Point)">
+<section anchor="type_11" title="Type 11 - DSCP (Diffserv Code Point)" toc="include">
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t> Defines a list of {numeric_op, value} pairs used to match the
@@ -724,7 +729,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
     treated as 0.
 </t>
 </section>
-<section anchor="type_12" title="Type 12 - Fragment">
+<section anchor="type_12" title="Type 12 - Fragment" toc="include">
 <t>Encoding: &lt;type (1 octet), [bitmask_op, bitmask]+&gt;
 </t>
 <t> Defines a list of {bitmask_op, bitmask} pairs used to match specific IP fragments.
@@ -762,7 +767,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
 </section>
 </section>
 <section title="Examples of Encodings">
- <section title="Example 1">
+ <section title="Example 1" toc="exclude">
 <t>
  An example of a Flow Specification NLRI encoding for: "all packets to
     192.0.2.0/24 and TCP port 25".
@@ -803,7 +808,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
     This constitutes an NLRI with an NLRI length of 11 octets.
 </t>
 </section>
- <section title="Example 2">
+ <section title="Example 2" toc="exclude">
      <t>
    An example of a Flow Specification NLRI encoding for: "all packets to
    192.0.2.0/24 from 203.0.113.0/24 and port {range [137, 139] or 8080}".
@@ -848,7 +853,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
 This constitutes an NLRI with an NLRI length of 18 octets.
 </t>
 </section>
- <section title="Example 3">
+ <section title="Example 3" toc="exclude">
      <t>
    An example of a Flow Specification NLRI encoding for: "all packets to
    192.0.2.1/32 and fragment { DF or FF } (matching packet with DF bit set or First Fragments)
@@ -1704,7 +1709,6 @@ this document.
       &RFC3882;
       &RFC5575;
       &RFC5635;
-      &RFC5668;
       &RFC6811;
       &RFC8205;
       &RFC7674;
