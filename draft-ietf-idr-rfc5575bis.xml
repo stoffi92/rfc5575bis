@@ -573,7 +573,7 @@ encoded as in BGP UPDATE messages <xref target="RFC4271" />
 <section anchor="type_3" title="Type 3 - IP Protocol" toc="include">
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
-<t>Contains a set of {numeric_op, value} pairs that are used to
+<t>Contains a list of {numeric_op, value} pairs that are used to
 match the IP protocol value byte in IP packets.
 </t>
 <t>
