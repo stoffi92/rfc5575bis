@@ -13,8 +13,9 @@
 <!ENTITY RFC4364 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4364.xml">
 <!ENTITY RFC4456 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4456.xml">
 <!ENTITY RFC4760 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4760.xml">
-<!ENTITY RFC5635 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5635.xml">
 <!ENTITY RFC5575 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5575.xml">
+<!ENTITY RFC5635 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5635.xml">
+<!ENTITY RFC5668 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5668.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
 <!ENTITY RFC7223 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7223.xml">
 <!ENTITY RFC7606 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7606.xml">
@@ -27,6 +28,7 @@
 <!ENTITY I-D.ietf-idr-flow-spec-v6 SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-flow-spec-v6.xml">
 <!ENTITY I-D.vandevelde-idr-flowspec-path-redirect SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vandevelde-idr-flowspec-path-redirect.xml">
 ]>
+
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <?rfc toc="yes" ?>
 <?rfc symrefs="yes" ?>
@@ -1119,7 +1121,7 @@ defined as retesting that clause a and clause b above are true.
        <c>TBD</c>    <c>traffic-rate-packets (<xref target="traffic_rate_in_bytes" />)</c>    <c>2-byte ASN, 4-byte float</c>
        <c>0x8007</c> <c>traffic-action (<xref target="traffic_action_subtype" />)</c>          <c>bitmask</c>
        <c>0x8008</c> <c>rt-redirect AS-2byte (<xref target="rt_redirect_action_subtype" />)</c>  <c>2-octet AS, 4-octet value</c>
-       <c>0x8108</c> <c>rt-redirect IPv4 (<xref target="rt_redirect_action_subtype" />)</c>      <c>4-octet IPv4 addres, 2-octet value</c>
+       <c>0x8108</c> <c>rt-redirect IPv4 (<xref target="rt_redirect_action_subtype" />)</c>      <c>4-octet IPv4 address, 2-octet value</c>
        <c>0x8208</c> <c>rt-redirect AS-4byte (<xref target="rt_redirect_action_subtype" />)</c>  <c>4-octet AS, 2-octet value</c>
        <c>0x8009</c> <c>traffic-marking (<xref target="traffic_marking_subtype" />)</c>         <c>DSCP value</c>
    </texttable>
@@ -1229,11 +1231,18 @@ this document.
   route-target in its import policy. If several local instances
   match this criteria, the choice between them is a local matter
   (for example, the instance with the lowest Route Distinguisher
-  value can be elected).  This extended community allows 3 different
+  value can be elected).
+ </t>
+ <t>This Extended Community allows 3 different
   encodings formats for the route-target (type 0x80, 0x81, 0x82).
-  Is uses the same encoding as the Route Target extended community
-  <xref target="RFC4360" />.
-</t>
+  It uses the same encoding as the Route Target Extended Community
+  in Sections 3.1 (type 0x80: 2-octet AS, 4-octet value), 3.2
+  (type 0x81: 4-octet IPv4 address, 2-octet value) and 4 of
+  <xref target="RFC4360" /> and Section 2 (type 0x82: 4-octet AS, 2-octet value)
+  of <xref target="RFC5668" /> with the high-order octet of the Type
+  field 0x80, 0x81, 0x82 respectively and the low-order of the Type
+  field (Sub-Type) always 0x08.
+ </t>
 <t>Interferes with: No other BGP Flow Specification Traffic Filtering Action in
 this document.
 </t>
@@ -1692,6 +1701,7 @@ this document.
 	  &RFC4364;
       &RFC4456;
 	  &RFC4760;
+      &RFC5668;
 	  &RFC7153;
 	  &RFC7606;
     &RFC8126;
