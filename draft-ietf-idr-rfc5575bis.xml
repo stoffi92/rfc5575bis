@@ -1231,7 +1231,8 @@ this document.
   (for example, the instance with the lowest Route Distinguisher
   value can be elected).  This extended community allows 3 different
   encodings formats for the route-target (type 0x80, 0x81, 0x82).
-  Is uses the same encoding as the Route Target extended community [RFC4360].
+  Is uses the same encoding as the Route Target extended community
+  <xref target="RFC4360" />.
 </t>
 <t>Interferes with: No other BGP Flow Specification Traffic Filtering Action in
 this document.
