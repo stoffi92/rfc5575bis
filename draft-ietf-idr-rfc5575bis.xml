@@ -1090,17 +1090,6 @@ defined as retesting that clause a and clause b above are true.
    as vendor specific.
  </t>
  <t>
-    Implementations SHOULD provide mechanisms that map an arbitrary BGP
-   community value (normal or extended) to Traffic Filtering Actions that
-   require different mappings in different systems in the network.  For
-   instance, providing packets with a worse-than-best-effort, per-hop
-   behavior is a functionality that is likely to be implemented
-   differently in different systems and for which no standard behavior
-   is currently known.  Rather than attempting to define it here, this
-   can be accomplished by mapping a user-defined community value to
-   platform-/network-specific behavior via user configuration.
- </t>
- <t>
     The default action for a matching Flow Specification is to
     accept the packet (treat the packet according to the normal forwarding
     behaviour of the system).
@@ -1277,6 +1266,19 @@ this document.
 
  <t>Interferes with: No other BGP Flow Specification Traffic Filtering Action in
  this document.</t>
+</section>
+<section title="Interaction with other Filtering Mechanisms in Routers">
+ <t>
+   Implementations SHOULD provide mechanisms that map an arbitrary BGP
+   community value (normal or extended) to Traffic Filtering Actions that
+   require different mappings in different systems in the network.  For
+   instance, providing packets with a worse-than-best-effort, per-hop
+   behavior is a functionality that is likely to be implemented
+   differently in different systems and for which no standard behavior
+   is currently known.  Rather than attempting to define it here, this
+   can be accomplished by mapping a user-defined community value to
+   platform-/network-specific behavior via user configuration.
+ </t>
 </section>
  <section anchor="rules_action_interference" title="Considerations on Traffic Filtering Action Interference">
 <t>
