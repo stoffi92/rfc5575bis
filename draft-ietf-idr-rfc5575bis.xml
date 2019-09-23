@@ -1239,9 +1239,9 @@ this document.
 </section>
 <section anchor="traffic_marking_subtype" title="Traffic Marking (traffic-marking) sub-type 0x09">
 <t> The traffic marking extended community instructs a
- system to modify the DSCP bits of a transiting IP packet to the
- corresponding value encoded in the 6 least significant bits of the extended
-    community value as shown in <xref target="figure_traffic_marking_encoding" />.
+ system to modify the DSCP bits in the IP header (<xref target="RFC2474" />
+ Section 3) of a transiting IP packet to the corresponding value encoded
+ in the 6 least significant bits of the extended community value as shown in <xref target="figure_traffic_marking_encoding" />.
  </t>
     <t>The extended is encoded as follows:
 <figure title="Traffic Marking Extended Community Encoding" anchor="figure_traffic_marking_encoding">
