@@ -576,7 +576,8 @@ encoded as in BGP UPDATE messages <xref target="RFC4271" />
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t>Contains a list of {numeric_op, value} pairs that are used to
-match the IP protocol value byte in IP packets.
+match the IP protocol value byte in IP packet header (see <xref target="RFC0791" />
+Section 3.1).
 </t>
 <t>
     This component uses the
