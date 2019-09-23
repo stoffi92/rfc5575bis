@@ -314,20 +314,17 @@
 	<section title="Definitions of Terms Used in This Memo">
 	<t>
 	<list style="hanging">
-	<t hangText="NLRI - ">Network Layer Reachability Information.
-	</t>
-	<t hangText="RIB - ">Routing Information Base.
-	</t>
+	<t hangText="AFI - ">Address Family Identifier.</t>
+	<t hangText="AS - ">Autonomous System.</t>
 	<t hangText="Loc-RIB - ">
         The Loc-RIB contains the routes that have been selected by the
         local BGP speaker's Decision Process.
 	</t>
-	<t hangText="AS - ">Autonomous System.
-	</t>
-	<t hangText="VRF - ">Virtual Routing and Forwarding instance.
-	</t>
-    <t hangText="PE - ">Provider Edge router
-	</t>
+	<t hangText="NLRI - ">Network Layer Reachability Information.</t>
+    <t hangText="PE - ">Provider Edge router.</t>
+	<t hangText="RIB - ">Routing Information Base.</t>
+    <t hangText="SAFI - ">Subsequent Address Family Identifier.</t>
+	<t hangText="VRF - ">Virtual Routing and Forwarding instance.</t>
 	</list>
 	</t>
 	<t>
