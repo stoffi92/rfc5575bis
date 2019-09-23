@@ -25,10 +25,10 @@
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!ENTITY RFC6811 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6811.xml">
 <!ENTITY RFC8205 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8205.xml">
+<!ENTITY I-D.ietf-idr-bgp-flowspec-oid SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-bgp-flowspec-oid.xml">
 <!ENTITY I-D.ietf-idr-flow-spec-v6 SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-flow-spec-v6.xml">
 <!ENTITY I-D.vandevelde-idr-flowspec-path-redirect SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vandevelde-idr-flowspec-path-redirect.xml">
 ]>
-
 <?xml-stylesheet type='text/xsl' href='rfc2629.xslt' ?>
 <?rfc toc="yes" ?>
 <?rfc symrefs="yes" ?>
@@ -1604,9 +1604,22 @@ this document.
    allow unwanted Flow Specifications to be propagated and thus unwanted Traffic
    Filtering Actions may be applied to flows.
     </t>
-   <t>  Where the above mechanisms are not in place, this would open the door
+   <t>Where the above mechanisms are not in place, this could open the door
    to further denial-of-service attacks such as unwanted traffic filtering,
    remarking or redirection.
+   </t>
+   <t>
+    One proposal for relaxing the above mechanisms within the administrative
+    boundaries of an AS via iBGP is included in <xref target="I-D.ietf-idr-bgp-flowspec-oid" />.
+    Deployment of such specific relaxations of the validation within an
+    administrative boundary of a network, defined by an AS or an
+    AS-Confederation boundary, may be useful in some networks for
+    quickly distributing filters to prevent denial-of-service attacks.
+    For a network to utilize this relaxation, the BGP policies must
+    support additional filtering since the origin AS field is empty.
+    Specifications relaxing the validation restrictions SHOULD
+    contain security considerations that provide details on the
+    required additional filtering.
    </t>
    <t>
        Inter-provider routing is based on a web of trust. Neighboring
@@ -1732,6 +1745,7 @@ this document.
       &RFC7674;
       &RFC7999;
 	  &I-D.ietf-idr-flow-spec-v6;
+      &I-D.ietf-idr-bgp-flowspec-oid;
     </references>
     <section title="Python code: flow_rule_cmp" anchor="flow_rule_cmp_src">
 <t>
