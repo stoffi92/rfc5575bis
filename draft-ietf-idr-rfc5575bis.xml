@@ -1392,7 +1392,7 @@ this document.
   <section title="AFI/SAFI Definitions">
     <t>
       IANA maintains a registry entitled "SAFI Values". For the purpose of this
-      work, IANA is asked to update the following SAFIs according to the table below
+      work, IANA is requested to update the following SAFIs according to the table below
          (Note: This document obsoletes both RFC7674 and RFC5575 and all references
       to those should be deleted from the registry below):
     </t>
@@ -1400,8 +1400,8 @@ this document.
           <ttcol align="left">Value</ttcol>
           <ttcol align="left">Name</ttcol>
           <ttcol align="left">Reference</ttcol>
-          <c>133</c>   <c>IPv4 dissemination of Flow Specification rules</c>  <c>[this document]</c>
-          <c>134</c>   <c>VPNv4 dissemination of Flow Specification rules</c>       <c>[this document]</c>
+          <c>133</c>   <c>Dissemination of Flow Specification rules</c>  <c>[this document]</c>
+          <c>134</c>   <c>L3VPN Dissemination of Flow Specification rules</c>       <c>[this document]</c>
     </texttable>
   </section>
     <section title="Renaming of Experimental Use Registries">
