@@ -805,7 +805,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
        +-------+------------+------------------------------+
 </artwork>
 </figure>
-    This constitutes an NLRI with an NLRI length of 11 octets.
+    This constitutes a NLRI with a NLRI length of 11 octets.
 </t>
 </section>
  <section title="Example 2" toc="exclude">
@@ -850,7 +850,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
        +--------+------------+------------------------------+
 </artwork>
 </figure>
-This constitutes an NLRI with an NLRI length of 18 octets.
+This constitutes a NLRI with a NLRI length of 18 octets.
 </t>
 </section>
  <section title="Example 3" toc="exclude">
@@ -887,7 +887,7 @@ This constitutes an NLRI with an NLRI length of 18 octets.
        +-------+------------+------------------------------+
 </artwork>
 </figure>
-This constitutes an NLRI with an NLRI length of 9 octets.
+This constitutes a NLRI with a NLRI length of 9 octets.
 </t>
 </section>
 </section>
