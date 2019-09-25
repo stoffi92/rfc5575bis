@@ -1124,7 +1124,7 @@ defined as retesting that clause a and clause b above are true.
  Some Traffic Filtering Actions may interfere with each other.
  <xref target="rules_action_interference" /> of this document
  provides general considerations on such Traffic Filtering Action interference.
- Any additional definition of a Traffic Filtering Actions MUST specify
+ Any additional definition of Traffic Filtering Actions MUST specify
  the action to take if those Traffic Filtering Actions interfere (also with existing
      Traffic Filtering Actions).
 </t>
