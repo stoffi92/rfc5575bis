@@ -1016,7 +1016,7 @@ traffic that a given downstream AS wishes to drop.
 </list>
 </t>
 <t>
-   A Flow Specification NLRI must be validated such that it is
+   By default a Flow Specification NLRI MUST be validated such that it is
    considered feasible if and only if all of the below is true:
 <list>
 <t>
@@ -1038,7 +1038,7 @@ traffic that a given downstream AS wishes to drop.
 </list>
 </t>
 <t>
-  Rule a) MAY be relaxed by configuration, permitting Flow
+  However, rule a) MAY be relaxed by explicit configuration, permitting Flow
   Specifications that include no destination prefix component. If such
   is the case, rules b) and c) are moot and MUST be disregarded.
 </t>
