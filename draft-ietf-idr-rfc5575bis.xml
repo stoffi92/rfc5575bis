@@ -1113,18 +1113,16 @@ defined as retesting that clause a and clause b above are true.
        <c>0x8009</c> <c>traffic-marking (<xref target="traffic_marking_subtype" />)</c>         <c>DSCP value</c>
    </texttable>
 <t>
-    Multiple Traffic Filtering Actions defined in this document may be present for a single Flow Specification.
-    If not all of them can be processed the Traffic Filtering Actions SHALL NOT
-    be applied at all to that packet. For example: If for a given Flow Specification there
-    are the Traffic Filtering Actions traffic-rate-bytes (0x8006) and
-    traffic-marking (0x8009) attached, and the platform does not support
-    one of them, none of the actions shall be applied.
+    Multiple Traffic Filtering Actions defined in this document may be present for a single
+    Flow Specification and SHOULD be applied to the traffic flow (for example traffic-rate-bytes and rt-redirect can be
+    applied to packets at the same time). If not all of the Traffic Filtering Actions can be applied to a traffic flow
+    they should be treated as interfering Traffic filtering actions (see below).
 </t>
- <t>
- Some Traffic Filtering Actions may interfere with each other.
+<t>
+ Some Traffic Filtering Actions may interfere with each other even contradict.
  <xref target="rules_action_interference" /> of this document
  provides general considerations on such Traffic Filtering Action interference.
- Any additional definition of Traffic Filtering Actions MUST specify
+ Any additional definition of Traffic Filtering Actions SHOULD specify
  the action to take if those Traffic Filtering Actions interfere (also with existing
      Traffic Filtering Actions).
 </t>
