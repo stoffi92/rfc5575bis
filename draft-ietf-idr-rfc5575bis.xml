@@ -119,7 +119,7 @@
     <keyword>Dissemination of Flow Specification Rules</keyword>
 	<abstract>
    <t>
-   This document obsoletes both <xref target="RFC5575" /> and <xref target="RFC7674" />.
+   This document obsoletes both RFC5575 and RFC7674.
    </t>
 	<t>
    This document defines a Border Gateway Protocol Network Layer
