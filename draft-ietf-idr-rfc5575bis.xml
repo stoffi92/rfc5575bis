@@ -454,7 +454,7 @@
    <t>
        All combinations of components within a single Flow Specification are allowed. However,
        some combinations cannot match any packets (ie. "ICMP Type AND Port" will never
-       match any packets), and thus SHOULD not be propagated by BGP.
+       match any packets), and thus SHOULD NOT be propagated by BGP.
    </t>
    <section anchor="operators" title="Operators">
        <t>
