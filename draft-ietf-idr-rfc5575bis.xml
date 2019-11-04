@@ -6,7 +6,6 @@
 <!ENTITY RFC0793 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.0793.xml">
 <!ENTITY RFC2119 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2119.xml">
 <!ENTITY RFC2474 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.2474.xml">
-<!ENTITY RFC3882 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.3882.xml">
 <!ENTITY RFC4271 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4271.xml">
 <!ENTITY RFC4303 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4303.xml">
 <!ENTITY RFC4360 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4360.xml">
@@ -14,13 +13,11 @@
 <!ENTITY RFC4456 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4456.xml">
 <!ENTITY RFC4760 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.4760.xml">
 <!ENTITY RFC5575 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5575.xml">
-<!ENTITY RFC5635 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5635.xml">
 <!ENTITY RFC5668 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.5668.xml">
 <!ENTITY RFC7153 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7153.xml">
 <!ENTITY RFC7223 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7223.xml">
 <!ENTITY RFC7606 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7606.xml">
 <!ENTITY RFC7674 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7674.xml">
-<!ENTITY RFC7999 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7999.xml">
 <!ENTITY RFC8126 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8126.xml">
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!ENTITY RFC6811 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6811.xml">
@@ -1654,13 +1651,10 @@ this document.
 	</references>
 	<references title="Informative References">
 	  &RFC4303;
-      &RFC3882;
       &RFC5575;
-      &RFC5635;
       &RFC6811;
       &RFC8205;
       &RFC7674;
-      &RFC7999;
 	  &I-D.ietf-idr-flow-spec-v6;
     </references>
     <section title="Python code: flow_rule_cmp" anchor="flow_rule_cmp_src">
