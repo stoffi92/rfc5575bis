@@ -828,7 +828,8 @@ This constitutes a NLRI with a NLRI length of 9 octets.
  among the AS within a service provider.
 	</t>
 	<t>
-	The Flow Specification NLRI defined above to convey information about traffic
+The Flow Specification NLRI defined in <xref target="dissemination_ipv4_flowspec" />
+conveys information about traffic
 filtering rules for traffic that should be discarded or handled in a manner
 specified by a set of pre-defined actions (which are defined in BGP Extended
 Communities). This mechanism is primarily designed to allow an upstream
