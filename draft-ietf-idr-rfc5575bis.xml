@@ -194,10 +194,13 @@
 	data information.
 	</t>
 	<t>
-	A Flow Specification received from a different administrative domain will
-	need to be validated against unicast routing before being accepted
-    (<xref target="validation_procedure" />).
-	If the aggregate traffic flow defined by the unicast destination
+    A Flow Specification received from an external autonomous system will
+    need to be validated against unicast routing before being accepted
+    (<xref target="validation_procedure" />). The flow specification
+    received from an internal BGP peer within the same autonomous system
+    (per <xref target="RFC4271" />) is assumed to have been validated prior
+    to transmission within the iBGP mesh of an autonomous system.
+    If the aggregate traffic flow defined by the unicast destination
     prefix is forwarded to a given BGP peer, then the local system can
     install more specific Flow Specifications that may result in different
     forwarding behavior, as requested by this system.
