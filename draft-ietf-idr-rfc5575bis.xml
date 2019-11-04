@@ -25,7 +25,6 @@
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
 <!ENTITY RFC6811 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6811.xml">
 <!ENTITY RFC8205 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8205.xml">
-<!ENTITY I-D.ietf-idr-bgp-flowspec-oid SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-bgp-flowspec-oid.xml">
 <!ENTITY I-D.ietf-idr-flow-spec-v6 SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-flow-spec-v6.xml">
 <!ENTITY I-D.vandevelde-idr-flowspec-path-redirect SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.vandevelde-idr-flowspec-path-redirect.xml">
 ]>
@@ -1527,9 +1526,7 @@ this document.
    remarking or redirection.
    </t>
    <t>
-    One proposal for relaxing the above mechanisms within the administrative
-    boundaries of an AS via iBGP is included in <xref target="I-D.ietf-idr-bgp-flowspec-oid" />.
-    Deployment of such specific relaxations of the validation within an
+    Deployment of specific relaxations of the validation within an
     administrative boundary of a network, defined by an AS or an
     AS-Confederation boundary, may be useful in some networks for
     quickly distributing filters to prevent denial-of-service attacks.
@@ -1537,7 +1534,9 @@ this document.
     support additional filtering since the origin AS field is empty.
     Specifications relaxing the validation restrictions SHOULD
     contain security considerations that provide details on the
-    required additional filtering.
+    required additional filtering. For example, the use of
+    <xref target="RFC6811" /> to enhance filtering within an AS
+    confederation.
    </t>
    <t>
        Inter-provider routing is based on a web of trust. Neighboring
@@ -1663,7 +1662,6 @@ this document.
       &RFC7674;
       &RFC7999;
 	  &I-D.ietf-idr-flow-spec-v6;
-      &I-D.ietf-idr-bgp-flowspec-oid;
     </references>
     <section title="Python code: flow_rule_cmp" anchor="flow_rule_cmp_src">
 <t>
