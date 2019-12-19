@@ -852,7 +852,7 @@ traffic that a given downstream AS wishes to drop.
        <xref target="traffic_filtering_vpn" /> for VPNv4 Flow Specification. The filtering actions are described
        in <xref target="traffic_filtering_actions" />.
    </t>
-<section title="Ordering of Flow Specifications">
+<section title="Ordering of Flow Specifications" anchor="ordering_of_flow_spec">
 <t>
    More than one Flow Specification may match a
    particular traffic flow.  Thus, it is necessary to define the order
@@ -1100,7 +1100,7 @@ this document.</t>
 <list style="symbols">
 <t>T: Terminal Action (bit 47): When this bit is set, the traffic
    filtering engine will evaluate any subsequent Flow Specifications (as
-   defined by the ordering procedure). If not set, the evaluation
+   defined by the ordering procedure <xref target="ordering_of_flow_spec" />). If not set, the evaluation
    of the traffic filters stops when this Flow Specification is evaluated.
 </t>
 <t>S: Sample (bit 46): Enables traffic sampling and logging for this
