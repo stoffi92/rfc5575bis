@@ -1308,7 +1308,7 @@ this document.
       <xref target="RFC7606"></xref> Section 2.
   </t>
   <t>
-      The specification of a new Flow Specification Component Type SHOULD
+      The specification of a new Flow Specification Component Type MUST
       clearly identify what the criteria used to match packets forwarded by the
       router is. This criteria should be meaningful across router hops and
       not depend on values that change hop-by-hop such as TTL or Layer 2
