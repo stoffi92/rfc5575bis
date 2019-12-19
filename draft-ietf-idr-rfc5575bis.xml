@@ -1285,7 +1285,7 @@ this document.
    </list>
   </t>
 </section>
-<section anchor="errorhandling" title="Error-Handling">
+<section anchor="errorhandling" title="Error Handling">
   <t>
       Error handling according to <xref target="RFC7606"></xref> SHOULD
       apply to this specification.
@@ -1743,7 +1743,7 @@ def flow_rule_cmp(a, b):
             <xref target="RFC5575" /> this NLRI was defined as an opaque-key in BGPs database. This
             specification has removed all references to a opaque-key property.
            BGP is able to understand the NLRI encoding. This
-            change also resulted in a new section regarding error-handling and
+            change also resulted in a new section regarding error handling and
             extensibility (<xref target="errorhandling" /> and <xref target="future_extensions" />).
           </t>
           <t>
