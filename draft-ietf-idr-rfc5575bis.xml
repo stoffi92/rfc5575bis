@@ -1109,7 +1109,8 @@ this document.</t>
 </t>
 <t>Traffic Action Field: Other Traffic Action Field (see
     <xref target="IANA" />) bits unused in this
-    specification.
+    specification. These bits SHOULD be set to 0 on encoding, and MUST be
+    ignored during decoding.
 </t>
 </list>
 </t>
