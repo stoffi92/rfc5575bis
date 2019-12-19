@@ -1547,6 +1547,14 @@ this document.
    by a peer. Possible mitigations are <xref target="RFC6811" /> and
    <xref target="RFC8205" />.
    </t>
+   <t>
+       On IXPs routes are often exchanged via route servers which do not extend
+       the AS_PATH. In such cases it is not possible to enforce the left-most
+       AS in the AS_PATH to be the neighbor AS (the AS of the route server).
+       Since the validation of Flow Specification (<xref target="validation_procedure" />)
+       depends on this, additional care must be taken.
+       It is advised to use a strict inbound route policy in such scenarios.
+   </t>
    <t> Enabling firewall-like capabilities in routers without centralized
    management could make certain failures harder to diagnose.  For
    example, it is possible to allow TCP packets to pass between a pair
