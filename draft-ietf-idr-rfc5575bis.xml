@@ -1529,7 +1529,7 @@ this document.
     quickly distributing filters to prevent denial-of-service attacks.
     For a network to utilize this relaxation, the BGP policies must
     support additional filtering since the origin AS field is empty.
-    Specifications relaxing the validation restrictions SHOULD
+    Specifications relaxing the validation restrictions MUST
     contain security considerations that provide details on the
     required additional filtering. For example, the use of
     <xref target="RFC6811" /> to enhance filtering within an AS
