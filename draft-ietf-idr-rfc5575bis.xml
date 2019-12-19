@@ -1286,8 +1286,8 @@ this document.
 </section>
 <section anchor="errorhandling" title="Error Handling">
   <t>
-      Error handling according to <xref target="RFC7606"></xref> SHOULD
-      apply to this specification.
+      Error handling according to <xref target="RFC7606"></xref> and
+      <xref target="RFC4760"></xref> applies to this specification.
   </t>
     <t>
         This document introduces Traffic Filtering Action Extended Communities.
