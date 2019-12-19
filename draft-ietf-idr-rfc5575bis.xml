@@ -1231,7 +1231,7 @@ this document.
  </t>
 <t>
    The NLRI format for this address family consists of a fixed-length Route
-   Distinguisher field (8 bytes) followed by the Flow Specification NLRI value <xref target="nlri_value_encoding" />.
+   Distinguisher field (8 bytes) followed by the Flow Specification NLRI value (<xref target="nlri_value_encoding" />).
    The NLRI length field shall include both the 8 bytes of the Route
    Distinguisher as well as the subsequent Flow Specification NLRI value.
    The resulting encoding is shown in <xref target="figure_fs_nlri_mpls" />.
