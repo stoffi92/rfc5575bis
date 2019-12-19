@@ -1183,7 +1183,7 @@ this document.
 </section>
 <section title="Interaction with other Filtering Mechanisms in Routers">
  <t>
-   Implementations SHOULD provide mechanisms that map an arbitrary BGP
+   Implementations should provide mechanisms that map an arbitrary BGP
    community value (normal or extended) to Traffic Filtering Actions that
    require different mappings in different systems in the network.  For
    instance, providing packets with a worse-than-best-effort, per-hop
