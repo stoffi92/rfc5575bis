@@ -235,7 +235,7 @@
 	<t hangText="AS - ">Autonomous System.</t>
 	<t hangText="Loc-RIB - ">
         The Loc-RIB contains the routes that have been selected by the
-        local BGP speaker's Decision Process.
+        local BGP speaker's Decision Process <xref target="RFC4271"></xref>.
 	</t>
 	<t hangText="NLRI - ">Network Layer Reachability Information.</t>
     <t hangText="PE - ">Provider Edge router.</t>
