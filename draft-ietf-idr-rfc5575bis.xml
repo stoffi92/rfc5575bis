@@ -134,9 +134,8 @@
    (distributed) denial-of-service attacks, and a second application to
    provide traffic filtering in the context of a BGP/MPLS VPN service.
    Other applications (ie. centralized control of traffic
-   in a SDN or NFV context) are also possible. Other drafts specify IPv6,
-   MPLS addresses, L2VPN addresses, and NV03 encapsulation of IP addresses
-   as Flow Specification extensions.
+   in a SDN or NFV context) are also possible. Other documents may specify
+   Flow Specification extensions.
    </t>
    <t>
    The information is carried via the BGP, thereby reusing protocol
