@@ -294,7 +294,7 @@
    (AFI, SAFI) pair on a given BGP peering session.
 	</t>
 	</section>
-	<section title="Dissemination of IPv4 FLow Specification Information" anchor="dissemination_ipv4_flowspec">
+	<section title="Dissemination of IPv4 Flow Specification Information" anchor="dissemination_ipv4_flowspec">
 	<t>
 	This document defines a Flow Specification NLRI type (<xref target="fs_nlri" />)
   that may include several components such as destination prefix,
