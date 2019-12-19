@@ -138,7 +138,7 @@
    Flow Specification extensions.
    </t>
    <t>
-   The information is carried via the BGP, thereby reusing protocol
+   The information is carried via BGP, thereby reusing protocol
    algorithms, operational experience, and administrative processes such
    as inter-provider peering agreements.
    </t>
