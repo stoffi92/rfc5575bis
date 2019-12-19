@@ -704,22 +704,22 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
    Decoded:
 <figure>
 <artwork>
-       +-------+------------+------------------------------+
-       | Value |            |                              |
-       +-------+------------+------------------------------+
-       |  0x0b | length     | 11 octets (len&lt;240 1-octet)  |
-       |  0x01 | type       | Type 1 - Destination Prefix  |
-       |  0x18 | length     | 24 bit                       |
-       |  0xc0 | prefix     | 192                          |
-       |  0x00 | prefix     | 0                            |
-       |  0x02 | prefix     | 2                            |
-       |  0x03 | type       | Type 3 - IP Protocol         |
-       |  0x81 | numeric_op | end-of-list, value size=1, = |
-       |  0x06 | value      | IP Protocol 6 = TCP          |
-       |  0x04 | type       | Type 4 - Port                |
-       |  0x81 | numeric_op | end-of-list, value size=1, = |
-       |  0x19 | value      | 25                           |
-       +-------+------------+------------------------------+
+       +-------+------------+-------------------------------+
+       | Value |            |                               |
+       +-------+------------+-------------------------------+
+       |  0x0b | length     | 11 octets (len&lt;240 1-octet)   |
+       |  0x01 | type       | Type 1 - Destination Prefix   |
+       |  0x18 | length     | 24 bit                        |
+       |  0xc0 | prefix     | 192                           |
+       |  0x00 | prefix     | 0                             |
+       |  0x02 | prefix     | 2                             |
+       |  0x03 | type       | Type 3 - IP Protocol          |
+       |  0x81 | numeric_op | end-of-list, value size=1, == |
+       |  0x06 | value      | 6 (TCP)                       |
+       |  0x04 | type       | Type 4 - Port                 |
+       |  0x81 | numeric_op | end-of-list, value size=1, == |
+       |  0x19 | value      | 25                            |
+       +-------+------------+-------------------------------+
 </artwork>
 </figure>
     This constitutes a NLRI with a NLRI length of 11 octets.
@@ -743,28 +743,28 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
    Decoded:
 <figure>
 <artwork>
-       +--------+------------+------------------------------+
-       | Value  |            |                              |
-       +--------+------------+------------------------------+
-       |   0x12 | length     | 18 octets (len&lt;240 1-octet)  |
-       |   0x01 | type       | Type 1 - Destination Prefix  |
-       |   0x18 | length     | 24 bit                       |
-       |   0xc0 | prefix     | 192                          |
-       |   0x00 | prefix     | 0                            |
-       |   0x02 | prefix     | 2                            |
-       |   0x02 | type       | Type 2 - Source Prefix       |
-       |   0x18 | length     | 24 bit                       |
-       |   0xcb | prefix     | 203                          |
-       |   0x00 | prefix     | 0                            |
-       |   0x71 | prefix     | 113                          |
-       |   0x04 | type       | Type 4 - Port                |
-       |   0x03 | numeric_op | value size=1, &gt;=             |
-       |   0x89 | value      | 137                          |
-       |   0x45 | numeric_op | "AND", value size=1, &lt;=      |
-       |   0x8b | value      | 139                          |
-       |   0x91 | numeric_op | end-of-list, value size=2, = |
-       | 0x1f90 | value      | 8080                         |
-       +--------+------------+------------------------------+
+       +--------+------------+-------------------------------+
+       | Value  |            |                               |
+       +--------+------------+-------------------------------+
+       |   0x12 | length     | 18 octets (len&lt;240 1-octet)   |
+       |   0x01 | type       | Type 1 - Destination Prefix   |
+       |   0x18 | length     | 24 bit                        |
+       |   0xc0 | prefix     | 192                           |
+       |   0x00 | prefix     | 0                             |
+       |   0x02 | prefix     | 2                             |
+       |   0x02 | type       | Type 2 - Source Prefix        |
+       |   0x18 | length     | 24 bit                        |
+       |   0xcb | prefix     | 203                           |
+       |   0x00 | prefix     | 0                             |
+       |   0x71 | prefix     | 113                           |
+       |   0x04 | type       | Type 4 - Port                 |
+       |   0x03 | numeric_op | value size=1, &gt;=              |
+       |   0x89 | value      | 137                           |
+       |   0x45 | numeric_op | "AND", value size=1, &lt;=       |
+       |   0x8b | value      | 139                           |
+       |   0x91 | numeric_op | end-of-list, value size=2, == |
+       | 0x1f90 | value      | 8080                          |
+       +--------+------------+-------------------------------+
 </artwork>
 </figure>
 This constitutes a NLRI with a NLRI length of 18 octets.
