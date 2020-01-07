@@ -310,8 +310,9 @@
 	</t>
 	<t>
 	 The NLRI field of the MP_REACH_NLRI and MP_UNREACH_NLRI is encoded as
-	a 1- or 2-octet NLRI length field followed by a variable-length NLRI
-	value.  The NLRI length is expressed in octets.
+     one or more 2-tuples of the form &lt;length, NLRI value&gt;. It consists of
+	 a 1- or 2-octet length field followed by a variable-length NLRI
+	 value. The length is expressed in octets.
 	</t>
 	<t>
 	<figure title="Flow Specification NLRI for IPv4" anchor="fs_nlri">
@@ -331,6 +332,12 @@
    The (AFI, SAFI) pair carried in the Multiprotocol Extension
    Capability MUST be (AFI=1, SAFI=133) for IPv4 Flow Specification, and
    (AFI=1, SAFI=134) for VPNv4 Flow Specification.
+   </t>
+   <t>
+       The Flow Specification NLRI is considered a Typed NLRI in the sense
+       of Section 5.4 of <xref target="RFC7606"></xref>. See also
+       <xref target="nlri_value_encoding"></xref> on unknown component type
+       handling.
    </t>
 	<section title="Length Encoding">
     <t>
@@ -362,7 +369,7 @@
    components present in the Flow Specification.
   </t>
    <t>
-   Components must follow strict type ordering by increasing
+   Components MUST follow strict type ordering by increasing
    numerical order. A given component type may (exactly once) or may not be
    present in the Flow Specification. If present, it MUST precede any component of
    higher numeric type value.
@@ -371,6 +378,19 @@
        All combinations of components within a single Flow Specification are allowed. However,
        some combinations cannot match any packets (e.g. "ICMP Type AND Port" will never
        match any packets), and thus SHOULD NOT be propagated by BGP.
+   </t>
+   <t>
+        An advertisement containing an unknown Flow Specification component type
+        should be discarded as specified in Section 5.4 of <xref target="RFC7606" />.
+        It needs to be pointed out that the encoding of the
+        NLRI as a 2-tuple &lt;length, NLRI value&gt; allows to skip over
+        a NLRI value (the NLRI that value should be discarded).
+   </t>
+   <t>
+        Except for an unknown component type (see above), a NLRI value not
+        encoded as specified in <xref target="nlri_value_encoding" />
+        is considered malformed and error handling according to
+        <xref target="errorhandling" /> is performed.
    </t>
    <section anchor="operators" title="Operators">
        <t>
@@ -1299,12 +1319,15 @@ this document.
 <section anchor="future_extensions" title="Future NLRI Extensions">
     <t>
       Future Flow Specification extensions may introduce new Flow
-      Specification components. In order to facilitate such extensions of
-      the Flow Specification NLRI, in addition to the cases described in
-      <xref target="RFC7606"></xref>, if BGP encounters an unknown Flow
-      Specification component in an UPDATE message, it SHOULD also treat
-      this message as Treat-as-withdraw as specified in
-      <xref target="RFC7606"></xref> Section 2.
+      Specification components. If a receiving BGP speaker decodes an
+      unknown Flow Specification component type it is unable to continue
+      decoding the following Flow Specification components in the same
+      NLRI value and MUST discard this NLRI value and all its components
+      as described in <xref target="nlri_value_encoding"></xref> for further processing.
+      Since the NLRI field encoding (<xref target="dissemination_ipv4_flowspec"></xref>)
+      is defined in the form of a 2-tuple &lt;length, NLRI value&gt;
+      message decoding can skip over the NLRI value and continue with
+      subsequent NLRI and message decoding.
   </t>
   <t>
       The specification of a new Flow Specification Component Type MUST
