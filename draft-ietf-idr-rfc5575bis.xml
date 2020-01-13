@@ -1596,6 +1596,17 @@ this document.
       This may stress the receiving systems, exceed their maximum capacity or
       may lead to unwanted Traffic Filtering Actions being applied to flows.
   </t>
+  <t>
+      When BGP decodes an unknown Flow Specification component type, as of
+      <xref target="nlri_value_encoding" /> it needs to discard the NLRI and
+      skip over the remaining undecoded octets to the following NLRI or to
+      the end of the list. Skipping over unknown octets of the to be
+      discarded NLRI is the specified behaviour for a Type NLRI in
+      Section 5.4 <xref target="RFC7606" />. While this is not intrinsic to
+      the Flow Specification NLRI in particular, it needs to be pointed
+      out that, carefully crafted wrong NLRI length fields may lead to
+      synchronisation issues between BGP senders and receivers.
+  </t>
     <t> While the general verification of the Flow Specification NLRI
     is specified in this document (<xref target="validation_procedure" />) the Traffic Filtering
     Actions received by a third party may need custom verification or filtering. In particular
