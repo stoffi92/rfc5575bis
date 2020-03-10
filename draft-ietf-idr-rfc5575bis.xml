@@ -33,7 +33,7 @@
 <?rfc subcompact="no" ?>
 <?rfc iprnotified="no" ?>
 <?rfc strict="no" ?>
-<rfc category="std" docName="draft-ietf-idr-rfc5575bis-19" ipr="trust200902" obsoletes="5575,7674">
+<rfc category="std" docName="draft-ietf-idr-rfc5575bis-20" ipr="trust200902" obsoletes="5575,7674">
   <front>
    <title abbrev="Flow Specification">Dissemination of Flow Specification Rules</title>
    <author fullname="Christoph Loibl" initials="C.L."
@@ -333,12 +333,6 @@
    Capability MUST be (AFI=1, SAFI=133) for IPv4 Flow Specification, and
    (AFI=1, SAFI=134) for VPNv4 Flow Specification.
    </t>
-   <t>
-       The Flow Specification NLRI is considered a Typed NLRI in the sense
-       of Section 5.4 of <xref target="RFC7606"></xref>. See also
-       <xref target="nlri_value_encoding"></xref> on unknown component type
-       handling.
-   </t>
 	<section title="Length Encoding">
     <t>
 	<list style="symbols">
@@ -380,14 +374,7 @@
        match any packets), and thus SHOULD NOT be propagated by BGP.
    </t>
    <t>
-        An advertisement containing an unknown Flow Specification component type
-        should be discarded as specified in Section 5.4 of <xref target="RFC7606" />.
-        It needs to be pointed out that the encoding of the
-        NLRI as a 2-tuple &lt;length, NLRI value&gt; allows to skip over
-        a NLRI value (the NLRI that value should be discarded).
-   </t>
-   <t>
-        Except for an unknown component type (see above), a NLRI value not
+        A NLRI value not
         encoded as specified in <xref target="nlri_value_encoding" />
         is considered malformed and error handling according to
         <xref target="errorhandling" /> is performed.
@@ -1316,34 +1303,6 @@ this document.
         to <xref target="traffic_filtering_actions" /> of this document.
     </t>
 </section>
-<section anchor="future_extensions" title="Future NLRI Extensions">
-    <t>
-      Future Flow Specification extensions may introduce new Flow
-      Specification components. If a receiving BGP speaker decodes an
-      unknown Flow Specification component type it is unable to continue
-      decoding the following Flow Specification components in the same
-      NLRI value and MUST discard this NLRI value and all its components
-      as described in <xref target="nlri_value_encoding"></xref> for further processing.
-      Since the NLRI field encoding (<xref target="dissemination_ipv4_flowspec"></xref>)
-      is defined in the form of a 2-tuple &lt;length, NLRI value&gt;
-      message decoding can skip over the NLRI value and continue with
-      subsequent NLRI and message decoding.
-  </t>
-  <t>
-      The specification of a new Flow Specification Component Type MUST
-      clearly identify what the criteria used to match packets forwarded by the
-      router is. This criteria should be meaningful across router hops and
-      not depend on values that change hop-by-hop such as TTL or Layer 2
-      encapsulation.
-  </t>
-  <t>
-    Such extensions SHOULD also specify a way to encode an "always-match" match condition within
-    the newly introduced components (this is a match condition, encoded with the newly introduced components:
-    If present on its own, matches all flows). This match condition can be used to propagate (and apply)
-    certain Flow Specifications only if a specific extension is known to the implementation.
-  </t>
-</section>
-
 <section anchor="IANA" title="IANA Considerations">
   <t>
     This section complies with <xref target="RFC7153"></xref>.
@@ -1596,17 +1555,6 @@ this document.
       This may stress the receiving systems, exceed their maximum capacity or
       may lead to unwanted Traffic Filtering Actions being applied to flows.
   </t>
-  <t>
-      When BGP decodes an unknown Flow Specification component type, as of
-      <xref target="nlri_value_encoding" /> it needs to discard the NLRI and
-      skip over the remaining undecoded octets to the following NLRI or to
-      the end of the list. Skipping over unknown octets of the to be
-      discarded NLRI is the specified behaviour for a Type NLRI in
-      Section 5.4 <xref target="RFC7606" />. While this is not intrinsic to
-      the Flow Specification NLRI in particular, it needs to be pointed
-      out that, carefully crafted wrong NLRI length fields may lead to
-      synchronisation issues between BGP senders and receivers.
-  </t>
     <t> While the general verification of the Flow Specification NLRI
     is specified in this document (<xref target="validation_procedure" />) the Traffic Filtering
     Actions received by a third party may need custom verification or filtering. In particular
@@ -1783,12 +1731,10 @@ def flow_rule_cmp(a, b):
             <xref target="intro" /> introduces the Flow Specification NLRI. In
             <xref target="RFC5575" /> this NLRI was defined as an opaque-key in BGPs database. This
             specification has removed all references to a opaque-key property.
-           BGP is able to understand the NLRI encoding. This
-            change also resulted in a new section regarding error handling and
-            extensibility (<xref target="errorhandling" /> and <xref target="future_extensions" />).
+           BGP is able to understand the NLRI encoding.
           </t>
           <t>
-            <xref target="type_3" /> defines a numeric operator and comparison
+            <xref target="numeric_operator" /> defines a numeric operator and comparison
             bit combinations. In <xref target="RFC5575" /> the meaning of those
             bit combination was not explicitly defined and left open to the
             reader.
@@ -1828,15 +1774,8 @@ def flow_rule_cmp(a, b):
           <t>
             <xref target="errorhandling" /> contains new error handling.
           </t>
-          <t>
-            <xref target="future_extensions" /> describes graceful handling
-              of unknown Flow Specification components to allow future extensions.
-          </t>
         </list>
-
-
       </t>
     </section>
-
   </back>
   </rfc>
