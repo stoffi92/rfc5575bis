@@ -340,7 +340,7 @@
    field can be encoded as a single octet.  </t>
     <t>Otherwise, it is encoded as
     an extended-length 2-octet value in which the most significant nibble
-    of the first byte is all ones.</t>
+    of the first octet is all ones.</t>
 	</list>
 	</t>
 	<t>
@@ -400,13 +400,13 @@
 <t hangText="e -">end-of-list bit: Set in the last {op, value} pair in the list.
 </t>
 <t hangText="a -">AND bit:  If unset, the previous term is logically ORed with the current
-one.  If set, the operation is a logical AND. In the first operator byte of a sequence
+one.  If set, the operation is a logical AND. In the first operator octet of a sequence
 it SHOULD be encoded as unset and and MUST be treated as always unset on decoding.
 The AND operator has higher priority than OR for
 the purposes of evaluating logical expressions.
 </t>
 <t hangText="len -">length: The length of the value field for this operator given as (1 &lt;&lt; len). This
-  encodes 1 (len=00), 2 (len=01), 4 (len=10), 8 (len=11) bytes.
+  encodes 1 (len=00), 2 (len=01), 4 (len=10), 8 (len=11) octets.
 </t>
 <t hangText="0 -">SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
 </t>
@@ -496,13 +496,13 @@ encoded as in BGP UPDATE messages <xref target="RFC4271" />
 <t>Encoding: &lt;type (1 octet), [numeric_op, value]+&gt;
 </t>
 <t>Contains a list of {numeric_op, value} pairs that are used to
-match the IP protocol value byte in IP packet header (see <xref target="RFC0791" />
+match the IP protocol value octet in IP packet header (see <xref target="RFC0791" />
 Section 3.1).
 </t>
 <t>
     This component uses the
     Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
-    Type 3 component values SHOULD be encoded as single byte (numeric_op len=00).
+    Type 3 component values SHOULD be encoded as single octet (numeric_op len=00).
 </t>
 </section>
 <section anchor="type_4" title="Type 4 - Port" toc="include">
@@ -517,7 +517,7 @@ Section 3.1).
 <t>
     This component uses the
     Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
-    Type 4 component values SHOULD be encoded as 1- or 2-byte quantities (numeric_op len=00 or len=01).
+    Type 4 component values SHOULD be encoded as 1- or 2-octet quantities (numeric_op len=00 or len=01).
 </t>
 <t>
     In case of the presence of the port (destination-port, source-port)
@@ -540,7 +540,7 @@ Section 3.1).
 </t>
 <t>
     This component uses the Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
-    Type 5 component values SHOULD be encoded as 1- or 2-byte quantities (numeric_op len=00 or len=01).
+    Type 5 component values SHOULD be encoded as 1- or 2-octet quantities (numeric_op len=00 or len=01).
 </t>
 <t>The last paragraph of <xref target="type_4" /> also applies to this component.</t>
 </section>
@@ -553,7 +553,7 @@ Section 3.1).
 </t>
 <t>
     This component uses the Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
-    Type 6 component values SHOULD be encoded as 1- or 2-byte quantities (numeric_op len=00 or len=01).
+    Type 6 component values SHOULD be encoded as 1- or 2-octet quantities (numeric_op len=00 or len=01).
 </t>
 <t>The last paragraph of <xref target="type_4" /> also applies to this component.</t>
 </section>
@@ -566,7 +566,7 @@ type field of an ICMP packet (see also <xref target="RFC0792" /> Section "Messag
 <t>
     This component uses the
     Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
-    Type 7 component values SHOULD be encoded as single byte (numeric_op len=00).
+    Type 7 component values SHOULD be encoded as single octet (numeric_op len=00).
 </t>
 <t>
     In case of the presence of the ICMP type (code)
@@ -590,7 +590,7 @@ code field of an ICMP packet (see also <xref target="RFC0792" /> Section "Messag
 <t>
     This component uses the
     Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
-    Type 8 component values SHOULD be encoded as single byte (numeric_op len=00).
+    Type 8 component values SHOULD be encoded as single octet (numeric_op len=00).
 </t>
 <t>The last paragraph of <xref target="type_7" /> also applies to this component.</t>
 </section>
@@ -604,11 +604,11 @@ Defines a list of {bitmask_op, bitmask} pairs used to match TCP Control Bits
     <t>
     This component uses the
     Bitmask Operator (bitmask_op) described in <xref target="bitmask_operator" />.
-    Type 9 component bitmasks MUST be encoded as 1- or 2-byte bitmask (bitmask_op len=00 or len=01).
+    Type 9 component bitmasks MUST be encoded as 1- or 2-octet bitmask (bitmask_op len=00 or len=01).
     </t>
-    <t>When a single byte (bitmask_op len=00) is specified, it matches byte 14 of the TCP
+    <t>When a single octet (bitmask_op len=00) is specified, it matches octet 14 of the TCP
 header (see also <xref target="RFC0793"></xref> Section 3.1), which contains
-the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it matches bytes
+the TCP Control Bits. When a 2-octet (bitmask_op len=01) encoding is used, it matches octets
 13 and 14 of the TCP header with the data offset (leftmost 4 bits) always
     treated as 0.
 </t>
@@ -633,7 +633,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
 </t>
 <t>
     This component uses the Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
-    Type 10 component values SHOULD be encoded as 1- or 2-byte quantities (numeric_op len=00 or len=01).
+    Type 10 component values SHOULD be encoded as 1- or 2-octet quantities (numeric_op len=00 or len=01).
 </t>
 </section>
 <section anchor="type_11" title="Type 11 - DSCP (Diffserv Code Point)" toc="include">
@@ -645,7 +645,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
 <t>
     This component uses the
     Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
-    Type 11 component values MUST be encoded as single byte (numeric_op len=00).
+    Type 11 component values MUST be encoded as single octet (numeric_op len=00).
 </t>
 <t>
     The six least significant bits contain the DSCP value. All other bits SHOULD be
@@ -660,7 +660,7 @@ the TCP Control Bits. When a 2-byte (bitmask_op len=01) encoding is used, it mat
     <t>
     This component uses the
     Bitmask Operator (bitmask_op) described in <xref target="bitmask_operator" />.
-    The Type 12 component bitmask MUST be encoded as single byte bitmask (bitmask_op len=00).
+    The Type 12 component bitmask MUST be encoded as single octet bitmask (bitmask_op len=00).
     </t>
 <t>
 <figure title="Fragment Bitmask Operand" anchor="figure_fragment_bitmask_operand">
@@ -1025,12 +1025,12 @@ defined as retesting that clause a and clause b above are true.
        <ttcol align="left">community 0xttss</ttcol>
        <ttcol align="left">action</ttcol>
        <ttcol align="left">encoding</ttcol>
-       <c>0x8006</c> <c>traffic-rate-bytes (<xref target="traffic_rate_in_bytes" />)</c>      <c>2-byte ASN, 4-byte float</c>
-       <c>TBD</c>    <c>traffic-rate-packets (<xref target="traffic_rate_in_bytes" />)</c>    <c>2-byte ASN, 4-byte float</c>
+       <c>0x8006</c> <c>traffic-rate-bytes (<xref target="traffic_rate_in_bytes" />)</c>      <c>2-octet ASN, 4-octet float</c>
+       <c>TBD</c>    <c>traffic-rate-packets (<xref target="traffic_rate_in_bytes" />)</c>    <c>2-octet ASN, 4-octet float</c>
        <c>0x8007</c> <c>traffic-action (<xref target="traffic_action_subtype" />)</c>          <c>bitmask</c>
-       <c>0x8008</c> <c>rt-redirect AS-2byte (<xref target="rt_redirect_action_subtype" />)</c>  <c>2-octet AS, 4-octet value</c>
+       <c>0x8008</c> <c>rt-redirect AS-2octet (<xref target="rt_redirect_action_subtype" />)</c>  <c>2-octet AS, 4-octet value</c>
        <c>0x8108</c> <c>rt-redirect IPv4 (<xref target="rt_redirect_action_subtype" />)</c>      <c>4-octet IPv4 address, 2-octet value</c>
-       <c>0x8208</c> <c>rt-redirect AS-4byte (<xref target="rt_redirect_action_subtype" />)</c>  <c>4-octet AS, 2-octet value</c>
+       <c>0x8208</c> <c>rt-redirect AS-4octet (<xref target="rt_redirect_action_subtype" />)</c>  <c>4-octet AS, 2-octet value</c>
        <c>0x8009</c> <c>traffic-marking (<xref target="traffic_marking_subtype" />)</c>         <c>DSCP value</c>
    </texttable>
 <t>
@@ -1057,8 +1057,8 @@ Communities.
  </t>
 <t>
  The first two octets carry the 2-octet id, which can be
- assigned from a 2-byte AS number.  When a 4-byte AS number is
- locally present, the 2 least significant bytes of such an AS
+ assigned from a 2-octet AS number.  When a 4-octet AS number is
+ locally present, the 2 least significant octets of such an AS
  number can be used.  This value is purely informational and
  SHOULD NOT be interpreted by the implementation.
 </t>
@@ -1086,7 +1086,7 @@ this document.</t>
 </section>
  <section anchor="traffic_action_subtype" title="Traffic-action (traffic-action) sub-type 0x07">
  <t>The traffic-action extended community consists of 6
-      bytes of which only the 2 least significant bits of the 6th byte
+      octets of which only the 2 least significant bits of the 6th octet
       (from left to right) are defined by this document as shown in
      <xref target="figure_traffic_action_encoding" />.
 </t>
@@ -1237,21 +1237,21 @@ this document.
  </t>
 <t>
    The NLRI format for this address family consists of a fixed-length Route
-   Distinguisher field (8 bytes) followed by the Flow Specification NLRI value (<xref target="nlri_value_encoding" />).
-   The NLRI length field shall include both the 8 bytes of the Route
+   Distinguisher field (8 octets) followed by the Flow Specification NLRI value (<xref target="nlri_value_encoding" />).
+   The NLRI length field shall include both the 8 octets of the Route
    Distinguisher as well as the subsequent Flow Specification NLRI value.
    The resulting encoding is shown in <xref target="figure_fs_nlri_mpls" />.
 </t>
 <t>
 <figure title="Flow Specification NLRI for MPLS" anchor="figure_fs_nlri_mpls">
   <artwork>
-                  +------------------------------+
-                  | length (0xnn or 0xfn nn)     |
-                  +------------------------------+
-                  | Route Distinguisher (8 bytes)|
-                  +------------------------------+
-                  |    NLRI value  (variable)    |
-                  +------------------------------+
+                 +--------------------------------+
+                 | length (0xnn or 0xfn nn)       |
+                 +--------------------------------+
+                 | Route Distinguisher (8 octets) |
+                 +--------------------------------+
+                 |    NLRI value  (variable)      |
+                 +--------------------------------+
   </artwork>
 </figure>
 </t>
@@ -1433,7 +1433,7 @@ this document.
 
          <c>0x08</c>
          <c>
-           Flow spec rt-redirect AS-2byte format
+           Flow spec rt-redirect AS-2octet format
          </c>
          <c>[this document]</c>
 
@@ -1461,7 +1461,7 @@ this document.
          <ttcol align="left">Reference</ttcol>
          <c>0x08</c>
          <c>
-           Flow spec rt-redirect AS-4byte format
+           Flow spec rt-redirect AS-4octet format
          </c>
          <c>[this document]</c>
    </texttable>
@@ -1541,7 +1541,7 @@ this document.
    management could make certain failures harder to diagnose.  For
    example, it is possible to allow TCP packets to pass between a pair
    of addresses but not ICMP packets.  It is also possible to permit
-   packets smaller than 900 or greater than 1000 bytes to pass between a
+   packets smaller than 900 or greater than 1000 octets to pass between a
     pair of addresses, but not packets whose length is in the range 900-
    1000.  Such behavior may be confusing and these capabilities should
    be used with care whether manually configured or coordinated through
