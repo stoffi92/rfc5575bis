@@ -33,7 +33,7 @@
 <?rfc subcompact="no" ?>
 <?rfc iprnotified="no" ?>
 <?rfc strict="no" ?>
-<rfc category="std" docName="draft-ietf-idr-rfc5575bis-20" ipr="trust200902" obsoletes="5575,7674">
+<rfc category="std" docName="draft-ietf-idr-rfc5575bis-21" ipr="trust200902" obsoletes="5575,7674">
   <front>
    <title abbrev="Flow Specification">Dissemination of Flow Specification Rules</title>
    <author fullname="Christoph Loibl" initials="C.L."
