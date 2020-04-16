@@ -1004,7 +1004,7 @@ defined as retesting that clause a and clause b above are true.
 <section anchor="traffic_filtering_actions" title="Traffic Filtering Actions">
 <t>
    This document defines a minimum set of Traffic Filtering Actions that it
-   standardizes as BGP extended community values <xref target="RFC4360"></xref>.
+   standardizes as BGP extended community values <xref target="RFC7153"></xref>.
    This is not meant to be an inclusive list of all the possible actions, but only a
    subset that can be interpreted consistently across the network.
    Additional actions can be defined as either requiring standards or
