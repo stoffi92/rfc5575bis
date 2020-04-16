@@ -399,9 +399,10 @@
 <list style="hanging">
 <t hangText="e -">end-of-list bit: Set in the last {op, value} pair in the list.
 </t>
-<t hangText="a -">AND bit:  If unset, the previous term is logically ORed with the current
+<t hangText="a -">AND bit: If unset, the result of the previous {op, value} pair is
+    logically ORed with the current
 one.  If set, the operation is a logical AND. In the first operator octet of a sequence
-it SHOULD be encoded as unset and and MUST be treated as always unset on decoding.
+it SHOULD be encoded as unset and MUST be treated as always unset on decoding.
 The AND operator has higher priority than OR for
 the purposes of evaluating logical expressions.
 </t>
