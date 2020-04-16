@@ -150,8 +150,11 @@
   <middle>
     <section anchor="intro" title="Introduction">
    <t>
-   This document obsoletes both "<xref target="RFC5575" format="title" />" <xref target="RFC5575" />
-       and "<xref target="RFC7674" format="title" />"<xref target="RFC7674" />.
+    This document obsoletes "<xref target="RFC5575" format="title" />" <xref target="RFC5575" />,
+    the differences can be found in <xref target="rfc5575differences" />. This document also obsoletes
+    "<xref target="RFC7674" format="title" />" <xref target="RFC7674" /> since
+    it incorporates the encoding of the BGP Flow Specification Redirect Extended Community
+    in <xref target="rt_redirect_action_subtype" />.
    </t>
    <t>
 	Modern IP routers contain both the capability to forward traffic
@@ -192,7 +195,7 @@
     (<xref target="validation_procedure" />). The Flow Specification
     received from an internal BGP peer within the same autonomous system
     <xref target="RFC4271" /> is assumed to have been validated prior
-    to transmission within the iBGP mesh of an autonomous system.
+    to transmission within the internal BGP (iBGP) mesh of an autonomous system.
     If the aggregate traffic flow defined by the unicast destination
     prefix is forwarded to a given BGP peer, then the local system can
     install more specific Flow Specifications that may result in different
@@ -1720,7 +1723,7 @@ def flow_rule_cmp(a, b):
   </figure>
 </t>
     </section>
-    <section title="Comparison with RFC 5575">
+    <section title="Comparison with RFC 5575" anchor="rfc5575differences">
       <t>
         This document includes numerous editorial changes to <xref target="RFC5575" />.
         It also completely incorporates the redirect action clarification document <xref target="RFC7674" />.
