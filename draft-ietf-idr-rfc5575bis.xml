@@ -838,7 +838,7 @@ autonomous system to perform inbound filtering in their ingress routers of
 traffic that a given downstream AS wishes to drop.
    </t>
    <t>
-   In order to achieve this goal, this draft specifies two application specific
+   In order to achieve this goal, this document specifies two application specific
    NLRI identifiers that provide traffic filters, and a set of actions encoding
    in BGP Extended Communities.  The two application specific NLRI identifiers
    are:
