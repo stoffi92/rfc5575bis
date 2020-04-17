@@ -903,7 +903,7 @@ traffic that a given downstream AS wishes to drop.
 <t>
   The code in <xref target="flow_rule_cmp_src" /> shows a Python3 implementation
   of the comparison algorithm. The full code was tested with Python 3.6.3 and can be
-  obtained at <eref target="https://github.com/stoffi92/flowspec-cmp">https://github.com/stoffi92/flowspec-cmp</eref>.
+  obtained at <eref target="https://github.com/stoffi92/rfc5575bis/tree/master/flowspec-cmp">https://github.com/stoffi92/rfc5575bis/tree/master/flowspec-cmp</eref>.
 </t>
 </section>
 	</section>
