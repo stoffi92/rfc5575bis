@@ -1073,8 +1073,10 @@ traffic-rate of 0 should result on all traffic for the particular flow to be
 discarded. On encoding the traffic-rate MUST NOT be negative. On
 decoding negative values MUST be treated as zero (discard all traffic).
  </t>
- <t>Interferes with: No other BGP Flow Specification Traffic Filtering Action in
- this document.</t>
+ <t>Interferes with: May interfere with the traffic-rate-packets (see <xref target="traffic_rate_in_packets" />).
+  A policy may allow both filtering by traffic-rate-packets and traffic-rate-bytes.
+  If the policy does not allow this, these two actions will conflict.
+ </t>
 </section>
 <section anchor="traffic_rate_in_packets" title="Traffic Rate in Packets (traffic-rate-packets) sub-type TBD">
 <t>
@@ -1085,8 +1087,10 @@ decoding negative values MUST be treated as zero (discard all traffic).
   traffic-rate-packets MUST NOT be negative.  On decoding negative values MUST
   be treated as zero (discard all traffic).
 </t>
-<t>Interferes with: No other BGP Flow Specification Traffic Filtering Action in
-this document.</t>
+ <t>Interferes with: May interfere with the traffic-rate-bytes (see <xref target="traffic_rate_in_bytes" />).
+  A policy may allow both filtering by traffic-rate-packets and traffic-rate-bytes.
+  If the policy does not allow this, these two actions will conflict.
+ </t>
 </section>
  <section anchor="traffic_action_subtype" title="Traffic-action (traffic-action) sub-type 0x07">
  <t>The traffic-action extended community consists of 6
