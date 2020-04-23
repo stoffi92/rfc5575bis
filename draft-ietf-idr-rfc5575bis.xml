@@ -1199,8 +1199,8 @@ this document.
  <t>
    Implementations should provide mechanisms that map an arbitrary BGP
    community value (normal or extended) to Traffic Filtering Actions that
-   require different mappings in different systems in the network.  For
-   instance, providing packets with a worse-than-best-effort, per-hop
+   require different mappings on different systems in the network.  For
+   instance, providing packets with a worse-than-best-effort per-hop
    behavior is a functionality that is likely to be implemented
    differently in different systems and for which no standard behavior
    is currently known.  Rather than attempting to define it here, this
