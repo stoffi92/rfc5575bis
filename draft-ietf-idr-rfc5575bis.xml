@@ -1043,7 +1043,7 @@ defined as retesting rules a) to c) as described above.
     Multiple Traffic Filtering Actions defined in this document may be present for a single
     Flow Specification and SHOULD be applied to the traffic flow (for example traffic-rate-bytes and rt-redirect can be
     applied to packets at the same time). If not all of the Traffic Filtering Actions can be applied to a traffic flow
-    they should be treated as interfering Traffic filtering actions (see below).
+    they should be treated as interfering Traffic Filtering Actions (see below).
 </t>
 <t>
  Some Traffic Filtering Actions may interfere with each other even contradict.
