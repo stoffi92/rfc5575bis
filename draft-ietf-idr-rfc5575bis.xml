@@ -290,12 +290,12 @@
      in the Loc-RIB.
 	</t>
 	<t>
-   Standard BGP policy mechanisms, such as UPDATE filtering by NLRI
-   prefix as well as community matching and manipulation, must apply to the Flow Specification
-   defined NLRI-type, especially in an inter-domain environment.
-   Network operators can also control propagation of such
-   routing updates by enabling or disabling the exchange of a particular
-   (AFI, SAFI) pair on a given BGP peering session.
+    Standard BGP policy mechanisms, such as UPDATE filtering by NLRI
+    prefix as well as community matching and must apply to
+    the Flow specification defined NLRI-type.
+    Network operators can also control propagation of such
+    routing updates by enabling or disabling the exchange of a particular
+    (AFI, SAFI) pair on a given BGP peering session.
 	</t>
 	</section>
 	<section title="Dissemination of IPv4 Flow Specification Information" anchor="dissemination_ipv4_flowspec">
