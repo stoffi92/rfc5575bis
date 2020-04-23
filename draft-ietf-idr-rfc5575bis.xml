@@ -1335,7 +1335,7 @@ this document.
   <section title="Flow Component Definitions">
     <t>
       A Flow Specification consists of a sequence of flow components, which
-      are identified by a an 8-bit component type. IANA has created and maintains
+      are identified by an 8-bit component type. IANA has created and maintains
       a registry entitled "Flow Spec Component Types". IANA is requested to
       update the reference for this registry to [this document]. Furthermore the
       references to the values should be updated according to the table below
