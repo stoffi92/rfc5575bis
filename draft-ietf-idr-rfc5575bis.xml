@@ -1531,11 +1531,11 @@ this document.
    information. If this trust model is violated, a neighboring
    autonomous system may cause a denial-of-service attack by advertising
    reachability information for a given prefix for which it does not
-   provide service (unfiltered address space hijack). Since validation
-   of the Flow Specification is tied to the announcement of
-   the best unicast route, this may also cause this validation to fail
-   and consequently prevent Flow Specifications from being accepted
-   by a peer. Possible mitigations are <xref target="RFC6811" /> and
+   provide service (unfiltered address space hijack). Since validation of
+   the Flow Specification is tied to the announcement of the best unicast
+   route, the failure in the validation of best path route may prevent the
+   Flow Specificaiton from being used by a local router. Possible
+   mitigations are <xref target="RFC6811" /> and
    <xref target="RFC8205" />.
    </t>
    <t>
