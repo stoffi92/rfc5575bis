@@ -941,8 +941,9 @@ traffic that a given downstream AS wishes to drop.
 </list>
 </t>
 <t>
-   By default a Flow Specification NLRI MUST be validated such that it is
-   considered feasible if and only if all of the below is true:
+   In the absence of explicit configuration a Flow Specification
+   NLRI MUST be validated such that it is considered feasible if
+   and only if all of the below is true:
 <list>
 <t>
   a) A destination prefix component is embedded in the Flow Specification.
@@ -978,13 +979,13 @@ traffic that a given downstream AS wishes to drop.
    route received via the External Border Gateway Protocol (eBGP)
    contains the neighboring AS in the left-most position of the AS_PATH
    attribute.  While this rule is optional in the BGP specification, it
-   becomes necessary to enforce it for security reasons.
+   becomes necessary to enforce it here for security reasons.
 </t>
 <t>
 The best-match unicast route may change over the time independently of the
-Flow Specification NLRI.  Therefore, a revalidation of the Flow Specification
-NLRI MUST be performed whenever unicast routes change.  Revalidation is
-defined as retesting that clause a and clause b above are true.
+Flow Specification NLRI. Therefore, a revalidation of the Flow Specification
+NLRI MUST be performed whenever unicast routes change. Revalidation is
+defined as retesting rules a) to c) as described above.
 </t>
 <t>Explanation:
 </t>
@@ -1000,7 +1001,7 @@ defined as retesting that clause a and clause b above are true.
    The neighboring AS is the immediate destination of the traffic
    described by the Flow Specification.  If it requests these flows to
    be dropped, that request can be honored without concern that it
-   represents a denial of service in itself.  Supposedly, the traffic is
+   represents a denial of service in itself.  The reasoning is that this is as if the traffic is
    being dropped by the downstream autonomous system, and there is no
    added value in carrying the traffic to it.
 </t>
