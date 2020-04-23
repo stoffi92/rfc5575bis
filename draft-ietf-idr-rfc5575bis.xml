@@ -880,7 +880,7 @@ traffic that a given downstream AS wishes to drop.
    differ, the Flow Specification with lowest numeric type value has higher precedence
    (and thus will match before) than the Flow Specification that doesn't contain that
    component type. If the component types are the same, then a type-
-   specific comparison is performed (see below) if the types are equal the
+   specific comparison is performed (see below). If the types are equal the
    algorithm continues with the next component.
 </t>
 <t>
