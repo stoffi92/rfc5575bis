@@ -1512,17 +1512,16 @@ this document.
    remarking or redirection.
    </t>
    <t>
-    Deployment of specific relaxations of the validation within an
-    administrative boundary of a network, defined by an AS or an
-    AS-Confederation boundary, may be useful in some networks for
-    quickly distributing filters to prevent denial-of-service attacks.
+   Deployment of specific relaxations of the validation within an
+   administrative boundary of a network are useful in some networks for quickly
+   distributing filters to prevent denial-of-service attacks.
     For a network to utilize this relaxation, the BGP policies must
     support additional filtering since the origin AS field is empty.
     Specifications relaxing the validation restrictions MUST
     contain security considerations that provide details on the
-    required additional filtering. For example, the use of
-    <xref target="RFC6811" /> to enhance filtering within an AS
-    confederation.
+    required additional filtering.
+    For example, the use of Origin validation can provide
+    enhanced filtering within an AS confederation.
    </t>
    <t>
        Inter-provider routing is based on a web of trust. Neighboring
