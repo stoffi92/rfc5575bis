@@ -1561,8 +1561,8 @@ this document.
       algorithms that are not performing as expected, or simply rogue systems
       may announce unintended Flow Specifications, send updates at a high rate
       or generate a high number of Flow Specifications.
-      This may stress the receiving systems, exceed their maximum capacity or
-      may lead to unwanted Traffic Filtering Actions being applied to flows.
+      This may stress the receiving systems, exceed their capacity, or
+      lead to unwanted Traffic Filtering Actions being applied to flows.
   </t>
     <t> While the general verification of the Flow Specification NLRI
     is specified in this document (<xref target="validation_procedure" />) the Traffic Filtering
