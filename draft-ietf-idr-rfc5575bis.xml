@@ -133,7 +133,7 @@
    filtering, such as what is required in order to mitigate
    (distributed) denial-of-service attacks, and a second application to
    provide traffic filtering in the context of a BGP/MPLS VPN service.
-   Other applications (ie. centralized control of traffic
+   Other applications (e.g. centralized control of traffic
    in a SDN or NFV context) are also possible. Other documents may specify
    Flow Specification extensions.
    </t>
