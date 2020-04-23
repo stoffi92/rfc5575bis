@@ -157,8 +157,8 @@
     in <xref target="rt_redirect_action_subtype" />.
    </t>
    <t>
-	Modern IP routers contain both the capability to forward traffic
-    according to IP prefixes as well as to classify, shape, rate limit,
+    Modern IP routers contain both the capability to forward traffic
+    as well as to classify, shape, rate limit,
     filter, or redirect packets based on administratively defined
     policies.
     These traffic policy mechanisms allow the operator to define match
