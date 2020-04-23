@@ -1047,7 +1047,7 @@ defined as retesting rules a) to c) as described above.
     they should be treated as interfering Traffic Filtering Actions (see below).
 </t>
 <t>
- Some Traffic Filtering Actions may interfere with each other even contradict.
+ Some Traffic Filtering Actions may interfere with each other or even contradict.
  <xref target="rules_action_interference" /> of this document
  provides general considerations on such Traffic Filtering Action interference.
  Any additional definition of Traffic Filtering Actions SHOULD specify
