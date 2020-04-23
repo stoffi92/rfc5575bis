@@ -157,8 +157,8 @@
     in <xref target="rt_redirect_action_subtype" />.
    </t>
    <t>
-    Modern IP routers contain both the capability to forward traffic
-    as well as to classify, shape, rate limit,
+    Modern IP routers have the capability to forward traffic
+    and to classify, shape, rate limit,
     filter, or redirect packets based on administratively defined
     policies.
     These traffic policy mechanisms allow the operator to define match
@@ -173,7 +173,7 @@
 	</t>
 	<t>
    <xref target="dissemination_ipv4_flowspec" /> of this document defines a general procedure to encode Flow
-   Specification for aggregated traffic flows so that they can be
+   Specifications for aggregated traffic flows so that they can be
    distributed as a BGP <xref target="RFC4271" /> NLRI.
    Additionally, <xref target="traffic_filtering_actions" /> of this document defines the
    required Traffic Filtering Actions BGP Extended Communities
