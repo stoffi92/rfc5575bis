@@ -1226,8 +1226,7 @@ this document.
 </t>
 <t>
    Operators are encouraged to make use of the BGP policy framework
-   supported by their implementation in order to achieve a predictable behaviour
-   (ie. match - replace - delete communities on administrative boundaries). See also
+   supported by their implementation in order to achieve a predictable behaviour. See also
     <xref target="security_considerations" />.
 </t>
 </section>
