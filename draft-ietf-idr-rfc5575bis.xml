@@ -1738,8 +1738,8 @@ def flow_rule_cmp(a, b):
           <t>
             <xref target="intro" /> introduces the Flow Specification NLRI. In
             <xref target="RFC5575" /> this NLRI was defined as an opaque-key in BGPs database. This
-            specification has removed all references to a opaque-key property.
-           BGP is able to understand the NLRI encoding.
+            specification has removed all references to an opaque-key property.
+           BGP implementations are able to understand the NLRI encoding.
           </t>
           <t>
             <xref target="numeric_operator" /> defines a numeric operator and comparison
