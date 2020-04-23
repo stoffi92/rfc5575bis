@@ -217,11 +217,12 @@
    </t>
    <t>In current deployments, the information distributed by this
    extension is originated both manually as well as automatically, the
-   latter by systems that are able to detect malicious traffic flows.  When
-   automated systems are used, care should be taken to ensure their
-   correctness as well as the limitations of the systems that receive and
-   process the advertised Flow Specifications
-   (see also <xref target="security_considerations" />).
+   latter by systems that are able to detect malicious traffic flows.
+   When automated systems are used, care should be taken
+   to ensure the correctness of the automated system. The
+   the limitations of the receiving systems that need to process
+   these automated Flow Specifications need to be taken in consideration
+   as well (see also <xref target="security_considerations" />).
    </t>
    <t>
    This specification defines required protocol extensions to address
