@@ -944,7 +944,7 @@ traffic that a given downstream AS wishes to drop.
 <t>
    In the absence of explicit configuration a Flow Specification
    NLRI MUST be validated such that it is considered feasible if
-   and only if all of the below is true:
+   and only if all of the conditions below are true:
 <list>
 <t>
   a) A destination prefix component is embedded in the Flow Specification.
@@ -957,7 +957,7 @@ traffic that a given downstream AS wishes to drop.
     the Flow Specification).
 </t>
 <t>
-  c) There are no more specific unicast routes, when compared with the
+  c) There are no "more-specific" unicast routes, when compared with the
   flow destination prefix, that have been received from a different
   neighboring AS than the best-match unicast route, which has been
   determined in rule b).
@@ -970,7 +970,7 @@ traffic that a given downstream AS wishes to drop.
   is the case, rules b) and c) are moot and MUST be disregarded.
 </t>
 <t>
-   By originator of a BGP route, we mean either the address of the
+   By "originator" of a BGP route, we mean either the address of the
     originator in the ORIGINATOR_ID Attribute <xref target="RFC4456" />,
     or the source IP address of the BGP peer, if this path attribute is
     not present.
@@ -993,10 +993,11 @@ defined as retesting rules a) to c) as described above.
 <t>
    The underlying concept is that the neighboring AS that advertises the
    best unicast route for a destination is allowed to advertise Flow
-   Specification information that conveys a more or equally specific destination
-   prefix.  Thus, as long as there are no more specific unicast routes,
+   Specification information that conveys a destination prefix that is
+   more or equally specific.
+   Thus, as long as there are no "more-specific" unicast routes,
    received from a different neighboring AS, which would be affected by
-   that Flow Specification.
+   that Flow Specification, the Flow Specification is validated successfully.
 </t>
 <t>
    The neighboring AS is the immediate destination of the traffic
