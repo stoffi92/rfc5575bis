@@ -150,8 +150,8 @@
   <middle>
     <section anchor="intro" title="Introduction">
    <t>
-    This document obsoletes "<xref target="RFC5575" format="title" />" <xref target="RFC5575" />,
-    the differences can be found in <xref target="rfc5575differences" />. This document also obsoletes
+    This document obsoletes "<xref target="RFC5575" format="title" />" <xref target="RFC5575" />
+    (see <xref target="rfc5575differences" /> for the differences). This document also obsoletes
     "<xref target="RFC7674" format="title" />" <xref target="RFC7674" /> since
     it incorporates the encoding of the BGP Flow Specification Redirect Extended Community
     in <xref target="rt_redirect_action_subtype" />.
