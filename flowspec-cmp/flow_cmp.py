@@ -20,23 +20,29 @@ B_HAS_PRECEDENCE = 2
 IP_DESTINATION = 1
 IP_SOURCE = 2
 
-FS_component = collections.namedtuple('FS_component', 'component_type value')
+FS_component = collections.namedtuple('FS_component',
+                                      'component_type op_value')
 
 
 class FS_nlri(object):
     """
     FS_nlri class implementation that allows sorting.
 
-    By calling .sort() on a array of FS_nlri objects these will be sorted
-    according to the flow_rule_cmp algorithm.
+    By calling .sort() on a array of FS_nlri objects these will be
+    sorted according to the flow_rule_cmp algorithm.
 
     Example:
     nlri = [ FS_nlri(components=[
-             FS_component(component_type=4, value=bytearray([0,1,2,3,4,5,6])),
+             FS_component(component_type=IP_DESTINATION,
+                    op_value=ipaddress.ip_network('10.1.0.0/16') ),
+             FS_component(component_type=4,
+                    op_value=bytearray([0,1,2,3,4,5,6])),
              ]),
              FS_nlri(components=[
-             FS_component(component_type=5, value=bytearray([0,1,2,3,4,5,6])),
-             FS_component(component_type=6, value=bytearray([0,1,2,3,4,5,6])),
+             FS_component(component_type=5,
+                    op_value=bytearray([0,1,2,3,4,5,6])),
+             FS_component(component_type=6,
+                    op_value=bytearray([0,1,2,3,4,5,6])),
              ]),
            ]
     nlri.sort() # sorts the array accorinding to the algorithm
@@ -58,7 +64,7 @@ class FS_nlri(object):
 
 def flow_rule_cmp(a, b):
     """
-    Implementation of the flowspec sorting algorithm in draft-ietf-idr-rfc5575bis.
+    Example of the flowspec comparison algorithm.
     """
     for comp_a, comp_b in itertools.zip_longest(a.components,
                                            b.components):
@@ -75,34 +81,39 @@ def flow_rule_cmp(a, b):
             return B_HAS_PRECEDENCE
         # component types are equal -> type specific comparison
         if comp_a.component_type in (IP_DESTINATION, IP_SOURCE):
-            # assuming comp_a.value, comp_b.value of type ipaddress.IPv4Network
-            if comp_a.value.overlaps(comp_b.value):
+            # assuming comp_a.op_value, comp_b.op_value of
+            # type ipaddress.IPv4Network
+            if comp_a.op_value.overlaps(comp_b.op_value):
                 # longest prefixlen has precedence
-                if comp_a.value.prefixlen > comp_b.value.prefixlen:
+                if comp_a.op_value.prefixlen > \
+                        comp_b.op_value.prefixlen:
                     return A_HAS_PRECEDENCE
-                if comp_a.value.prefixlen < comp_b.value.prefixlen:
+                if comp_a.op_value.prefixlen < \
+                        comp_b.op_value.prefixlen:
                     return B_HAS_PRECEDENCE
                 # components equal -> continue with next component
-            elif comp_a.value > comp_b.value:
+            elif comp_a.op_value > comp_b.op_value:
                 return B_HAS_PRECEDENCE
-            elif comp_a.value < comp_b.value:
+            elif comp_a.op_value < comp_b.op_value:
                 return A_HAS_PRECEDENCE
         else:
-            # assuming comp_a.value, comp_b.value of type bytearray
-            if len(comp_a.value) == len(comp_b.value):
-                if comp_a.value > comp_b.value:
+            # assuming comp_a.op_value, comp_b.op_value of type
+            # bytearray
+            if len(comp_a.op_value) == len(comp_b.op_value):
+                if comp_a.op_value > comp_b.op_value:
                     return B_HAS_PRECEDENCE
-                if comp_a.value < comp_b.value:
+                if comp_a.op_value < comp_b.op_value:
                     return A_HAS_PRECEDENCE
                 # components equal -> continue with next component
             else:
-                common = min(len(comp_a.value), len(comp_b.value))
-                if comp_a.value[:common] > comp_b.value[:common]:
+                common = min(len(comp_a.op_value), len(comp_b.op_value))
+                if comp_a.op_value[:common] > comp_b.op_value[:common]:
                     return B_HAS_PRECEDENCE
-                elif comp_a.value[:common] < comp_b.value[:common]:
+                elif comp_a.op_value[:common] < \
+                        comp_b.op_value[:common]:
                     return A_HAS_PRECEDENCE
                 # the first common bytes match
-                elif len(comp_a.value) > len(comp_b.value):
+                elif len(comp_a.op_value) > len(comp_b.op_value):
                     return A_HAS_PRECEDENCE
                 else:
                     return B_HAS_PRECEDENCE
