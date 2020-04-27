@@ -344,7 +344,7 @@
    field can be encoded as a single octet.  </t>
     <t>Otherwise, it is encoded as
     an extended-length 2-octet value in which the most significant nibble
-    of the first octet is all ones.</t>
+    has the hex value 0xf.</t>
 	</list>
 	</t>
 	<t>
