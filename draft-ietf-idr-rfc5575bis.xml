@@ -378,8 +378,7 @@
        match any packets), and thus SHOULD NOT be propagated by BGP.
    </t>
    <t>
-        A NLRI value not
-        encoded as specified in <xref target="nlri_value_encoding" />
+        A NLRI value not encoded as specified specified here
         is considered malformed and error handling according to
         <xref target="errorhandling" /> is performed.
    </t>
