@@ -1835,7 +1835,8 @@ def flow_rule_cmp(a, b):
             <xref target="rules_action_interference" /> contains general
             considerations on interfering traffic actions.
             <xref target="traffic_action_subtype" /> also
-            cross-references this section. <xref target="RFC5575" /> did not mention this.
+            cross-references <xref target="rules_action_interference" />.
+            <xref target="RFC5575" /> did not mention this.
           </t>
           <t>
             <xref target="errorhandling" /> contains new error handling.
