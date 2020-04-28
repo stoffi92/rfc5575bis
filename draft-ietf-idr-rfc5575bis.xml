@@ -370,7 +370,7 @@
   </t>
    <t>
    Components MUST follow strict type ordering by increasing
-   numerical order. A given component type may (exactly once) or may not be
+   numerical order. A given component type MAY (exactly once) be
    present in the Flow Specification. If present, it MUST precede any component of
    higher numeric type value.
    </t>
