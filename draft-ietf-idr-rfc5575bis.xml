@@ -526,7 +526,8 @@ Section 3.1).
     Type 4 component values SHOULD be encoded as 1- or 2-octet quantities (numeric_op len=00 or len=01).
 </t>
 <t>
-    In case of the presence of the port (destination-port, source-port)
+    In case of the presence of the port (destination-port <xref target="type_5" />,
+    source-port <xref target="type_6"/>)
     component only TCP or UDP packets can match the entire Flow Specification.
     The port component, if present, never matches when the packet's IP
     protocol value is not 6 (TCP) or 17 (UDP), if the packet is fragmented
@@ -575,9 +576,9 @@ type field of an ICMP packet (see also <xref target="RFC0792" /> Section "Messag
     Type 7 component values SHOULD be encoded as single octet (numeric_op len=00).
 </t>
 <t>
-    In case of the presence of the ICMP type (code)
+    In case of the presence of the ICMP type
     component only ICMP packets can match the entire Flow Specification.
-    The ICMP type (code) component, if present, never matches when the packet's IP
+    The ICMP type component, if present, never matches when the packet's IP
     protocol value is not 1 (ICMP), if the packet is fragmented
     and this is not the first fragment, or if the system is unable to
     locate the transport header. Different implementations may or may not be
@@ -598,7 +599,17 @@ code field of an ICMP packet (see also <xref target="RFC0792" /> Section "Messag
     Numeric Operator (numeric_op) described in <xref target="numeric_operator" />.
     Type 8 component values SHOULD be encoded as single octet (numeric_op len=00).
 </t>
-<t>The last paragraph of <xref target="type_7" /> also applies to this component.</t>
+<t>
+    In case of the presence of the ICMP code
+    component only ICMP packets can match the entire Flow Specification.
+    The ICMP code component, if present, never matches when the packet's IP
+    protocol value is not 1 (ICMP), if the packet is fragmented
+    and this is not the first fragment, or if the system is unable to
+    locate the transport header. Different implementations may or may not be
+    able to decode the transport header in the presence of IP
+    options or Encapsulating Security Payload (ESP) NULL
+    <xref target="RFC4303"></xref> encryption.
+</t>
 </section>
 <section anchor="type_9" title="Type 9 - TCP flags" toc="include">
 <t>Encoding: &lt;type (1 octet), [bitmask_op, bitmask]+&gt;
