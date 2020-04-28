@@ -1361,7 +1361,7 @@ this document.
    enum vpnv4-flow-spec-safi {
           value 134;
           description
-            "L3VPN Dissemination of Flow Specification rules SAFI";
+            "L3VPN Dissemination of Flow Specification rules SAFI.";
         }
 <CODE ENDS>
     ]]></artwork>
