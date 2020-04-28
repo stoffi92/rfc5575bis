@@ -18,8 +18,10 @@
 <!ENTITY RFC7223 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7223.xml">
 <!ENTITY RFC7606 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7606.xml">
 <!ENTITY RFC7674 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7674.xml">
+<!ENTITY RFC7950 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.7950.xml">
 <!ENTITY RFC8126 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8126.xml">
 <!ENTITY RFC8174 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8174.xml">
+<!ENTITY RFC8294 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8294.xml">
 <!ENTITY RFC6811 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.6811.xml">
 <!ENTITY RFC8205 SYSTEM "http://xml.resource.org/public/rfc/bibxml/reference.RFC.8205.xml">
 <!ENTITY I-D.ietf-idr-flow-spec-v6 SYSTEM "http://xml.resource.org/public/rfc/bibxml3/reference.I-D.ietf-idr-flow-spec-v6.xml">
@@ -1330,6 +1332,30 @@ this document.
           <c>133</c>   <c>Dissemination of Flow Specification rules</c>  <c>[this document]</c>
           <c>134</c>   <c>L3VPN Dissemination of Flow Specification rules</c>       <c>[this document]</c>
     </texttable>
+  <t>
+    The above textual changes clarify the definition of the SAFIs rather than change
+    its underlying meaning. Therefore, based on "<xref target="RFC7950" format="title" />" <xref target="RFC7950" />,
+    the above text implies that the following YANG descriptions from "<xref target="RFC8294" format="title" />"
+    <xref target="RFC8294" /> need to have their descriptions at
+    <eref target="https://www.iana.org/assignments/iana-routing-types">https://www.iana.org/assignments/iana-routing-types</eref>
+    changed to:
+  <figure>
+    <artwork><![CDATA[
+<CODE BEGINS>
+   enum ipv4-flow-spec-safi {
+          value 133;
+          description
+            "Dissemination of Flow Specification rules SAFI.";
+        }
+   enum vpnv4-flow-spec-safi {
+          value 134;
+          description
+            "L3VPN Dissemination of Flow Specification rules SAFI";
+        }
+<CODE ENDS>
+    ]]></artwork>
+  </figure>
+  </t>
   </section>
   <section title="Flow Component Definitions">
     <t>
@@ -1650,8 +1676,10 @@ this document.
 	  &RFC4303;
       &RFC5575;
       &RFC6811;
-      &RFC8205;
       &RFC7674;
+      &RFC7950;
+      &RFC8205;
+      &RFC8294;
 	  &I-D.ietf-idr-flow-spec-v6;
     </references>
     <section title="Example Python code: flow_rule_cmp" anchor="flow_rule_cmp_src">
