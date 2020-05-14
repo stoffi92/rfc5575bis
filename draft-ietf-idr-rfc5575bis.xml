@@ -311,7 +311,7 @@
 	 This NLRI information is encoded using MP_REACH_NLRI and
 	MP_UNREACH_NLRI attributes as defined in  <xref target="RFC4760"></xref>.
     When advertising Flow Specifications,
-    the Length of Next Hop Network Address SHOULD be set to 0. The Network
+    the Length of Next Hop Network Address MUST be set to 0. The Network
     Address of Next Hop field MUST be ignored.
 	</t>
 	<t>
@@ -407,14 +407,14 @@
 <t hangText="a -">AND bit: If unset, the result of the previous {op, value} pair is
     logically ORed with the current
 one.  If set, the operation is a logical AND. In the first operator octet of a sequence
-it SHOULD be encoded as unset and MUST be treated as always unset on decoding.
+it MUST be encoded as unset and MUST be treated as always unset on decoding.
 The AND operator has higher priority than OR for
 the purposes of evaluating logical expressions.
 </t>
 <t hangText="len -">length: The length of the value field for this operator given as (1 &lt;&lt; len). This
   encodes 1 (len=00), 2 (len=01), 4 (len=10), 8 (len=11) octets.
 </t>
-<t hangText="0 -">SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
+<t hangText="0 -">MUST be set to 0 on NLRI encoding, and MUST be ignored during decoding
 </t>
 <t hangText="lt -">less than comparison between data and value.
 </t>
@@ -467,7 +467,7 @@ the purposes of evaluating logical expressions.
 defined as "(data AND value) == value"; if unset, (data AND value) evaluates
 to TRUE if any of the bits in the value mask are set in the data
 </t>
-<t hangText="0 - all 0 bits:"> SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
+<t hangText="0 - all 0 bits:"> MUST be set to 0 on NLRI encoding, and MUST be ignored during decoding
 </t>
 </list>
 </t>
@@ -699,7 +699,7 @@ the TCP Control Bits. When a 2-octet (bitmask_op len=01) encoding is used, it ma
 </t>
 <t hangText="LF -">Last fragment - match if <xref target="RFC0791" /> IP Header Fragment Offset is not 0 AND Flags Bit-2 (MF) is 0
 </t>
-<t hangText="0 -">SHOULD be set to 0 on NLRI encoding, and MUST be ignored during decoding
+<t hangText="0 -">MUST be set to 0 on NLRI encoding, and MUST be ignored during decoding
 </t>
 </list>
 </t>
@@ -1138,7 +1138,7 @@ decoding negative values MUST be treated as zero (discard all traffic).
 </t>
 <t>Traffic Action Field: Other Traffic Action Field (see
     <xref target="IANA" />) bits unused in this
-    specification. These bits SHOULD be set to 0 on encoding, and MUST be
+    specification. These bits MUST be set to 0 on encoding, and MUST be
     ignored during decoding.
 </t>
 </list>
@@ -1200,7 +1200,7 @@ this document.
 <list style="symbols">
 <t>DSCP: new DSCP value for the transiting IP packet.
 </t>
-<t>reserved, r.: SHOULD be set to 0 on encoding, and MUST be
+<t>reserved, r.: MUST be set to 0 on encoding, and MUST be
          ignored during decoding.
 </t>
 </list>
