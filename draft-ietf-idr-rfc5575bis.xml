@@ -1366,8 +1366,19 @@ this document.
 <CODE ENDS>
     ]]></artwork>
   </figure>
-  The revision description of this module should also make it clear
-  that these enums have been changed in a non-backwards-compatible way.
+  A new revision statement should be added to the module as follows:
+   <figure>
+    <artwork><![CDATA[
+<CODE BEGINS>
+   revision [revision date] {
+     description "Non-backwards-compatible change of SAFI names
+                  (SAFI values 133, 134).";
+     reference
+       "[this document]: Dissemination of Flow Specification Rules.";
+  }
+<CODE ENDS>
+    ]]></artwork>
+  </figure>
   </t>
   </section>
   <section title="Flow Component Definitions">
