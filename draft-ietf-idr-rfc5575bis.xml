@@ -35,7 +35,7 @@
 <?rfc subcompact="no" ?>
 <?rfc iprnotified="no" ?>
 <?rfc strict="no" ?>
-<rfc category="std" docName="draft-ietf-idr-rfc5575bis-25" ipr="trust200902" obsoletes="5575,7674">
+<rfc category="std" docName="draft-ietf-idr-rfc5575bis-26" ipr="trust200902" obsoletes="5575,7674">
   <front>
    <title abbrev="Flow Specification">Dissemination of Flow Specification Rules</title>
    <author fullname="Christoph Loibl" initials="C.L."
@@ -1418,10 +1418,27 @@ this document.
           <ttcol align="left">Type Values</ttcol>
           <ttcol align="left">Policy</ttcol>
           <c>0</c>           <c>Reserved</c>
-          <c>[1 .. 12]</c>   <c>Defined by this specification</c>
-          <c>[13 .. 127]</c>   <c>Specification required</c>
-          <c>[128 .. 255]</c>   <c>First Come First Served</c>
+          <c>[1 .. 127]</c>   <c>Specification Required</c>
+          <c>[128 .. 254]</c>   <c>Expert Review</c>
+          <c>255</c>   <c>Reserved</c>
     </texttable>
+    <t>
+    <list style="hanging" hangIndent="6">
+        <t hangText="Guidance for Experts:">
+        <vspace />
+        128-254 requires
+        Expert Review as the registration policy. The Experts are expected
+        to check the clarity of purpose and use of the requested code points.
+        The Experts must also verify that any
+        specification produced in the IETF that requests one of these code
+        points has been made available for review by the IDR working group
+        and that any specification produced outside the IETF does not
+        conflict with work that is active or already published within the
+        IETF. It must be pointed out that introducing new component types may
+        break interoperability with existing implementations of this protocol.
+        </t>
+    </list>
+    </t>
   </section>
  <section title="Extended Community Flow Specification Actions">
  <t>The Extended Community Flow Specification Action types defined in this document
