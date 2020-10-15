@@ -35,7 +35,7 @@
 <?rfc subcompact="no" ?>
 <?rfc iprnotified="no" ?>
 <?rfc strict="no" ?>
-<rfc category="std" docName="draft-ietf-idr-rfc5575bis-26" ipr="trust200902" obsoletes="5575,7674">
+<rfc category="std" docName="draft-ietf-idr-rfc5575bis-27" ipr="trust200902" obsoletes="5575,7674">
   <front>
    <title abbrev="Flow Specification">Dissemination of Flow Specification Rules</title>
    <author fullname="Christoph Loibl" initials="C.L."
@@ -380,8 +380,8 @@
        match any packets), and thus SHOULD NOT be propagated by BGP.
    </t>
    <t>
-        A NLRI value not encoded as specified specified here
-        is considered malformed and error handling according to
+        A NLRI value not encoded as specified here, including a NLRI that contains an unknown 
+        component type, is considered malformed and error handling according to
         <xref target="errorhandling" /> is performed.
    </t>
    <section anchor="operators" title="Operators">
@@ -693,7 +693,7 @@ the TCP Control Bits. When a 2-octet (bitmask_op len=01) encoding is used, it ma
 <list style="hanging">
 <t hangText="DF -">Don't fragment - match if <xref target="RFC0791" /> IP Header Flags Bit-1 (DF) is 1
 </t>
-<t hangText="IsF -">Is a fragment - match if <xref target="RFC0791" /> IP Header Fragment Offset is not 0
+<t hangText="IsF -">Is a fragment other than the first - match if <xref target="RFC0791" /> IP Header Fragment Offset is not 0
 </t>
 <t hangText="FF -">First fragment - match if <xref target="RFC0791" /> IP Header Fragment Offset is 0 AND Flags Bit-2 (MF) is 1
 </t>
